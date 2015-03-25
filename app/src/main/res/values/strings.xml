@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Blueshift Sample Host App</string>
+
+    <string name="title_activity_product_list">Product List</string>
+    <string name="title_activity_product">Product View</string>
+    <string name="title_activity_cart">Cart</string>
+    <string name="title_activity_purchase_confirmation">Purchase Complete</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_purchase_return">Purchase Cancel / Return</string>
+    <string name="title_activity_mailing_list">Mailing List</string>
+    <string name="title_activity_subscription_events">Subscription Events</string>
+
+    <string-array name="subscription_types_entries">
+       <item>Subscription-0001</item>
+       <item>Subscription-0002</item>
+       <item>Subscription-0003</item>
+    </string-array>
+    <string name="title_activity_offer_display">Offer Display</string>
+</resources>

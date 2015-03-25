@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.bullfin.blueshiftandroidapp" >
+
+    <!-- Notification -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="ch.bullfin.blueshiftandroidapp.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="ch.bullfin.blueshiftandroidapp.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- End of Notification -->
+    <application
+        android:name=".framework.BFApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- Notification -->
+        <receiver
+            android:name="com.blueshift.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="ch.bullfin.blueshiftandroidapp" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.blueshift.gcm.GCMIntentService" />
+
+        <receiver android:name="com.blueshift.rich_push.RichPushBroadcastReceiver">
+            <intent-filter>
+                <action android:name="ch.bullfin.blueshiftandroidapp.RICH_PUSH_RECEIVED"/>
+
+                <category android:name="ch.bullfin.blueshiftandroidapp"/>
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.blueshift.gcm_sender_id"
+            android:value="id:797760330995" />
+        <!-- Notification -->
+
+
+        <!-- Deep-linking -->
+        <receiver android:name="com.blueshift.rich_push.RichPushActionReceiver" >
+            <intent-filter>
+                <action android:name="ch.bullfin.blueshiftandroidapp.ACTION_VIEW" />
+                <action android:name="ch.bullfin.blueshiftandroidapp.ACTION_BUY" />
+                <action android:name="ch.bullfin.blueshiftandroidapp.ACTION_OPEN_CART" />
+                <action android:name="ch.bullfin.blueshiftandroidapp.ACTION_OPEN_OFFER_PAGE" />
+
+                <category android:name="ch.bullfin.blueshiftandroidapp"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.blueshift.SamplePushReceiver" >
+            <intent-filter>
+                <action android:name="ch.bullfin.blueshiftandroidapp.ACTION_PUSH_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <!-- End: Deep-linking -->
+
+        <receiver android:exported="true" android:name="com.blueshift.receiver.AppInstallReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.SignInActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ProductListActivity"
+            android:label="@string/title_activity_product_list" >
+        </activity>
+        <activity
+            android:name=".activity.ProductActivity"
+            android:label="@string/title_activity_product" >
+        </activity>
+        <activity
+            android:name=".activity.CartActivity"
+            android:label="@string/title_activity_cart" >
+        </activity>
+        <activity
+            android:name=".activity.PurchaseConfirmationActivity"
+            android:label="@string/title_activity_purchase_confirmation" >
+        </activity>
+        <activity
+            android:name=".activity.DashboardActivity"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name=".activity.PurchaseReturnActivity"
+            android:label="@string/title_activity_purchase_return" >
+        </activity>
+        <activity
+            android:name=".activity.MailingListActivity"
+            android:label="@string/title_activity_mailing_list" >
+        </activity>
+        <activity
+            android:name=".activity.SubscriptionEventsActivity"
+            android:label="@string/title_activity_subscription_events" >
+        </activity>
+        <activity
+            android:name=".activity.OfferDisplayActivity"
+            android:label="@string/title_activity_offer_display" >
+        </activity>
+    </application>
+
+</manifest>
