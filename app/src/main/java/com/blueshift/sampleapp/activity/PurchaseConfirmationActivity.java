@@ -1,13 +1,13 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
+import com.blueshift.sampleapp.R;
 
-import ch.bullfin.blueshiftandroidapp.R;
 
 public class PurchaseConfirmationActivity extends ActionBarActivity {
 

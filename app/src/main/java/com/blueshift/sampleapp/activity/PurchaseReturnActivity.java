@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,7 +7,7 @@ import android.view.View;
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
 
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.R;
 
 public class PurchaseReturnActivity extends ActionBarActivity {
 

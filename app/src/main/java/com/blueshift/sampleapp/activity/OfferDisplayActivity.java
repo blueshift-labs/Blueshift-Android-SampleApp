@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,7 +8,7 @@ import com.blueshift.Blueshift;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.R;
 
 public class OfferDisplayActivity extends ActionBarActivity {
 

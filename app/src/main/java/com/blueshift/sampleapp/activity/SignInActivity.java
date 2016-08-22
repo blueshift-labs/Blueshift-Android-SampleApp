@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.blueshift.Blueshift;
 import com.blueshift.gcm.GCMRegistrar;
 import com.blueshift.model.UserInfo;
 
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.R;
 
 
 public class SignInActivity extends ActionBarActivity {
@@ -42,7 +42,7 @@ public class SignInActivity extends ActionBarActivity {
                 userInfo.setEmail(email);
                 userInfo.save(this);
 
-                Blueshift.getInstance(this).identifyUser(email, null);
+                Blueshift.getInstance(this).identifyUserByEmail(email, null);
                 startActivity(new Intent(this, DashboardActivity.class));
             } else {
                 mEmailField.setError("Invalid email");
@@ -58,7 +58,7 @@ public class SignInActivity extends ActionBarActivity {
         } else {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("message/rfc822");
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@bullfin.ch"});
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"user@example.com"});
             intent.putExtra(Intent.EXTRA_SUBJECT, "GCM Registration Id");
             intent.putExtra(Intent.EXTRA_TEXT, regId);
             startActivity(intent);

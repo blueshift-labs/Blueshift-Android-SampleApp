@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,10 +8,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blueshift.Blueshift;
-import com.blueshift.SubscriptionState;
 
-import ch.bullfin.blueshiftandroidapp.ProgressDialogDisplayTask;
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.ProgressDialogDisplayTask;
+import com.blueshift.sampleapp.R;
+import com.blueshift.type.SubscriptionState;
 
 public class SubscriptionEventsActivity extends ActionBarActivity {
 

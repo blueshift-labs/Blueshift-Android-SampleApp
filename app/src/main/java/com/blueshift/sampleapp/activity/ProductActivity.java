@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.blueshift.Blueshift;
 
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.R;
 
 
 public class ProductActivity extends ActionBarActivity {

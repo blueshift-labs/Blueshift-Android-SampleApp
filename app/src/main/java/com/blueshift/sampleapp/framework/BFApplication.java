@@ -1,15 +1,14 @@
-package ch.bullfin.blueshiftandroidapp.framework;
+package com.blueshift.sampleapp.framework;
 
 import android.app.Application;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
-import com.blueshift.model.UserInfo;
 
-import ch.bullfin.blueshiftandroidapp.R;
-import ch.bullfin.blueshiftandroidapp.activity.CartActivity;
-import ch.bullfin.blueshiftandroidapp.activity.OfferDisplayActivity;
-import ch.bullfin.blueshiftandroidapp.activity.ProductActivity;
+import com.blueshift.sampleapp.R;
+import com.blueshift.sampleapp.activity.CartActivity;
+import com.blueshift.sampleapp.activity.OfferDisplayActivity;
+import com.blueshift.sampleapp.activity.ProductActivity;
 
 /**
  * Created by rahul on 17/2/15.

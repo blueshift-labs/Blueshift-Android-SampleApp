@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import com.blueshift.Blueshift;
 
-import ch.bullfin.blueshiftandroidapp.ProgressDialogDisplayTask;
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.ProgressDialogDisplayTask;
+import com.blueshift.sampleapp.R;
 
 public class MailingListActivity extends ActionBarActivity {
 

@@ -1,17 +1,17 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
 import com.blueshift.rich_push.Message;
+import com.blueshift.sampleapp.R;
 import com.google.gson.Gson;
 
-import ch.bullfin.blueshiftandroidapp.R;
 
 public class CartActivity extends ActionBarActivity {
 
