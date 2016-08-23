@@ -24,7 +24,7 @@ public class BFApplication extends Application {
         configuration.setProductPage(ProductActivity.class);
         configuration.setCartPage(CartActivity.class);
         configuration.setOfferDisplayPage(OfferDisplayActivity.class);
-        configuration.setApiKey("5be04919d8773728197f8bd0e2fedce2");
+        configuration.setApiKey("0bcedd92238db589d8975462eb0a1c45"); // this is a test key. use a real one here.
 
         Blueshift.getInstance(this).initialize(configuration);
     }
