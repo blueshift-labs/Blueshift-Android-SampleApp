@@ -20,7 +20,7 @@ public class DashboardActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this,true);
     }
 
     public void onProductsClicked(View view) {

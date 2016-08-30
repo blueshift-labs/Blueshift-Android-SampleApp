@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.blueshift.Blueshift;
-
 import com.blueshift.sampleapp.R;
 
 
@@ -39,11 +38,11 @@ public class ProductActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
         if (sku != null) {
-            Blueshift.getInstance(this).trackProductView(sku, 10);
+            Blueshift.getInstance(this).trackProductView(sku, 10, true);
         } else {
-            Blueshift.getInstance(this).trackProductView("S-007", 10);
+            Blueshift.getInstance(this).trackProductView("S-007", 10, true);
         }
     }
 

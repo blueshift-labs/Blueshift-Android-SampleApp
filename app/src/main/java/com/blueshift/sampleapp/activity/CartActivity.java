@@ -50,11 +50,11 @@ public class CartActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
         if (sku != null) {
-            Blueshift.getInstance(this).trackAddToCart(sku, 1);
+            Blueshift.getInstance(this).trackAddToCart(sku, 1, false);
         } else {
-            Blueshift.getInstance(this).trackAddToCart("S-007", 1);
+            Blueshift.getInstance(this).trackAddToCart("S-007", 1, false);
         }
     }
 
@@ -68,7 +68,7 @@ public class CartActivity extends ActionBarActivity {
             product.setSku("S-00" + (i + 1));
             products[i] = product;
         }
-        Blueshift.getInstance(this).trackCheckoutCart(products, 12.56f, 5.86f, "CB007");
+        Blueshift.getInstance(this).trackCheckoutCart(products, 12.56f, 5.86f, "CB007",false);
 
         startActivity(new Intent(this, PurchaseConfirmationActivity.class));
     }

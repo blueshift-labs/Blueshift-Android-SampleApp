@@ -29,12 +29,12 @@ public class SignInActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
     }
 
     public void onSignInClicked(View view) {
         UserInfo userInfo = UserInfo.getInstance(this);
-        userInfo.setRetailerCustomerId("123456");
+        userInfo.setRetailerCustomerId(String.valueOf(System.currentTimeMillis()));
 
         if (mEmailField != null && mEmailField.getText() != null) {
             String email = mEmailField.getText().toString();
@@ -42,7 +42,7 @@ public class SignInActivity extends ActionBarActivity {
                 userInfo.setEmail(email);
                 userInfo.save(this);
 
-                Blueshift.getInstance(this).identifyUserByEmail(email, null);
+                Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
                 startActivity(new Intent(this, DashboardActivity.class));
             } else {
                 mEmailField.setError("Invalid email");

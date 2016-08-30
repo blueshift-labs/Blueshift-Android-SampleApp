@@ -10,6 +10,8 @@ import com.blueshift.sampleapp.activity.CartActivity;
 import com.blueshift.sampleapp.activity.OfferDisplayActivity;
 import com.blueshift.sampleapp.activity.ProductActivity;
 
+import java.util.ArrayList;
+
 /**
  * Created by rahul on 17/2/15.
  */
@@ -24,7 +26,7 @@ public class BFApplication extends Application {
         configuration.setProductPage(ProductActivity.class);
         configuration.setCartPage(CartActivity.class);
         configuration.setOfferDisplayPage(OfferDisplayActivity.class);
-        configuration.setApiKey("0bcedd92238db589d8975462eb0a1c45"); // this is a test key. use a real one here.
+        configuration.setApiKey("ae8087e9fb141de419ddbac09ed8b0a9"); // this is a test key. use a real one here.
 
         Blueshift.getInstance(this).initialize(configuration);
     }

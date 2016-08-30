@@ -5,10 +5,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.sampleapp.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import com.blueshift.sampleapp.R;
 
 public class OfferDisplayActivity extends ActionBarActivity {
 
@@ -27,6 +26,6 @@ public class OfferDisplayActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
     }
 }

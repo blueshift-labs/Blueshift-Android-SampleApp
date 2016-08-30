@@ -3,10 +3,15 @@ package com.blueshift.sampleapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 import com.blueshift.Blueshift;
+import com.blueshift.batch.Event;
+import com.blueshift.batch.EventsTable;
 import com.blueshift.model.Product;
 import com.blueshift.sampleapp.R;
+
+import java.util.ArrayList;
 
 
 public class PurchaseConfirmationActivity extends ActionBarActivity {
@@ -20,7 +25,7 @@ public class PurchaseConfirmationActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this,true);
 
         Product[] products = new Product[3];
 
@@ -32,7 +37,7 @@ public class PurchaseConfirmationActivity extends ActionBarActivity {
             products[i] = product;
         }
 
-        Blueshift.getInstance(this).trackProductsPurchase("S123456789", products, 12.56f, 10.86f,5.86f, "CB007");
+        Blueshift.getInstance(this).trackProductsPurchase("S123456789", products, 12.56f, 10.86f,5.86f, "CB007",false);
     }
 
     @Override

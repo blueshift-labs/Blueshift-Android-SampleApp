@@ -73,6 +73,10 @@
         </receiver>
         <!-- End: Deep-linking -->
 
+        <!--Events batching-->
+        <receiver android:name="com.blueshift.batch.AlarmReceiver"/>
+        <!--End - Events batching-->
+
         <receiver
             android:name="com.blueshift.receiver.AppInstallReceiver"
             android:exported="true">
