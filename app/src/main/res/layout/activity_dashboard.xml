@@ -31,4 +31,10 @@
         android:layout_height="wrap_content"
         android:onClick="onSubscriptionEventsClicked"
         android:text="Subscription events"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="OnLogoutClicked"
+        android:text="Log out"/>
 </LinearLayout>

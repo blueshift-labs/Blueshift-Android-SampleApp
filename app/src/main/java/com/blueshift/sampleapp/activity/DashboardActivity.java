@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.blueshift.Blueshift;
 
+import com.blueshift.model.UserInfo;
 import com.blueshift.sampleapp.R;
 
 public class DashboardActivity extends ActionBarActivity {
@@ -37,5 +38,17 @@ public class DashboardActivity extends ActionBarActivity {
 
     public void onSubscriptionEventsClicked(View view) {
         startActivity(new Intent(this, SubscriptionEventsActivity.class));
+    }
+
+    public void OnLogoutClicked(View view) {
+        UserInfo userInfo = UserInfo.getInstance(this);
+        userInfo.setEmail(null);
+
+        Intent signInIntent = new Intent(this, SignInActivity.class);
+        signInIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        signInIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        signInIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        startActivity(signInIntent);
     }
 }

@@ -3,6 +3,7 @@ package com.blueshift.sampleapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -24,6 +25,14 @@ public class SignInActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mEmailField = (EditText) findViewById(R.id.email_field);
+
+        String email = UserInfo.getInstance(this).getEmail();
+        if (!TextUtils.isEmpty(email)) {
+            Intent dashboardIntent = new Intent(this, DashboardActivity.class);
+            startActivity(dashboardIntent);
+
+            finish();
+        }
     }
 
     @Override
