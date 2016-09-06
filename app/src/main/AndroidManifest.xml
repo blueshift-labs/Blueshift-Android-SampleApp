@@ -61,6 +61,7 @@
                 <action android:name="com.blueshift.sampleapp.ACTION_BUY" />
                 <action android:name="com.blueshift.sampleapp.ACTION_OPEN_CART" />
                 <action android:name="com.blueshift.sampleapp.ACTION_OPEN_OFFER_PAGE" />
+                <action android:name="com.blueshift.sampleapp.ACTION_OPEN_APP" />
 
                 <category android:name="com.blueshift.sampleapp" />
             </intent-filter>
@@ -72,10 +73,6 @@
             </intent-filter>
         </receiver>
         <!-- End: Deep-linking -->
-
-        <!--Events batching-->
-        <receiver android:name="com.blueshift.batch.AlarmReceiver"/>
-        <!--End - Events batching-->
 
         <receiver
             android:name="com.blueshift.receiver.AppInstallReceiver"
