@@ -1,17 +1,17 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
 import com.blueshift.rich_push.Message;
+import com.blueshift.sampleapp.R;
 import com.google.gson.Gson;
 
-import ch.bullfin.blueshiftandroidapp.R;
 
 public class CartActivity extends ActionBarActivity {
 
@@ -50,11 +50,11 @@ public class CartActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
         if (sku != null) {
-            Blueshift.getInstance(this).trackAddToCart(sku, 1);
+            Blueshift.getInstance(this).trackAddToCart(sku, 1, false);
         } else {
-            Blueshift.getInstance(this).trackAddToCart("S-007", 1);
+            Blueshift.getInstance(this).trackAddToCart("S-007", 1, false);
         }
     }
 
@@ -68,7 +68,7 @@ public class CartActivity extends ActionBarActivity {
             product.setSku("S-00" + (i + 1));
             products[i] = product;
         }
-        Blueshift.getInstance(this).trackCheckoutCart(products, 12.56f, 5.86f, "CB007");
+        Blueshift.getInstance(this).trackCheckoutCart(products, 12.56f, 5.86f, "CB007",false);
 
         startActivity(new Intent(this, PurchaseConfirmationActivity.class));
     }

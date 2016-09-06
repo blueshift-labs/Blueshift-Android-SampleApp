@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp;
+package com.blueshift.sampleapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,10 +8,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blueshift.Blueshift;
-import com.blueshift.SubscriptionState;
 
-import ch.bullfin.blueshiftandroidapp.ProgressDialogDisplayTask;
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.ProgressDialogDisplayTask;
+import com.blueshift.sampleapp.R;
+import com.blueshift.type.SubscriptionState;
+import com.google.android.gms.internal.fa;
 
 public class SubscriptionEventsActivity extends ActionBarActivity {
 
@@ -62,7 +63,7 @@ public class SubscriptionEventsActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this,true);
     }
 
     public void onInitSubscriptionClicked(View view) {
@@ -79,20 +80,21 @@ public class SubscriptionEventsActivity extends ActionBarActivity {
                 cycleLength,
                 mSubscriptionTypeSpinner.getSelectedItem().toString(),
                 amount,
-                System.currentTimeMillis()
+                System.currentTimeMillis(),
+                false
         );
     }
 
     public void onPauseSubscriptionClicked(View view) {
-        Blueshift.getInstance(this).trackSubscriptionPause();
+        Blueshift.getInstance(this).trackSubscriptionPause(false);
     }
 
     public void onUnpauseSubscriptionClicked(View view) {
-        Blueshift.getInstance(this).trackSubscriptionUnpause();
+        Blueshift.getInstance(this).trackSubscriptionUnpause(false);
     }
 
     public void onCancelSubscriptionClicked(View view) {
-        Blueshift.getInstance(this).trackSubscriptionCancel();
+        Blueshift.getInstance(this).trackSubscriptionCancel(false);
     }
 
 }

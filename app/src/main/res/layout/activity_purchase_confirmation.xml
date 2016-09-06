@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="ch.bullfin.blueshiftandroidapp.activity.PurchaseConfirmationActivity">
+    tools:context=".activity.PurchaseConfirmationActivity">
 
     <ImageView
         android:layout_width="match_parent"

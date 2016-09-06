@@ -1,14 +1,13 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.sampleapp.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import ch.bullfin.blueshiftandroidapp.R;
 
 public class OfferDisplayActivity extends ActionBarActivity {
 
@@ -27,6 +26,6 @@ public class OfferDisplayActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
     }
 }
