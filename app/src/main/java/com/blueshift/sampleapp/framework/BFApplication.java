@@ -26,7 +26,7 @@ public class BFApplication extends Application {
         configuration.setProductPage(ProductActivity.class);
         configuration.setCartPage(CartActivity.class);
         configuration.setOfferDisplayPage(OfferDisplayActivity.class);
-        configuration.setBatchInterval(93 * 1000);
+        configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min
         configuration.setApiKey("ae8087e9fb141de419ddbac09ed8b0a9"); // this is a test key. use a real one here.
 
         Blueshift.getInstance(this).initialize(configuration);
