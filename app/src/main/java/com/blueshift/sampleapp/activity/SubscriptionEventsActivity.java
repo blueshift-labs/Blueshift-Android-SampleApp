@@ -12,7 +12,6 @@ import com.blueshift.Blueshift;
 import com.blueshift.sampleapp.ProgressDialogDisplayTask;
 import com.blueshift.sampleapp.R;
 import com.blueshift.type.SubscriptionState;
-import com.google.android.gms.internal.fa;
 
 public class SubscriptionEventsActivity extends ActionBarActivity {
 
