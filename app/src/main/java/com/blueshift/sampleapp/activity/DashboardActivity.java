@@ -43,6 +43,7 @@ public class DashboardActivity extends ActionBarActivity {
     public void OnLogoutClicked(View view) {
         UserInfo userInfo = UserInfo.getInstance(this);
         userInfo.setEmail(null);
+        userInfo.save(this);
 
         Intent signInIntent = new Intent(this, SignInActivity.class);
         signInIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
