@@ -1,4 +1,4 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -6,8 +6,7 @@ import android.view.View;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
-
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.R;
 
 public class PurchaseReturnActivity extends ActionBarActivity {
 
@@ -21,7 +20,7 @@ public class PurchaseReturnActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this, true);
     }
 
     public void onPurchaseReturnClicked(View view) {
@@ -35,11 +34,11 @@ public class PurchaseReturnActivity extends ActionBarActivity {
             products[i] = product;
         }
 
-        Blueshift.getInstance(this).trackPurchaseReturn("S123456789", products);
+        Blueshift.getInstance(this).trackPurchaseReturn("S123456789", products, false);
     }
 
     public void onPurchaseCancelClicked(View view) {
-        Blueshift.getInstance(this).trackPurchaseCancel("S123456789");
+        Blueshift.getInstance(this).trackPurchaseCancel("S123456789", false);
     }
 
 

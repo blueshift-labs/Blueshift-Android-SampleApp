@@ -1,15 +1,16 @@
-package ch.bullfin.blueshiftandroidapp.framework;
+package com.blueshift.sampleapp.framework;
 
 import android.app.Application;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
-import com.blueshift.model.UserInfo;
 
-import ch.bullfin.blueshiftandroidapp.R;
-import ch.bullfin.blueshiftandroidapp.activity.CartActivity;
-import ch.bullfin.blueshiftandroidapp.activity.OfferDisplayActivity;
-import ch.bullfin.blueshiftandroidapp.activity.ProductActivity;
+import com.blueshift.sampleapp.R;
+import com.blueshift.sampleapp.activity.CartActivity;
+import com.blueshift.sampleapp.activity.OfferDisplayActivity;
+import com.blueshift.sampleapp.activity.ProductActivity;
+
+import java.util.ArrayList;
 
 /**
  * Created by rahul on 17/2/15.
@@ -25,7 +26,9 @@ public class BFApplication extends Application {
         configuration.setProductPage(ProductActivity.class);
         configuration.setCartPage(CartActivity.class);
         configuration.setOfferDisplayPage(OfferDisplayActivity.class);
-        configuration.setApiKey("5be04919d8773728197f8bd0e2fedce2");
+        // configuration.setDialogTheme(R.style.dialog_theme);
+        // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min
+        configuration.setApiKey("ae8087e9fb141de419ddbac09ed8b0a9"); // this is a test key. use a real one here.
 
         Blueshift.getInstance(this).initialize(configuration);
     }

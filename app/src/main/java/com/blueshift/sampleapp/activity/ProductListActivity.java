@@ -1,11 +1,9 @@
-package ch.bullfin.blueshiftandroidapp.activity;
+package com.blueshift.sampleapp.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -13,8 +11,8 @@ import com.blueshift.Blueshift;
 
 import java.util.HashMap;
 
-import ch.bullfin.blueshiftandroidapp.ProgressDialogDisplayTask;
-import ch.bullfin.blueshiftandroidapp.R;
+import com.blueshift.sampleapp.ProgressDialogDisplayTask;
+import com.blueshift.sampleapp.R;
 
 
 public class ProductListActivity extends ActionBarActivity {
@@ -35,7 +33,7 @@ public class ProductListActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this);
+        Blueshift.getInstance(this).trackScreenView(this,true);
     }
 
     public void onProductClicked(View view) {
@@ -53,7 +51,8 @@ public class ProductListActivity extends ActionBarActivity {
                     4,
                     1,
                     mQueryText.getText().toString()
-                    ,sampleFilterHash
+                    ,sampleFilterHash,
+                    false
             );
 
             mQueryText.setText("");
