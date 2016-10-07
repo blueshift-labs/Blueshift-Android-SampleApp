@@ -24,7 +24,7 @@ public class OfferDisplayActivity extends ActionBarActivity {
         if (message != null) {
             ImageLoader imageLoader = ImageLoader.getInstance();
             imageLoader.init(ImageLoaderConfiguration.createDefault(this));
-            imageLoader.displayImage(message.getImage_url(), imageView);
+            imageLoader.displayImage(message.getImageUrl(), imageView);
 
             Toast.makeText(OfferDisplayActivity.this, message.getUrl(), Toast.LENGTH_SHORT).show();
         }

@@ -20,17 +20,21 @@ android {
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
+    maven {
+        url 'https://dl.bintray.com/nipun/maven/'
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+
+    // For sample app
     compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.8.5'
-    compile 'com.google.android.gms:play-services:6.5.87'
-    compile(name: 'library-release', ext: 'aar')
+
+    // BlueShift SDK dependencies
+    compile 'com.google.code.gson:gson:2.6.1'
+    compile 'com.google.android.gms:play-services-ads:9.6.1'
+    compile 'com.blueshift:android-sdk:0.5.0'
 }
