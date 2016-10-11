@@ -19,9 +19,10 @@ android {
     }
 }
 
+// comment following code when using jCenter lib
 repositories {
-    maven {
-        url 'https://dl.bintray.com/nipun/maven/'
+    flatDir {
+        dirs 'libs'
     }
 }
 
@@ -36,5 +37,9 @@ dependencies {
     // BlueShift SDK dependencies
     compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.google.android.gms:play-services-ads:9.6.1'
-    compile 'com.blueshift:android-sdk:0.5.0'
+
+    // iCenter
+    // compile 'com.blueshift:android-sdk:0.5.0'
+    // libs
+    compile(name: 'android-sdk-debug', ext: 'aar')
 }
