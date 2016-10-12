@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.blueshift.Blueshift;
+import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
-import com.blueshift.reads.model.User;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import io.github.rahulrvp.android_utils.EditTextUtils;
 
@@ -35,15 +38,45 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
 
-        Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
-
-        User currentUser = User.getInstance(this);
+        // Save user info
+        UserInfo currentUser = UserInfo.getInstance(this);
+        currentUser.setRetailerCustomerId(hashEmail(email));
         currentUser.setEmail(email);
         currentUser.save(this);
 
+        // Call identify
+        Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
+
+        // Go to product list
         Intent productIntent = new Intent(this, ProductListActivity.class);
         startActivity(productIntent);
 
         finish();
+    }
+
+    private String hashEmail(String email) {
+        String emailHash = "";
+
+        if (!TextUtils.isEmpty(email)) {
+            try {
+                MessageDigest md5 = MessageDigest.getInstance("MD5");
+                md5.update(email.getBytes());
+                byte[] byteArray = md5.digest();
+
+                StringBuilder sb = new StringBuilder();
+                for (byte data : byteArray) {
+                    sb.append(Integer.toString((data & 0xff) + 0x100, 16).substring(1));
+                }
+
+                emailHash = sb.toString();
+
+                // Log.d("email-md5", emailHash);
+
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return emailHash;
     }
 }

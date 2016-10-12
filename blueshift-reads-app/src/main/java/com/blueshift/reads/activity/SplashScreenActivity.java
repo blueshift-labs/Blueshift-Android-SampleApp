@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
+import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
-import com.blueshift.reads.model.User;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -37,7 +38,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            if (User.getInstance(mContext).isSignedIn()) {
+            String email = UserInfo.getInstance(mContext).getEmail();
+            if (!TextUtils.isEmpty(email)) {
                 Intent signInIntent = new Intent(mContext, ProductListActivity.class);
                 startActivity(signInIntent);
             } else {
