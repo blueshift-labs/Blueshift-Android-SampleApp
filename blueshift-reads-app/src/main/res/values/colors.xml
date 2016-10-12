@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#1476BA</color>
     <color name="colorPrimaryDark">#01579B</color>
-    <!--<color name="colorAccent">#33A174</color>-->
     <color name="colorAccent">#c8541B</color>
+
+    <color name="book_price_text">#33A174</color>
 </resources>
