@@ -23,6 +23,8 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         mEmailField = (EditText) findViewById(R.id.email);
+
+        Blueshift.getInstance(this).trackScreenView(this, false);
     }
 
     public void onLetMeInClick(View view) {

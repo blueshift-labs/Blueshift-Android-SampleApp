@@ -5,4 +5,5 @@
     <color name="colorAccent">#c8541B</color>
 
     <color name="book_price_text">#33A174</color>
+    <color name="control_highlight">#261476BA</color>
 </resources>

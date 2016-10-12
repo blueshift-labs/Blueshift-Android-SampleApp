@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
+import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
@@ -37,6 +38,8 @@ public class ProductListActivity extends AppCompatActivity {
         }
 
         loadBooks();
+
+        Blueshift.getInstance(this).trackScreenView(this, false);
     }
 
     private void loadBooks() {
