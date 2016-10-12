@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BlueShift Reads</string>
+    <string name="email_hint">username@example.com</string>
+    <string name="let_me_in">LET ME IN</string>
+</resources>
