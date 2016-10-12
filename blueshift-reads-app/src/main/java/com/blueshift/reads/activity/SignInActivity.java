@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
+import com.blueshift.reads.model.User;
 
 import io.github.rahulrvp.android_utils.EditTextUtils;
 
@@ -33,6 +34,10 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
+
+        User currentUser = User.getInstance(this);
+        currentUser.setEmail(email);
+        currentUser.save(this);
 
         Intent productIntent = new Intent(this, ProductListActivity.class);
         startActivity(productIntent);
