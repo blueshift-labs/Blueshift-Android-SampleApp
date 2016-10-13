@@ -1,6 +1,7 @@
 package com.blueshift.reads.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
+import com.blueshift.reads.activity.ProductDetailsActivity;
 import com.blueshift.reads.model.Book;
 import com.bumptech.glide.Glide;
 
@@ -106,11 +107,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                     @Override
                     public void onClick(View v) {
                         Context context = mContentView.getContext();
-                        // TODO: 12/10/16  Change this when category id is available.
-                        Blueshift.getInstance(context).trackProductView(book.getSku(), 1, false);
+                        launchPDP(context, book);
                     }
                 });
             }
+        }
+
+        private void launchPDP(Context context, Book book) {
+            Intent pdpIntent = new Intent(context, ProductDetailsActivity.class);
+            pdpIntent.putExtra(ProductDetailsActivity.EXTRA_BOOK, book);
+            context.startActivity(pdpIntent);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.blueshift.reads.model;
 
+import java.io.Serializable;
+
 /**
  * @author Rahul Raveendran V P
  *         Created on 12/10/16 @ 2:09 PM
@@ -7,7 +9,7 @@ package com.blueshift.reads.model;
  */
 
 
-public class Book {
+public class Book implements Serializable {
     private String sku;
     private String name;
     private String price;
