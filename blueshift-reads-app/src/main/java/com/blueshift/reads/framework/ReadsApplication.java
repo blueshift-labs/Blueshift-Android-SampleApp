@@ -1,9 +1,11 @@
-package com.blueshift.reads;
+package com.blueshift.reads.framework;
 
 import android.app.Application;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
+import com.blueshift.reads.R;
+import com.blueshift.reads.activity.ProductDetailsActivity;
 
 /**
  * @author Rahul Raveendran V P
@@ -21,13 +23,13 @@ public class ReadsApplication extends Application {
         Configuration configuration = new Configuration();
         configuration.setAppIcon(R.mipmap.ic_launcher);
 
-        // configuration.setProductPage(ProductActivity.class);
+        configuration.setProductPage(ProductDetailsActivity.class);
         // configuration.setCartPage(CartActivity.class);
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
         // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min
 
-        configuration.setApiKey("ae8087e9fb141de419ddbac09ed8b0a9"); // this is a test key. use a real one here.
+        configuration.setApiKey("5dfe3c9aee8b375bcc616079b08156d9"); // this is a test key. use a real one here.
 
         Blueshift.getInstance(this).initialize(configuration);
     }

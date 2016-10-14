@@ -60,6 +60,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
 
             mQtyField = (EditText) findViewById(R.id.book_qty);
+            if (mQtyField != null) {
+                String qty = EditTextUtils.getText(mQtyField);
+                if (!TextUtils.isEmpty(qty)) {
+                    mQtyField.setSelection(qty.length());
+                }
+            }
         }
     }
 

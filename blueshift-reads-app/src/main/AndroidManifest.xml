@@ -20,7 +20,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".ReadsApplication"
+        android:name=".framework.ReadsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -83,7 +83,9 @@
         </activity>
         <activity android:name=".activity.ProductListActivity" />
         <activity android:name=".activity.SignInActivity" />
-        <activity android:name=".activity.ProductDetailsActivity"/>
+        <activity
+            android:name=".activity.ProductDetailsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>
