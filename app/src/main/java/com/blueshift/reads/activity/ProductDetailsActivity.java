@@ -13,8 +13,8 @@ import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
 import com.blueshift.reads.model.Book;
 import com.bumptech.glide.Glide;
+import com.github.rahulrvp.android_utils.EditTextUtils;
 
-import io.github.rahulrvp.android_utils.EditTextUtils;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 

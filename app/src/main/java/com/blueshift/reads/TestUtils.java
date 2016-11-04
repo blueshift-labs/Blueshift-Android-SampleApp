@@ -3,6 +3,7 @@ package com.blueshift.reads;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

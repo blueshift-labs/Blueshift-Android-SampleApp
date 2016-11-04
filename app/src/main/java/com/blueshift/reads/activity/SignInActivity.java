@@ -10,11 +10,10 @@ import android.widget.EditText;
 import com.blueshift.Blueshift;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
+import com.github.rahulrvp.android_utils.EditTextUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import io.github.rahulrvp.android_utils.EditTextUtils;
 
 public class SignInActivity extends AppCompatActivity {
 
