@@ -86,6 +86,27 @@
         <activity
             android:name=".activity.ProductDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <!--Old sample app activities-->
+        <activity
+            android:name=".activity.CartActivity"
+            android:label="@string/title_activity_cart" />
+        <activity
+            android:name=".activity.PurchaseConfirmationActivity"
+            android:label="@string/title_activity_purchase_confirmation" />
+        <activity
+            android:name=".activity.PurchaseReturnActivity"
+            android:label="@string/title_activity_purchase_return" />
+        <activity
+            android:name=".activity.MailingListActivity"
+            android:label="@string/title_activity_mailing_list" />
+        <activity
+            android:name=".activity.SubscriptionEventsActivity"
+            android:label="@string/title_activity_subscription_events" />
+        <activity
+            android:name=".activity.OfferDisplayActivity"
+            android:label="@string/title_activity_offer_display" />
+
     </application>
 
 </manifest>

@@ -29,7 +29,8 @@ public class ReadsApplication extends Application {
         // configuration.setDialogTheme(R.style.dialog_theme);
         // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min
 
-        configuration.setApiKey("5dfe3c9aee8b375bcc616079b08156d9"); // this is a test key. use a real one here.
+        configuration.setApiKey("5dfe3c9aee8b375bcc616079b08156d9"); // Bsft Reads
+        // configuration.setApiKey("ae8087e9fb141de419ddbac09ed8b0a9"); // Bsft Mobile
 
         Blueshift.getInstance(this).initialize(configuration);
     }
