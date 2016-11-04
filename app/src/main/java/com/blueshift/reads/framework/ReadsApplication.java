@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
+import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.activity.ProductDetailsActivity;
 
@@ -29,8 +30,7 @@ public class ReadsApplication extends Application {
         // configuration.setDialogTheme(R.style.dialog_theme);
         // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min
 
-        configuration.setApiKey("5dfe3c9aee8b375bcc616079b08156d9"); // Bsft Reads
-        // configuration.setApiKey("ae8087e9fb141de419ddbac09ed8b0a9"); // Bsft Mobile
+        configuration.setApiKey(BuildConfig.API_KEY);
 
         Blueshift.getInstance(this).initialize(configuration);
     }
