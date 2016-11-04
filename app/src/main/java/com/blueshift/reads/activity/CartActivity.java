@@ -1,19 +1,19 @@
-package com.blueshift.sampleapp.activity;
+package com.blueshift.reads.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
+import com.blueshift.reads.R;
 import com.blueshift.rich_push.Message;
-import com.blueshift.sampleapp.R;
 import com.google.gson.Gson;
 
 
-public class CartActivity extends ActionBarActivity {
+public class CartActivity extends AppCompatActivity {
 
     private String sku;
 
@@ -68,7 +68,7 @@ public class CartActivity extends ActionBarActivity {
             product.setSku("S-00" + (i + 1));
             products[i] = product;
         }
-        Blueshift.getInstance(this).trackCheckoutCart(products, 12.56f, 5.86f, "CB007",false);
+        Blueshift.getInstance(this).trackCheckoutCart(products, 12.56f, 5.86f, "CB007", false);
 
         startActivity(new Intent(this, PurchaseConfirmationActivity.class));
     }

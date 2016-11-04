@@ -1,19 +1,18 @@
-package com.blueshift.sampleapp.activity;
+package com.blueshift.reads.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blueshift.Blueshift;
-
-import com.blueshift.sampleapp.ProgressDialogDisplayTask;
-import com.blueshift.sampleapp.R;
+import com.blueshift.reads.ProgressDialogDisplayTask;
+import com.blueshift.reads.R;
 import com.blueshift.type.SubscriptionState;
 
-public class SubscriptionEventsActivity extends ActionBarActivity {
+public class SubscriptionEventsActivity extends AppCompatActivity {
 
     private Spinner mSubscriptionTypeSpinner;
     private TextView mSubscriptionPeriodType;
@@ -55,14 +54,15 @@ public class SubscriptionEventsActivity extends ActionBarActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this,true);
+        Blueshift.getInstance(this).trackScreenView(this, true);
     }
 
     public void onInitSubscriptionClicked(View view) {
@@ -95,5 +95,4 @@ public class SubscriptionEventsActivity extends ActionBarActivity {
     public void onCancelSubscriptionClicked(View view) {
         Blueshift.getInstance(this).trackSubscriptionCancel(false);
     }
-
 }

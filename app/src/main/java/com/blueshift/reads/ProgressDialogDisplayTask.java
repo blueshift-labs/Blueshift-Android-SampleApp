@@ -1,4 +1,4 @@
-package com.blueshift.sampleapp;
+package com.blueshift.reads;
 
 import android.app.ProgressDialog;
 import android.content.Context;

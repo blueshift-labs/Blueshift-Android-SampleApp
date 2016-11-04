@@ -1,18 +1,17 @@
-package com.blueshift.sampleapp.activity;
+package com.blueshift.reads.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
+import com.blueshift.reads.ProgressDialogDisplayTask;
+import com.blueshift.reads.R;
 
-import com.blueshift.sampleapp.ProgressDialogDisplayTask;
-import com.blueshift.sampleapp.R;
-
-public class MailingListActivity extends ActionBarActivity {
+public class MailingListActivity extends AppCompatActivity {
 
     private EditText mEmailField;
 
@@ -27,13 +26,13 @@ public class MailingListActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this,true);
+        Blueshift.getInstance(this).trackScreenView(this, true);
     }
 
     public void onSubscribeClicked(View view) {
         if (mEmailField != null && mEmailField.getText() != null && Patterns.EMAIL_ADDRESS.matcher(mEmailField.getText().toString()).matches()) {
             new ProgressDialogDisplayTask(this).execute();
-            Blueshift.getInstance(this).trackEmailListSubscription(mEmailField.getText().toString(),false);
+            Blueshift.getInstance(this).trackEmailListSubscription(mEmailField.getText().toString(), false);
             mEmailField.setText("");
         } else {
             Toast.makeText(this, "Invalid email.", Toast.LENGTH_SHORT).show();
@@ -43,7 +42,7 @@ public class MailingListActivity extends ActionBarActivity {
     public void onUnsubscribeClicked(View view) {
         if (mEmailField != null && mEmailField.getText() != null && Patterns.EMAIL_ADDRESS.matcher(mEmailField.getText().toString()).matches()) {
             new ProgressDialogDisplayTask(this).execute();
-            Blueshift.getInstance(this).trackEmailListUnsubscription(mEmailField.getText().toString(),false);
+            Blueshift.getInstance(this).trackEmailListUnsubscription(mEmailField.getText().toString(), false);
             mEmailField.setText("");
         } else {
             Toast.makeText(this, "Invalid email.", Toast.LENGTH_SHORT).show();

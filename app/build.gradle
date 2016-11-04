@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.3"
-
     defaultConfig {
-        applicationId "com.blueshift.sampleapp"
+        applicationId "com.blueshift.reads"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -15,6 +14,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        reads {
+            buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
+        }
+
+        mobile {
+            buildConfigField 'String', 'API_KEY', '"ae8087e9fb141de419ddbac09ed8b0a9"'
         }
     }
 }
@@ -30,19 +38,23 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.0'
+    compile 'com.android.support:cardview-v7:24.2.0'
 
-    // For sample app
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.8.5'
+    compile 'com.github.rahulrvp:android-utils:0.1.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     // BlueShift SDK dependencies
     compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.google.android.gms:play-services-ads:9.6.1'
 
     // jCenter
-    compile 'com.blueshift:android-sdk:0.5.1'
+    compile 'com.blueshift:android-sdk:0.7.0'
+    compile 'com.google.firebase:firebase-crash:9.6.1'
 
     // uncomment following code when using local AAR lib
     // compile(name: 'android-sdk-debug', ext: 'aar')
 }
+
+apply plugin: 'com.google.gms.google-services'

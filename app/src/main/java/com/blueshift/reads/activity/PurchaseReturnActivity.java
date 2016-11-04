@@ -1,14 +1,15 @@
-package com.blueshift.sampleapp.activity;
+package com.blueshift.reads.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
-import com.blueshift.sampleapp.R;
+import com.blueshift.reads.R;
 
-public class PurchaseReturnActivity extends ActionBarActivity {
+public class PurchaseReturnActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

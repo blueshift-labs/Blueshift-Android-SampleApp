@@ -1,18 +1,18 @@
-package com.blueshift.sampleapp.activity;
+package com.blueshift.reads.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
+import com.blueshift.reads.R;
 import com.blueshift.rich_push.Message;
 import com.blueshift.rich_push.RichPushConstants;
-import com.blueshift.sampleapp.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.bumptech.glide.Glide;
 
-public class OfferDisplayActivity extends ActionBarActivity {
+public class OfferDisplayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,13 @@ public class OfferDisplayActivity extends ActionBarActivity {
         ImageView imageView = (ImageView) findViewById(R.id.offer_image_view);
         Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
         if (message != null) {
-            ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.init(ImageLoaderConfiguration.createDefault(this));
-            imageLoader.displayImage(message.getImageUrl(), imageView);
+            Glide
+                    .with(this)
+                    .load(message.getImageUrl())
+                    .centerCrop()
+                    .placeholder(R.mipmap.ic_launcher)
+                    .crossFade()
+                    .into(imageView);
 
             Toast.makeText(OfferDisplayActivity.this, message.getUrl(), Toast.LENGTH_SHORT).show();
         }
