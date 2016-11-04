@@ -28,11 +28,13 @@ android {
 }
 
 // uncomment following code when using local AAR lib
+/*
 repositories {
     flatDir {
         dirs 'libs'
     }
 }
+*/
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,11 +50,11 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:9.6.1'
 
     // jCenter
-    // compile 'com.blueshift:android-sdk:0.6.0'
+    compile 'com.blueshift:android-sdk:0.7.0'
     compile 'com.google.firebase:firebase-crash:9.6.1'
 
     // uncomment following code when using local AAR lib
-    compile(name: 'android-sdk-debug', ext: 'aar')
+    // compile(name: 'android-sdk-debug', ext: 'aar')
 }
 
 apply plugin: 'com.google.gms.google-services'
