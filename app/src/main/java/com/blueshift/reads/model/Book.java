@@ -14,6 +14,7 @@ public class Book implements Serializable {
     private String name;
     private String price;
     private String image_url;
+    private String web_url;
 
     public String getSku() {
         return sku;
@@ -29,5 +30,9 @@ public class Book implements Serializable {
 
     public String getImageUrl() {
         return image_url;
+    }
+
+    public String getWebUrl() {
+        return web_url;
     }
 }
