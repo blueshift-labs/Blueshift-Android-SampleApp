@@ -80,6 +80,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             if (book != null) {
                 Intent pdpIntent = new Intent(mContext, ProductDetailsActivity.class);
                 pdpIntent.putExtra(ProductDetailsActivity.EXTRA_BOOK, book);
+                pdpIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 startActivity(pdpIntent);
             } else {
