@@ -87,6 +87,8 @@
             android:name=".activity.ProductDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <activity android:name=".activity.PlaceOrderActivity"/>
+
         <!--Old sample app activities-->
         <activity
             android:name=".activity.CartActivity"

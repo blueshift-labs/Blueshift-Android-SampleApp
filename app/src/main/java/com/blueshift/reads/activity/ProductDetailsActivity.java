@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
+import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.model.Book;
 import com.bumptech.glide.Glide;
 import com.github.rahulrvp.android_utils.EditTextUtils;
@@ -69,6 +70,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        ShoppingCart.getInstance(this).save(this);
+    }
+
     private int getQuantityInt(String quantity) {
         int qty = 0;
 
@@ -93,7 +101,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
             EditTextUtils.setError(mQtyField, "Invalid quantity. Enter a value >= 1");
         } else {
             if (mBook != null) {
-                Blueshift.getInstance(this)
+                mBook.setQuantity(quantity);
+                ShoppingCart.getInstance(this).add(mBook);
+
+                Blueshift
+                        .getInstance(this)
                         .trackAddToCart(mBook.getSku(), quantity, false);
 
                 Toast.makeText(this, "Item added to cart.", Toast.LENGTH_SHORT).show();
