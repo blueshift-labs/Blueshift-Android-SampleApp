@@ -3,11 +3,15 @@ package com.blueshift.reads;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.blueshift.model.Product;
 import com.blueshift.reads.model.Book;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Rahul Raveendran V P
@@ -78,6 +82,17 @@ public class ShoppingCart {
         if (book != null) {
             mProductsMap.remove(book.getSku());
         }
+    }
+
+    public List<Book> getBooks() {
+        List<Book> products = new ArrayList<>();
+
+        Set<String> keys = mProductsMap.keySet();
+        for (String key : keys) {
+            products.add(mProductsMap.get(key));
+        }
+
+        return products;
     }
 
     public void increaseQuantity(Book product) {
