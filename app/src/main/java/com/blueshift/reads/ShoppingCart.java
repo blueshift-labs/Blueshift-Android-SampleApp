@@ -83,6 +83,10 @@ public class ShoppingCart {
         }
     }
 
+    public void clear() {
+        mProductsMap.clear();
+    }
+
     public List<Book> getBooks() {
         List<Book> products = new ArrayList<>();
 

@@ -1,19 +1,23 @@
 package com.blueshift.reads.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.model.Book;
+import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.TextViewUtils;
 
 import java.util.ArrayList;
@@ -22,10 +26,16 @@ import java.util.Locale;
 
 public class PlaceOrderActivity extends AppCompatActivity {
 
-    private CartProductsAdapter mRVAdapter;
     private ShoppingCart mCart;
     private TextView mTotalNoTax;
     private TextView mTotalWithTax;
+    private TextInputLayout mNameTIL;
+    private TextInputLayout mEmailTIL;
+    private TextInputLayout mCompanyTIL;
+    private TextInputLayout mContactTIL;
+    private String mName;
+    private String mEmail;
+    private String mContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +47,19 @@ public class PlaceOrderActivity extends AppCompatActivity {
         mTotalNoTax = (TextView) findViewById(R.id.total_excl_tax);
         mTotalWithTax = (TextView) findViewById(R.id.total_with_tax);
 
+        mNameTIL = (TextInputLayout) findViewById(R.id.order_name);
+        mEmailTIL = (TextInputLayout) findViewById(R.id.order_email);
+        mCompanyTIL = (TextInputLayout) findViewById(R.id.order_company);
+        mContactTIL = (TextInputLayout) findViewById(R.id.order_contact);
+
         RecyclerView productRView = (RecyclerView) findViewById(R.id.cart_product_list);
         productRView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRVAdapter = new CartProductsAdapter();
-        productRView.setAdapter(mRVAdapter);
+        CartProductsAdapter rVAdapter = new CartProductsAdapter();
+        productRView.setAdapter(rVAdapter);
 
         mCart = ShoppingCart.getInstance(this);
-        mRVAdapter.setBooks(mCart.getBooks());
+        rVAdapter.setBooks(mCart.getBooks());
 
         updateSummaryView();
     }
@@ -62,6 +77,38 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         TextViewUtils.setText(mTotalNoTax, "$ " + totalAmtStr);
         TextViewUtils.setText(mTotalWithTax, "$ " + totalAmtStr);
+    }
+
+    public void onPlaceOrderClick(View view) {
+        if (hasValidParams()) {
+            Toast.makeText(this, "Order placed.", Toast.LENGTH_SHORT).show();
+
+            finish();
+
+            mCart.clear();
+        }
+    }
+
+    private boolean hasValidParams() {
+        mName = EditTextUtils.getText(mNameTIL.getEditText());
+        if (TextUtils.isEmpty(mName)) {
+            mNameTIL.setError("Please enter a name");
+            return false;
+        }
+
+        mEmail = EditTextUtils.getText(mEmailTIL.getEditText());
+        if (TextUtils.isEmpty(mEmail)) {
+            mEmailTIL.setError("Please enter a valid email");
+            return false;
+        }
+
+        mContact = EditTextUtils.getText(mContactTIL.getEditText());
+        if (TextUtils.isEmpty(mContact)) {
+            mContactTIL.setError("Please enter a contact");
+            return false;
+        }
+
+        return true;
     }
 
     private class CartProductsAdapter extends RecyclerView.Adapter<CartProductsAdapter.ViewHolder> {

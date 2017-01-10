@@ -41,6 +41,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
+            android:onClick="onPlaceOrderClick"
             android:text="@string/place_order" />
 
     </LinearLayout>
