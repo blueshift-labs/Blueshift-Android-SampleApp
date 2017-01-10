@@ -16,6 +16,17 @@
     <string name="title_activity_mailing_list">Mailing List</string>
     <string name="title_activity_subscription_events">Subscription Events</string>
     <string name="title_activity_offer_display">Offer Display</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_company">Company</string>
+    <string name="hint_contact">Contact</string>
+    <string name="complete_your_details">Complete your details</string>
+    <string name="place_order">Place Order</string>
+    <string name="total_excl_tax">Total (Excl. Tax)</string>
+    <string name="tax">Tax</string>
+    <string name="_0_dollar">$ 0.00</string>
+    <string name="total">Total</string>
+    <string name="order_summary">Order Summary</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>

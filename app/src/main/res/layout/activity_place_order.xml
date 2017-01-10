@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_place_order"
     android:layout_width="match_parent"
@@ -10,4 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.blueshift.reads.activity.PlaceOrderActivity">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_product_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <include
+            android:id="@+id/cart_summary_view"
+            layout="@layout/layout_cart_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cart_product_list"
+            android:layout_marginTop="10dp" />
+
+        <include
+            android:id="@+id/complete_details_view"
+            layout="@layout/layout_personal_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cart_summary_view"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/complete_details_view"
+            android:layout_marginTop="10dp"
+            android:text="@string/place_order" />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

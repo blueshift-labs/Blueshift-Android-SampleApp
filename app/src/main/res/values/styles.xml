@@ -23,4 +23,35 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <style name="cart_input_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="cart_input_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="cart_summary_holder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="cart_summary_title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="cart_summary_value">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|end</item>
+    </style>
+
 </resources>

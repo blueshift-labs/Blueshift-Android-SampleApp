@@ -1,5 +1,6 @@
 package com.blueshift.reads.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -109,6 +110,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         .trackAddToCart(mBook.getSku(), quantity, false);
 
                 Toast.makeText(this, "Item added to cart.", Toast.LENGTH_SHORT).show();
+
+
+                Intent intent = new Intent(this, PlaceOrderActivity.class);
+                startActivity(intent);
             }
         }
     }
