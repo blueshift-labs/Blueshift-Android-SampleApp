@@ -53,7 +53,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             TextView priceText = (TextView) findViewById(R.id.book_price);
             if (priceText != null) {
-                priceText.setText(mBook.getPrice());
+                priceText.setText("$ " + mBook.getPrice());
             }
 
             TextView skuText = (TextView) findViewById(R.id.book_sku);

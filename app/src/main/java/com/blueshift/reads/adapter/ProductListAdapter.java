@@ -92,7 +92,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 }
 
                 if (mBookPrice != null) {
-                    mBookPrice.setText(book.getPrice());
+                    mBookPrice.setText("$ " + book.getPrice());
                 }
 
                 if (mBookSku != null) {

@@ -3,7 +3,6 @@ package com.blueshift.reads;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.blueshift.model.Product;
 import com.blueshift.reads.model.Book;
 import com.google.gson.Gson;
 
@@ -95,22 +94,29 @@ public class ShoppingCart {
         return products;
     }
 
-    public void increaseQuantity(Book product) {
+    public int increaseQuantity(Book product) {
+        int value = 1;
+
         if (product != null) {
             String sku = product.getSku();
 
             Book p1 = mProductsMap.get(sku);
             if (p1 != null) {
-                p1.setQuantity(p1.getQuantity() + 1);
+                value = p1.getQuantity() + 1;
+                p1.setQuantity(value);
 
                 mProductsMap.put(sku, p1);
             } else {
                 add(product);
             }
         }
+
+        return value;
     }
 
-    public void decreaseQuantity(Book product) {
+    public int decreaseQuantity(Book product) {
+        int value = 0;
+
         if (product != null) {
             String sku = product.getSku();
             int qty = product.getQuantity();
@@ -118,15 +124,33 @@ public class ShoppingCart {
             if (qty > 0) {
                 Book p1 = mProductsMap.get(sku);
                 if (p1 != null) {
-                    p1.setQuantity(p1.getQuantity() - 1);
+                    value = p1.getQuantity() - 1;
+                    p1.setQuantity(value);
 
                     mProductsMap.put(sku, p1);
                 } else {
+                    value = 1;
                     add(product);
                 }
             } else {
                 remove(product);
             }
         }
+
+        return value;
+    }
+
+    public Double getTotalAmount() {
+        Double total = 0.0;
+
+        Set<String> keys = mProductsMap.keySet();
+        for (String key : keys) {
+            Book book = mProductsMap.get(key);
+            Double price = Double.valueOf(book.getPrice());
+
+            total += (price * book.getQuantity());
+        }
+
+        return total;
     }
 }

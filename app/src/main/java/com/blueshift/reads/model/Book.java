@@ -15,7 +15,7 @@ public class Book implements Serializable {
     private String price;
     private String image_url;
     private String web_url;
-    private int quantity;
+    private int quantity = 1;
 
     public String getSku() {
         return sku;
