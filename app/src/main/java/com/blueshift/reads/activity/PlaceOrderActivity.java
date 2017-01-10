@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.blueshift.reads.R;
@@ -36,7 +37,6 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         RecyclerView productRView = (RecyclerView) findViewById(R.id.cart_product_list);
         productRView.setLayoutManager(new LinearLayoutManager(this));
-        productRView.setHasFixedSize(true);
 
         mRVAdapter = new CartProductsAdapter();
         productRView.setAdapter(mRVAdapter);
@@ -95,6 +95,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
             private final TextView mQuantityText;
             private final Button mPlusBtn;
             private final Button mMinusBtn;
+            private final ImageButton mDeleteBtn;
 
             ViewHolder(View itemView) {
                 super(itemView);
@@ -105,6 +106,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
                 mPlusBtn = (Button) itemView.findViewById(R.id.qty_increase_btn);
                 mMinusBtn = (Button) itemView.findViewById(R.id.qty_decrease_btn);
+                mDeleteBtn = (ImageButton) itemView.findViewById(R.id.cart_item_delete_book_btn);
             }
 
             void fillValues(Book book, final int position) {
@@ -130,6 +132,15 @@ public class PlaceOrderActivity extends AppCompatActivity {
                             }
                         });
                     }
+
+                    if (mDeleteBtn != null) {
+                        mDeleteBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                deleteItem(position);
+                            }
+                        });
+                    }
                 }
             }
 
@@ -150,6 +161,17 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 int qty = mCart.increaseQuantity(book);
 
                 TextViewUtils.setText(mQuantityText, String.valueOf(qty));
+
+                updateSummaryView();
+            }
+
+            private void deleteItem(int position) {
+                Book book = mBooks.get(position);
+                mCart.remove(book);
+
+                mBooks.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, mBooks.size());
 
                 updateSummaryView();
             }

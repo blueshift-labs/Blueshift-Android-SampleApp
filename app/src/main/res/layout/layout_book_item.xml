@@ -52,6 +52,7 @@
             </LinearLayout>
 
             <ImageButton
+                android:id="@+id/cart_item_delete_book_btn"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
