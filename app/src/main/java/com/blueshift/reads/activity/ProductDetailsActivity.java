@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -78,6 +80,38 @@ public class ProductDetailsActivity extends AppCompatActivity {
         ShoppingCart.getInstance(this).save(this);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+
+        ShoppingCart cart = ShoppingCart.getInstance(this);
+
+        MenuItem item = menu.findItem(R.id.menu_cart);
+        if (item != null) {
+            String string = getString(R.string.cart_0, cart.getCount());
+            item.setTitle(string);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_cart) {
+            Intent intent = new Intent(this, PlaceOrderActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        invalidateOptionsMenu();
+    }
+
     private int getQuantityInt(String quantity) {
         int qty = 0;
 
@@ -111,9 +145,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "Item added to cart.", Toast.LENGTH_SHORT).show();
 
-
-                Intent intent = new Intent(this, PlaceOrderActivity.class);
-                startActivity(intent);
+                invalidateOptionsMenu();
             }
         }
     }

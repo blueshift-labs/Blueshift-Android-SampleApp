@@ -153,4 +153,8 @@ public class ShoppingCart {
 
         return total;
     }
+
+    public int getCount() {
+        return mProductsMap.size();
+    }
 }

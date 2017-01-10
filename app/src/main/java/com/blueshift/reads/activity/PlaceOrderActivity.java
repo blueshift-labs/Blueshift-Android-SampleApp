@@ -32,6 +32,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
 
+        setTitle(R.string.review_products);
+
         mTotalNoTax = (TextView) findViewById(R.id.total_excl_tax);
         mTotalWithTax = (TextView) findViewById(R.id.total_with_tax);
 
