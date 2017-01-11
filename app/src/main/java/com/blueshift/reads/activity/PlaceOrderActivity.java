@@ -72,6 +72,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
         EditTextUtils.setText(mEmailTIL.getEditText(), userInfo.getEmail());
 
         updateSummaryView();
+
+        Blueshift.getInstance(this).trackScreenView(this, false);
     }
 
     @Override
