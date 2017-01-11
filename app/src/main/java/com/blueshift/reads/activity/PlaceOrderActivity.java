@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
@@ -187,6 +188,11 @@ public class PlaceOrderActivity extends AppCompatActivity {
     }
 
     private boolean hasValidParams() {
+        if (mCart.getCount() == 0) {
+            Toast.makeText(this, "No products found.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         mName = EditTextUtils.getText(mNameTIL.getEditText());
         if (TextUtils.isEmpty(mName)) {
             mNameTIL.setError("Please enter a name");
