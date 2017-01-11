@@ -2,6 +2,7 @@ package com.blueshift.reads.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,12 +27,25 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         mContext = this;
 
-        // check if it is deep link.
+        // check if it is deep link from notification
         mDeepLinkURL = getIntent().getStringExtra(RichPushConstants.EXTRA_DEEP_LINK_URL);
         if (!TextUtils.isEmpty(mDeepLinkURL)) {
             new DeepLinkTask().execute();
         } else {
-            new LoaderTask().execute();
+            // check for common url based deep link
+            Uri uri = getIntent().getData();
+            if (uri != null) {
+                String uriStr = uri.toString();
+                if (uriStr.endsWith("/checkout")) {
+                    Intent cartIntent = new Intent(mContext, PlaceOrderActivity.class);
+                    startActivity(cartIntent);
+                } else {
+                    mDeepLinkURL = uriStr;
+                    new DeepLinkTask().execute();
+                }
+            } else {
+                new LoaderTask().execute();
+            }
         }
     }
 
