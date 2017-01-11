@@ -6,4 +6,5 @@
 
     <color name="book_price_text">#33A174</color>
     <color name="control_highlight">#261476BA</color>
+    <color name="red">#f00</color>
 </resources>

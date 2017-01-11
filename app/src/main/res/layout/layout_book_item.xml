@@ -32,22 +32,24 @@
 
                 <Button
                     android:id="@+id/qty_decrease_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:text="-" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/blue_circle"
+                    android:text="@string/minus" />
 
                 <TextView
                     android:id="@+id/cart_item_book_quantity"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="1" />
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/qty_increase_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:text="+" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/blue_circle"
+                    android:text="@string/plus" />
 
             </LinearLayout>
 

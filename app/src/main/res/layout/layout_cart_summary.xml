@@ -29,8 +29,7 @@
 
             <TextView
                 android:id="@+id/total_excl_tax"
-                style="@style/cart_summary_value"
-                android:text="$ 123.00" />
+                style="@style/cart_summary_value" />
 
         </LinearLayout>
 
@@ -51,17 +50,14 @@
             <TextView
                 style="@style/cart_summary_title"
                 android:text="@string/total"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="@color/red"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/total_with_tax"
                 style="@style/cart_summary_value"
-                android:text="$ 123.00"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="@color/red"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

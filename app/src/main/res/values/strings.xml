@@ -30,6 +30,8 @@
     <string name="cart_0">Cart (%1$d)</string>
     <string name="dollar_x">$ %1$s</string>
     <string name="review_products">Review products</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>
