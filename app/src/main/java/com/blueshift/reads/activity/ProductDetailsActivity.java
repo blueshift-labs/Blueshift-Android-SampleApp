@@ -18,6 +18,7 @@ import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.model.Book;
 import com.bumptech.glide.Glide;
 import com.github.rahulrvp.android_utils.EditTextUtils;
+import com.github.rahulrvp.android_utils.TextViewUtils;
 
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -54,9 +55,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
 
             TextView priceText = (TextView) findViewById(R.id.book_price);
-            if (priceText != null) {
-                priceText.setText("$ " + mBook.getPrice());
-            }
+            TextViewUtils.setText(priceText, R.string.dollar_x, mBook.getPrice());
 
             TextView skuText = (TextView) findViewById(R.id.book_sku);
             if (skuText != null) {

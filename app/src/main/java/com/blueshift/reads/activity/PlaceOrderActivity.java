@@ -1,7 +1,11 @@
 package com.blueshift.reads.activity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.blueshift.Blueshift;
+import com.blueshift.model.Product;
+import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.model.Book;
@@ -36,6 +42,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private String mName;
     private String mEmail;
     private String mContact;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,9 @@ public class PlaceOrderActivity extends AppCompatActivity {
         mCart = ShoppingCart.getInstance(this);
         rVAdapter.setBooks(mCart.getBooks());
 
+        UserInfo userInfo = UserInfo.getInstance(this);
+        EditTextUtils.setText(mEmailTIL.getEditText(), userInfo.getEmail());
+
         updateSummaryView();
     }
 
@@ -72,21 +82,102 @@ public class PlaceOrderActivity extends AppCompatActivity {
     }
 
     private void updateSummaryView() {
-        Double totalAmt = mCart.getTotalAmount();
+        Float totalAmt = mCart.getTotalAmount();
         String totalAmtStr = String.format(Locale.getDefault(), "%.2f", totalAmt);
 
-        TextViewUtils.setText(mTotalNoTax, "$ " + totalAmtStr);
-        TextViewUtils.setText(mTotalWithTax, "$ " + totalAmtStr);
+        TextViewUtils.setText(mTotalNoTax, R.string.dollar_x, totalAmtStr);
+        TextViewUtils.setText(mTotalWithTax, R.string.dollar_x, totalAmtStr);
     }
 
     public void onPlaceOrderClick(View view) {
         if (hasValidParams()) {
-            Toast.makeText(this, "Order placed.", Toast.LENGTH_SHORT).show();
-
-            finish();
-
-            mCart.clear();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Checkout Cart");
+            builder.setMessage("Place the order?");
+            builder.setNegativeButton("No", null);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    placeOrder();
+                }
+            });
+            builder.create().show();
         }
+    }
+
+    private void placeOrder() {
+        List<Product> productList = new ArrayList<>();
+        List<Book> bookList = mCart.getBooks();
+        for (Book book : bookList) {
+            Product product = new Product();
+            product.setSku(book.getSku());
+            product.setPrice(Float.valueOf(book.getPrice()));
+            product.setQuantity(book.getQuantity());
+
+            productList.add(product);
+        }
+
+        Product[] products = new Product[0];
+        productList.toArray(products);
+
+        Float totalAmt = mCart.getTotalAmount();
+
+        Blueshift
+                .getInstance(this)
+                .trackCheckoutCart(products, totalAmt, 0f, null, false);
+
+        // Place order success.
+        long orderId = System.currentTimeMillis();
+
+        Blueshift
+                .getInstance(this)
+                .trackProductsPurchase(String.valueOf(orderId), products, totalAmt, 0f, 0f, null, false);
+
+        mCart.clear();
+
+        dialog = new ProgressDialog(this);
+
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected void onPreExecute() {
+                dialog.setCancelable(false);
+                dialog.setMessage("Placing order...");
+                dialog.show();
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                dialog.dismiss();
+
+                showSuccessDialog();
+            }
+        }.execute();
+    }
+
+    private void showSuccessDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage("Order placed successfully.");
+        builder.setPositiveButton("Ok", null);
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                finish();
+            }
+        });
+        builder.create().show();
     }
 
     private boolean hasValidParams() {
@@ -161,7 +252,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
             void fillValues(Book book, final int position) {
                 if (book != null) {
                     TextViewUtils.setText(mNameText, book.getName());
-                    TextViewUtils.setText(mPriceText, "$ " + book.getPrice());
+                    TextViewUtils.setText(mPriceText, R.string.dollar_x, book.getPrice());
                     TextViewUtils.setText(mQuantityText, String.valueOf(book.getQuantity()));
 
                     if (mPlusBtn != null) {

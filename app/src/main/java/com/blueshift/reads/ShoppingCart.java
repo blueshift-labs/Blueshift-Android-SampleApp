@@ -144,13 +144,13 @@ public class ShoppingCart {
         return value;
     }
 
-    public Double getTotalAmount() {
-        Double total = 0.0;
+    public Float getTotalAmount() {
+        Float total = 0f;
 
         Set<String> keys = mProductsMap.keySet();
         for (String key : keys) {
             Book book = mProductsMap.get(key);
-            Double price = Double.valueOf(book.getPrice());
+            Float price = Float.valueOf(book.getPrice());
 
             total += (price * book.getQuantity());
         }
