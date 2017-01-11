@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -201,13 +202,24 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         mEmail = EditTextUtils.getText(mEmailTIL.getEditText());
         if (TextUtils.isEmpty(mEmail)) {
-            mEmailTIL.setError("Please enter a valid email");
+            mEmailTIL.setError("Please enter an email-id");
+            return false;
+        }
+
+        boolean validEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(mEmail).matches();
+        if (!validEmail) {
+            mEmailTIL.setError("Please enter a valid email-id");
             return false;
         }
 
         mContact = EditTextUtils.getText(mContactTIL.getEditText());
         if (TextUtils.isEmpty(mContact)) {
             mContactTIL.setError("Please enter a contact");
+            return false;
+        }
+
+        if (!PhoneNumberUtils.isGlobalPhoneNumber(mContact)) {
+            mContactTIL.setError("Please enter a valid phone");
             return false;
         }
 
