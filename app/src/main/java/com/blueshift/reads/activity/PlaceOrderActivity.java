@@ -42,7 +42,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private String mName;
     private String mEmail;
     private String mContact;
-    private ProgressDialog dialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,10 @@ public class PlaceOrderActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
 
         ShoppingCart.getInstance(this).save(this);
     }
@@ -135,15 +139,15 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
         mCart.clear();
 
-        dialog = new ProgressDialog(this);
+        mProgressDialog = new ProgressDialog(this);
 
         new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected void onPreExecute() {
-                dialog.setCancelable(false);
-                dialog.setMessage("Placing order...");
-                dialog.show();
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setMessage("Placing order...");
+                mProgressDialog.show();
             }
 
             @Override
@@ -159,7 +163,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                dialog.dismiss();
+                mProgressDialog.dismiss();
 
                 showSuccessDialog();
             }
