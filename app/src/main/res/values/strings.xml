@@ -32,6 +32,8 @@
     <string name="review_products">Review products</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
+    <string name="fetching_details">Fetching Details…</string>
+    <string name="adding_to_cart">Adding to Cart…</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>

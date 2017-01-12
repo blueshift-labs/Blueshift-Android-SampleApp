@@ -2,7 +2,6 @@ package com.blueshift.reads.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,17 +14,25 @@ import android.widget.Toast;
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
+import com.blueshift.reads.async.GetBookDetailsTask;
+import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
+import com.blueshift.rich_push.Message;
+import com.blueshift.rich_push.RichPushConstants;
 import com.bumptech.glide.Glide;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.TextViewUtils;
 
 
-public class ProductDetailsActivity extends AppCompatActivity {
+public class ProductDetailsActivity extends ReadsBaseActivity {
 
     public static final String EXTRA_BOOK = "book";
     private EditText mQtyField;
     private Book mBook;
+    private ImageView mBookCoverImage;
+    private TextView mNameText;
+    private TextView mPriceText;
+    private TextView mSkuText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +41,72 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         Blueshift.getInstance(this).trackScreenView(this, false);
 
+        mBookCoverImage = (ImageView) findViewById(R.id.book_cover);
+        mNameText = (TextView) findViewById(R.id.book_name);
+        mPriceText = (TextView) findViewById(R.id.book_price);
+        mSkuText = (TextView) findViewById(R.id.book_sku);
+        mQtyField = (EditText) findViewById(R.id.book_qty);
+
         mBook = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
         if (mBook != null) {
-            Blueshift.getInstance(this).trackProductView(mBook.getSku(), 1, false);
+            fillInBookDetails(mBook);
+        } else {
+            Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
+            if (message != null) {
+                searchAndDisplayBookDetails(message.getSku());
+            } else {
+                noDetailsClosePage();
+            }
+        }
+    }
 
-            ImageView bookCoverImage = (ImageView) findViewById(R.id.book_cover);
-            if (bookCoverImage != null) {
+    private void searchAndDisplayBookDetails(String sku) {
+        new GetBookDetailsTask(this)
+                .setCallback(new GetBookDetailsTask.Callback() {
+                    @Override
+                    public void onTaskStart() {
+                        showProgressDialog(R.string.fetching_details);
+                    }
+
+                    @Override
+                    public void onTaskComplete(Book book) {
+                        hideProgressDialog();
+
+                        if (book != null) {
+                            fillInBookDetails(book);
+                        } else {
+                            noDetailsClosePage();
+                        }
+                    }
+                })
+                .setSku(sku)
+                .execute();
+    }
+
+    private void fillInBookDetails(Book book) {
+        if (book != null) {
+            Blueshift.getInstance(this).trackProductView(book.getSku(), 1, false);
+
+            if (mBookCoverImage != null) {
                 Glide
                         .with(this)
-                        .load(mBook.getImageUrl())
+                        .load(book.getImageUrl())
                         .centerCrop()
                         .placeholder(R.mipmap.ic_launcher)
                         .crossFade()
-                        .into(bookCoverImage);
+                        .into(mBookCoverImage);
             }
 
-            TextView nameText = (TextView) findViewById(R.id.book_name);
-            if (nameText != null) {
-                nameText.setText(mBook.getName());
+            if (mNameText != null) {
+                mNameText.setText(book.getName());
             }
 
-            TextView priceText = (TextView) findViewById(R.id.book_price);
-            TextViewUtils.setText(priceText, R.string.dollar_x, mBook.getPrice());
+            TextViewUtils.setText(mPriceText, R.string.dollar_x, book.getPrice());
 
-            TextView skuText = (TextView) findViewById(R.id.book_sku);
-            if (skuText != null) {
-                skuText.setText(mBook.getSku());
+            if (mSkuText != null) {
+                mSkuText.setText(book.getSku());
             }
 
-            mQtyField = (EditText) findViewById(R.id.book_qty);
             if (mQtyField != null) {
                 String qty = EditTextUtils.getText(mQtyField);
                 if (!TextUtils.isEmpty(qty)) {
@@ -70,6 +114,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void noDetailsClosePage() {
+        Toast.makeText(this, "No product details found.", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override

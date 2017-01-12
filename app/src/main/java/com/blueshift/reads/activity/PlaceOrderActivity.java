@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberUtils;
@@ -24,7 +23,11 @@ import com.blueshift.model.Product;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
+import com.blueshift.reads.async.GetBookDetailsTask;
+import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
+import com.blueshift.rich_push.Message;
+import com.blueshift.rich_push.RichPushConstants;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.TextViewUtils;
 
@@ -32,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class PlaceOrderActivity extends AppCompatActivity {
+public class PlaceOrderActivity extends ReadsBaseActivity {
 
     private ShoppingCart mCart;
     private TextView mTotalNoTax;
@@ -45,6 +48,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private String mEmail;
     private String mContact;
     private ProgressDialog mProgressDialog;
+    private CartProductsAdapter mRVAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +68,53 @@ public class PlaceOrderActivity extends AppCompatActivity {
         RecyclerView productRView = (RecyclerView) findViewById(R.id.cart_product_list);
         productRView.setLayoutManager(new LinearLayoutManager(this));
 
-        CartProductsAdapter rVAdapter = new CartProductsAdapter();
-        productRView.setAdapter(rVAdapter);
+        mRVAdapter = new CartProductsAdapter();
+        productRView.setAdapter(mRVAdapter);
 
         mCart = ShoppingCart.getInstance(this);
-        rVAdapter.setBooks(mCart.getBooks());
+
+        Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
+        if (message != null) {
+            addToCart(message.getSku());
+        } else {
+            loadCartItems();
+        }
 
         UserInfo userInfo = UserInfo.getInstance(this);
         EditTextUtils.setText(mEmailTIL.getEditText(), userInfo.getEmail());
 
-        updateSummaryView();
-
         Blueshift.getInstance(this).trackScreenView(this, false);
+    }
+
+    private void loadCartItems() {
+        if (mCart != null && mRVAdapter != null) {
+            mRVAdapter.setBooks(mCart.getBooks());
+        }
+
+        updateSummaryView();
+    }
+
+    private void addToCart(String sku) {
+        new GetBookDetailsTask(this)
+                .setCallback(new GetBookDetailsTask.Callback() {
+                    @Override
+                    public void onTaskStart() {
+                        showProgressDialog(R.string.add_to_cart);
+                    }
+
+                    @Override
+                    public void onTaskComplete(Book book) {
+                        hideProgressDialog();
+
+                        if (book != null && mCart != null) {
+                            mCart.add(book);
+                        }
+
+                        loadCartItems();
+                    }
+                })
+                .setSku(sku)
+                .execute();
     }
 
     @Override
