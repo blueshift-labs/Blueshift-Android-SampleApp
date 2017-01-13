@@ -6,6 +6,7 @@ import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
+import com.blueshift.reads.activity.PlaceOrderActivity;
 import com.blueshift.reads.activity.ProductDetailsActivity;
 
 /**
@@ -25,7 +26,7 @@ public class ReadsApplication extends Application {
         configuration.setAppIcon(R.mipmap.ic_launcher);
 
         configuration.setProductPage(ProductDetailsActivity.class);
-        // configuration.setCartPage(CartActivity.class);
+        configuration.setCartPage(PlaceOrderActivity.class);
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
         // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min

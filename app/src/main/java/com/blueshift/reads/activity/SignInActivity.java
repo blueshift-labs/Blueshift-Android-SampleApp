@@ -39,7 +39,8 @@ public class SignInActivity extends AppCompatActivity {
 
         // Save user info
         UserInfo currentUser = UserInfo.getInstance(this);
-        currentUser.setRetailerCustomerId(hashEmail(email));
+        // don't send customer id for sample app.
+        // currentUser.setRetailerCustomerId(hashEmail(email));
         currentUser.setEmail(email);
         currentUser.save(this);
 

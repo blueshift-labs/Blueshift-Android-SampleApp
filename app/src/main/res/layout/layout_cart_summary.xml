@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="@string/order_summary"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <LinearLayout style="@style/cart_summary_holder">
+
+            <TextView
+                style="@style/cart_summary_title"
+                android:text="@string/total_excl_tax" />
+
+            <TextView
+                android:id="@+id/total_excl_tax"
+                style="@style/cart_summary_value" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/cart_summary_holder">
+
+            <TextView
+                style="@style/cart_summary_title"
+                android:text="@string/tax" />
+
+            <TextView
+                style="@style/cart_summary_value"
+                android:text="@string/_0_dollar" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e2e2e2" />
+
+        <LinearLayout style="@style/cart_summary_holder">
+
+            <TextView
+                style="@style/cart_summary_title"
+                android:text="@string/total"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/total_with_tax"
+                style="@style/cart_summary_value"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

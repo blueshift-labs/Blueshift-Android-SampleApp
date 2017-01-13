@@ -1,15 +1,19 @@
 package com.blueshift.reads.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
+import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
 import com.blueshift.reads.model.Book;
@@ -40,6 +44,38 @@ public class ProductListActivity extends AppCompatActivity {
         loadBooks();
 
         Blueshift.getInstance(this).trackScreenView(this, false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+
+        ShoppingCart cart = ShoppingCart.getInstance(this);
+
+        MenuItem item = menu.findItem(R.id.menu_cart);
+        if (item != null) {
+            String string = getString(R.string.cart_0, cart.getCount());
+            item.setTitle(string);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_cart) {
+            Intent intent = new Intent(this, PlaceOrderActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        invalidateOptionsMenu();
     }
 
     private void loadBooks() {

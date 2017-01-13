@@ -13,6 +13,7 @@ import com.blueshift.reads.R;
 import com.blueshift.reads.activity.ProductDetailsActivity;
 import com.blueshift.reads.model.Book;
 import com.bumptech.glide.Glide;
+import com.github.rahulrvp.android_utils.TextViewUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,7 +93,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 }
 
                 if (mBookPrice != null) {
-                    mBookPrice.setText(book.getPrice());
+                    TextViewUtils.setText(mBookPrice, R.string.dollar_x, book.getPrice());
                 }
 
                 if (mBookSku != null) {

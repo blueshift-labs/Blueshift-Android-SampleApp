@@ -15,6 +15,7 @@ public class Book implements Serializable {
     private String price;
     private String image_url;
     private String web_url;
+    private int quantity = 1;
 
     public String getSku() {
         return sku;
@@ -34,5 +35,13 @@ public class Book implements Serializable {
 
     public String getWebUrl() {
         return web_url;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
