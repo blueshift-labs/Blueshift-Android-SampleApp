@@ -107,19 +107,19 @@
             android:name=".activity.CartActivity"
             android:label="@string/title_activity_cart" />
         <activity
-            android:name=".activity.PurchaseConfirmationActivity"
+            android:name=".activity_backup.PurchaseConfirmationActivity"
             android:label="@string/title_activity_purchase_confirmation" />
         <activity
-            android:name=".activity.PurchaseReturnActivity"
+            android:name=".activity_backup.PurchaseReturnActivity"
             android:label="@string/title_activity_purchase_return" />
         <activity
-            android:name=".activity.MailingListActivity"
+            android:name=".activity_backup.MailingListActivity"
             android:label="@string/title_activity_mailing_list" />
         <activity
-            android:name=".activity.SubscriptionEventsActivity"
+            android:name=".activity_backup.SubscriptionEventsActivity"
             android:label="@string/title_activity_subscription_events" />
         <activity
-            android:name=".activity.OfferDisplayActivity"
+            android:name=".activity_backup.OfferDisplayActivity"
             android:label="@string/title_activity_offer_display" />
 
     </application>

@@ -9,6 +9,7 @@ import android.view.View;
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
 import com.blueshift.reads.R;
+import com.blueshift.reads.activity_backup.PurchaseConfirmationActivity;
 import com.blueshift.rich_push.Message;
 import com.google.gson.Gson;
 
