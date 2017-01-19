@@ -121,7 +121,7 @@
         <activity
             android:name=".activity_backup.OfferDisplayActivity"
             android:label="@string/title_activity_offer_display" />
-
+        <activity android:name=".activity.LiveContentActivity" />
     </application>
 
 </manifest>

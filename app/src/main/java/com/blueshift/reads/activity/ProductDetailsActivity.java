@@ -148,6 +148,9 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         if (item.getItemId() == R.id.menu_cart) {
             Intent intent = new Intent(this, PlaceOrderActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.menu_live) {
+            Intent intent = new Intent(this, LiveContentActivity.class);
+            startActivity(intent);
         }
 
         return true;
