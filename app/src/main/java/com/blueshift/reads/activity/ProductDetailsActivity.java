@@ -53,7 +53,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         } else {
             Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
             if (message != null) {
-                searchAndDisplayBookDetails(message.getSku());
+                searchAndDisplayBookDetails(message.getProductId());
             } else {
                 noDetailsClosePage();
             }
