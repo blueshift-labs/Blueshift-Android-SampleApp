@@ -3,6 +3,7 @@ package com.blueshift.reads.activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.blueshift.Blueshift;
 import com.blueshift.LiveContentCallback;
 import com.blueshift.reads.R;
 import com.github.rahulrvp.android_utils.EditTextUtils;
+import com.github.rahulrvp.android_utils.JsonFormatter;
 import com.github.rahulrvp.android_utils.TextViewUtils;
 
 public class LiveContentActivity extends AppCompatActivity {
@@ -96,9 +98,14 @@ public class LiveContentActivity extends AppCompatActivity {
     private void showResponse(String s) {
         if (TextUtils.isEmpty(s)) {
             s = "No response received!";
+        } else {
+            s = new JsonFormatter.Builder()
+                    .setOutputFormat(JsonFormatter.HTML)
+                    .build()
+                    .format(s);
         }
 
-        TextViewUtils.setText(mOutputJsonText, s);
+        TextViewUtils.setText(mOutputJsonText, Html.fromHtml(s));
     }
 
     private void showProgress() {
