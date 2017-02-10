@@ -77,30 +77,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-
-                <!--DeepLinking-->
-                <!--
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.blueshiftreads.com"
-                    android:scheme="http" />
-                    -->
-
             </intent-filter>
         </activity>
         <activity android:name=".activity.ProductListActivity" />
         <activity android:name=".activity.SignInActivity" />
+        <activity android:name=".activity.PlaceOrderActivity" />
+        <activity android:name=".activity.LiveContentActivity" />
         <activity
             android:name=".activity.ProductDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity android:name=".activity.PlaceOrderActivity" />
 
         <!--Old sample app activities-->
         <activity
@@ -121,7 +107,6 @@
         <activity
             android:name=".activity_backup.OfferDisplayActivity"
             android:label="@string/title_activity_offer_display" />
-        <activity android:name=".activity.LiveContentActivity" />
     </application>
 
 </manifest>
