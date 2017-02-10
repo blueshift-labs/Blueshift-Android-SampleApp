@@ -75,7 +75,7 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
 
         Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
         if (message != null) {
-            addToCart(message.getSku());
+            addToCart(message.getProductId());
         } else {
             loadCartItems();
         }

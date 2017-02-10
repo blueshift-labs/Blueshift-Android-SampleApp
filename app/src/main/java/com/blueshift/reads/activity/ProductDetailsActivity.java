@@ -53,7 +53,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         } else {
             Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
             if (message != null) {
-                searchAndDisplayBookDetails(message.getSku());
+                searchAndDisplayBookDetails(message.getProductId());
             } else {
                 noDetailsClosePage();
             }
@@ -147,6 +147,9 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_cart) {
             Intent intent = new Intent(this, PlaceOrderActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.menu_live) {
+            Intent intent = new Intent(this, LiveContentActivity.class);
             startActivity(intent);
         }
 

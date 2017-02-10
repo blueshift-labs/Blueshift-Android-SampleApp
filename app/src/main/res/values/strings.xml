@@ -34,6 +34,12 @@
     <string name="plus">+</string>
     <string name="fetching_details">Fetching Details…</string>
     <string name="adding_to_cart">Adding to Cart…</string>
+    <string name="slot">Slot</string>
+    <string name="rd_email">Email</string>
+    <string name="rd_device_id">Device Id</string>
+    <string name="rd_customer_id">Customer Id</string>
+    <string name="get_live_content">GET LIVE CONTENT</string>
+    <string name="live_content_demo">Live Content Demo</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>

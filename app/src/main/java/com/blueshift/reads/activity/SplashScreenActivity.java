@@ -18,7 +18,6 @@ import com.google.gson.Gson;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private Context mContext;
-    private String mDeepLinkURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +26,28 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         mContext = this;
 
-        // check if it is deep link from notification
-        mDeepLinkURL = getIntent().getStringExtra(RichPushConstants.EXTRA_DEEP_LINK_URL);
-        if (!TextUtils.isEmpty(mDeepLinkURL)) {
-            new DeepLinkTask().execute();
-        } else {
-            // check for common url based deep link
+        String deepLinkURL = getIntent().getStringExtra(RichPushConstants.EXTRA_DEEP_LINK_URL);
+
+        if (TextUtils.isEmpty(deepLinkURL)) {
             Uri uri = getIntent().getData();
+
             if (uri != null) {
-                String uriStr = uri.toString();
-                if (uriStr.endsWith("/checkout")) {
-                    Intent cartIntent = new Intent(mContext, PlaceOrderActivity.class);
-                    startActivity(cartIntent);
-                } else {
-                    mDeepLinkURL = uriStr;
-                    new DeepLinkTask().execute();
-                }
+                deepLinkURL = uri.toString();
+            }
+        }
+
+        deepLink(deepLinkURL);
+    }
+
+    private void deepLink(String url) {
+        if (TextUtils.isEmpty(url)) {
+            new LoaderTask().execute();
+        } else {
+            if (url.endsWith("/checkout")) {
+                Intent cartIntent = new Intent(mContext, PlaceOrderActivity.class);
+                startActivity(cartIntent);
             } else {
-                new LoaderTask().execute();
+                new DeepLinkTask(url).execute();
             }
         }
     }
@@ -62,6 +65,12 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private class DeepLinkTask extends AsyncTask<Void, Void, Book> {
 
+        private String mUrl;
+
+        DeepLinkTask(String url) {
+            mUrl = url;
+        }
+
         @Override
         protected Book doInBackground(Void... voids) {
             Book book = null;
@@ -73,7 +82,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     for (Book item : books) {
                         if (item != null && item.getWebUrl() != null) {
-                            if (item.getWebUrl().equals(mDeepLinkURL)) {
+                            if (item.getWebUrl().equals(mUrl)) {
                                 book = item;
 
                                 break;
