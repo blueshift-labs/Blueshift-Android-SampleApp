@@ -45,7 +45,7 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:10.2.0'
 
     // jCenter
-    compile('com.blueshift:android-sdk:1.0.1') { transitive = true }
+    compile('com.blueshift:android-sdk:1.0.8') { transitive = true }
 
     // uncomment following code when using local AAR lib
     /*
