@@ -43,21 +43,22 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
     compile 'com.google.firebase:firebase-crash:10.2.0'
-    compile 'com.google.firebase:firebase-messaging:9.6.1'
 
     // jCenter
-    compile('com.blueshift:android-sdk:1.0.8') { transitive = true }
+    // compile('com.blueshift:android-sdk:1.0.8') { transitive = true }
 
     // uncomment following code when using local AAR lib
-    /*
+
     compile(name: 'android-sdk-debug', ext: 'aar')
     // for Android Advertising Id
     compile 'com.google.android.gms:play-services-ads:10.2.0'
+    // for FCM Messaging
+    compile 'com.google.firebase:firebase-messaging:10.2.0'
     // for JSON parsing
     compile 'com.google.code.gson:gson:2.6.1'
     // for annotations used (ex @NotNull)
     compile 'org.jetbrains:annotations:13.0'
-    */
+
 }
 
 apply plugin: 'com.google.gms.google-services'
