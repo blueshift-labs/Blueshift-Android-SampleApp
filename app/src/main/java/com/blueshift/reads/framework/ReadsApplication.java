@@ -1,6 +1,7 @@
 package com.blueshift.reads.framework;
 
 import android.app.Application;
+import android.support.v4.content.ContextCompat;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
@@ -27,6 +28,11 @@ public class ReadsApplication extends Application {
 
         configuration.setProductPage(ProductDetailsActivity.class);
         configuration.setCartPage(PlaceOrderActivity.class);
+
+        configuration.setNotificationColor(ContextCompat.getColor(this, R.color.colorAccent));
+        configuration.setSmallIconResId(R.drawable.notification_small_icon);
+        // configuration.setLargeIconResId(R.mipmap.ic_launcher);
+
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
         // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min

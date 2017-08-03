@@ -54,7 +54,7 @@
 
         <meta-data
             android:name="com.blueshift.gcm_sender_id"
-            android:value="id:797760330995" />
+            android:value="id:60821478174" />
 
         <receiver android:name="com.blueshift.rich_push.RichPushActionReceiver">
             <intent-filter>
