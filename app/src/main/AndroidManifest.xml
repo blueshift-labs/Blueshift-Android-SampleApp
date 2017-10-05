@@ -77,6 +77,22 @@
             android:value="id:797760330995" />
         -->
 
+        <!--FCM-->
+        <service
+            android:name="com.blueshift.fcm.BlueshiftMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.blueshift.fcm.BlueshiftInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!--FCM-->
         <receiver android:name="com.blueshift.rich_push.RichPushActionReceiver">
             <intent-filter>
                 <action android:name="com.blueshift.reads.ACTION_VIEW" />
