@@ -36,6 +36,22 @@
             </intent-filter>
         </service>
 
+        <receiver
+            android:name="com.blueshift.receiver.AppInstallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!--<service android:name=".ChildService" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.blueshift.NOTIFICATION_CLICK_EVENT"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+
         <receiver android:name="com.blueshift.rich_push.RichPushActionReceiver">
             <intent-filter>
                 <action android:name="com.blueshift.reads.ACTION_VIEW" />
@@ -54,7 +70,7 @@
 
         <activity
             android:name=".activity.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

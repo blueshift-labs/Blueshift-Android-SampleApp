@@ -1,6 +1,7 @@
 package com.blueshift.reads.framework;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 
 import com.blueshift.Blueshift;
@@ -19,6 +20,9 @@ import com.blueshift.reads.activity.ProductDetailsActivity;
 
 public class ReadsApplication extends Application {
 
+    private final String PREF_FILE = "pref_file";
+    private final String PREF_KEY = "pref_key";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -29,10 +33,12 @@ public class ReadsApplication extends Application {
         configuration.setProductPage(ProductDetailsActivity.class);
         configuration.setCartPage(PlaceOrderActivity.class);
 
-        // configuration.setLargeIconResId(R.mipmap.ic_launcher);
+        configuration.setLargeIconResId(R.mipmap.ic_launcher);
         configuration.setSmallIconResId(R.drawable.notification_small_icon);
 
         configuration.setNotificationColor(ContextCompat.getColor(this, R.color.colorAccent));
+
+        configuration.setDefaultNotificationChannelName("Random");
 
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
@@ -41,5 +47,18 @@ public class ReadsApplication extends Application {
         configuration.setApiKey(BuildConfig.API_KEY);
 
         Blueshift.getInstance(this).initialize(configuration);
+
+        // app install check
+        SharedPreferences sp = getSharedPreferences(PREF_FILE, MODE_PRIVATE);
+        if (sp != null) {
+            boolean isNewInstall = sp.getBoolean(PREF_KEY, true);
+            if (isNewInstall) {
+                // call event
+                Blueshift.getInstance(this).trackEvent("bsft_newinstall", null, false);
+
+                // update sp
+                sp.edit().putBoolean(PREF_KEY, false).apply();
+            }
+        }
     }
 }

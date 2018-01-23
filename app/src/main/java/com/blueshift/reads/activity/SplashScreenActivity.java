@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
@@ -27,6 +28,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         mContext = this;
 
         String deepLinkURL = getIntent().getStringExtra(RichPushConstants.EXTRA_DEEP_LINK_URL);
+
+        if (deepLinkURL != null) {
+            Log.d("Deeplink URL: ", deepLinkURL);
+        }
 
         if (TextUtils.isEmpty(deepLinkURL)) {
             Uri uri = getIntent().getData();

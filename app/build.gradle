@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "23.0.3"
+    flavorDimensions "default"
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.blueshift.reads"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
     }
@@ -34,31 +35,34 @@ repositories {
 }
 
 dependencies {
+    final SUPPORT_LIBRARY_VERSION = '27.0.1'
+    final GOOGLE_PLAY_VERSION = '11.6.2'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:cardview-v7:25.1.0'
+    implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
 
-    compile 'com.github.rahulrvp:android-utils:0.4.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation "com.github.rahulrvp:android-utils:0.4.0"
+    implementation "com.github.bumptech.glide:glide:3.7.0"
 
-    compile 'com.google.firebase:firebase-crash:10.2.0'
+    implementation "com.google.firebase:firebase-crash:$GOOGLE_PLAY_VERSION"
 
     // jCenter
-    compile('com.blueshift:android-sdk:1.0.9.b1') { transitive = true }
+    implementation "com.blueshift:android-sdk:2.0.1"
+    // compile('com.blueshift:android-sdk:1.1.7.fcm') // { transitive = true }
 
     // uncomment following code when using local AAR lib
-    /*
-    compile(name: 'android-sdk-debug', ext: 'aar')
+
+    // compile(name: 'android-sdk-debug', ext: 'aar')
     // for Android Advertising Id
-    compile 'com.google.android.gms:play-services-ads:10.2.0'
+    implementation "com.google.android.gms:play-services-ads:$GOOGLE_PLAY_VERSION"
     // for FCM Messaging
-    compile 'com.google.firebase:firebase-messaging:10.2.0'
+    implementation "com.google.firebase:firebase-messaging:$GOOGLE_PLAY_VERSION"
     // for JSON parsing
-    compile 'com.google.code.gson:gson:2.6.1'
+    implementation "com.google.code.gson:gson:2.6.1"
     // for annotations used (ex @NotNull)
-    compile 'org.jetbrains:annotations:13.0'
-    */
+    implementation "org.jetbrains:annotations:13.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
