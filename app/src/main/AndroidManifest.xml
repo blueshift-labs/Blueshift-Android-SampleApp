@@ -22,17 +22,14 @@
         <!-- BLUESHIFT SDK -->
         <!-- =================================================================================== -->
 
-        <service
-            android:name="com.blueshift.fcm.BlueshiftMessagingService">
+        <service android:name="com.blueshift.fcm.BlueshiftMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service
-            android:name="com.blueshift.fcm.BlueshiftInstanceIdService">
+        <service android:name="com.blueshift.fcm.BlueshiftInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
@@ -46,11 +43,11 @@
             </intent-filter>
         </receiver>
 
-        <!--<service android:name=".ChildService" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.blueshift.NOTIFICATION_CLICK_EVENT"/>-->
-            <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- <service android:name=".ChildService" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.blueshift.NOTIFICATION_CLICK_EVENT"/> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
 
         <receiver android:name="com.blueshift.rich_push.RichPushActionReceiver">
             <intent-filter>
@@ -73,6 +70,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -84,7 +82,7 @@
             android:name=".activity.ProductDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <!--Old sample app activities-->
+        <!-- Old sample app activities -->
         <activity
             android:name=".activity.CartActivity"
             android:label="@string/title_activity_cart" />
@@ -103,6 +101,9 @@
         <activity
             android:name=".activity_backup.OfferDisplayActivity"
             android:label="@string/title_activity_offer_display" />
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:theme="@style/TransparentActivity" />
     </application>
 
 </manifest>

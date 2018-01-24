@@ -19,10 +19,15 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/slot"
-            android:text="Editors_Picks_Json" />
+            android:hint="@string/slot"/>
 
     </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/slot_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:entries="@array/live_content_slots" />
 
     <RadioGroup
         android:id="@+id/rg_unique_key"
@@ -67,6 +72,12 @@
         android:layout_height="0.5dp"
         android:layout_marginTop="10dp"
         android:background="#d3d3d3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:text="@string/server_response" />
 
     <RelativeLayout
         android:layout_width="match_parent"
