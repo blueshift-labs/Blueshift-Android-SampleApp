@@ -50,12 +50,12 @@ dependencies {
     implementation "com.google.firebase:firebase-crash:$GOOGLE_PLAY_VERSION"
 
     // jCenter
-    implementation "com.blueshift:android-sdk:2.0.1"
+    // implementation "com.blueshift:android-sdk:2.0.1"
     // compile('com.blueshift:android-sdk:1.1.7.fcm') // { transitive = true }
 
     // uncomment following code when using local AAR lib
 
-    // compile(name: 'android-sdk-debug', ext: 'aar')
+     compile(name: 'android-sdk-debug', ext: 'aar')
     // for Android Advertising Id
     implementation "com.google.android.gms:play-services-ads:$GOOGLE_PLAY_VERSION"
     // for FCM Messaging

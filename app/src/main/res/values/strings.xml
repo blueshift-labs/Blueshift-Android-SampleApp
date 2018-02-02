@@ -52,7 +52,7 @@
 
     <string-array name="live_content_slots">
         <item>Editors_Picks_Json</item>
-        <item>careinappmessagingslot</item>
+        <item>inappmessagingslot</item>
     </string-array>
 
 </resources>
