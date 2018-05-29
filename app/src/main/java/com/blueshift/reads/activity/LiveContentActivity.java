@@ -1,5 +1,6 @@
 package com.blueshift.reads.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blueshift.Blueshift;
@@ -18,18 +20,27 @@ import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.JsonFormatter;
 import com.github.rahulrvp.android_utils.TextViewUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class LiveContentActivity extends AppCompatActivity {
 
     private RadioGroup mRadios;
     private TextInputLayout mTILayout;
     private TextView mOutputJsonText;
     private ProgressBar mProgress;
+    private Spinner mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_content);
 
+        mSpinner = findViewById(R.id.slot_spinner);
         mRadios = (RadioGroup) findViewById(R.id.rg_unique_key);
         mTILayout = (TextInputLayout) findViewById(R.id.slot_input_layout);
         mOutputJsonText = (TextView) findViewById(R.id.output_json_text);
@@ -45,6 +56,12 @@ public class LiveContentActivity extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(slotName)) {
+            if (mSpinner != null) {
+                slotName = (String) mSpinner.getSelectedItem();
+            }
+        }
+
+        if (TextUtils.isEmpty(slotName)) {
             EditTextUtils.setError(slotField, "Please enter a slot name.");
             return;
         }
@@ -56,10 +73,18 @@ public class LiveContentActivity extends AppCompatActivity {
 
         Blueshift blueshift = Blueshift.getInstance(this);
 
+        List<String> seedItemIds = new ArrayList<>();
+        seedItemIds.add("9780307273482");
+        seedItemIds.add("9780143115311");
+        seedItemIds.add("9780307273345");
+
+        HashMap<String, Object> lcContext = new HashMap<>();
+        lcContext.put("seed_item_ids", seedItemIds);
+
         switch (selectedResId) {
             case R.id.rb_email:
                 showProgress();
-                blueshift.getLiveContentByEmail(slotName, new LiveContentCallback() {
+                blueshift.getLiveContentByEmail(slotName, lcContext, new LiveContentCallback() {
                     @Override
                     public void onReceive(String s) {
                         hideProgress();
@@ -71,7 +96,7 @@ public class LiveContentActivity extends AppCompatActivity {
 
             case R.id.rb_customer_id:
                 showProgress();
-                blueshift.getLiveContentByCustomerId(slotName, new LiveContentCallback() {
+                blueshift.getLiveContentByCustomerId(slotName, lcContext, new LiveContentCallback() {
                     @Override
                     public void onReceive(String s) {
                         hideProgress();
@@ -83,7 +108,7 @@ public class LiveContentActivity extends AppCompatActivity {
 
             case R.id.rb_device_id:
                 showProgress();
-                blueshift.getLiveContentByDeviceId(slotName, new LiveContentCallback() {
+                blueshift.getLiveContentByDeviceId(slotName, lcContext, new LiveContentCallback() {
                     @Override
                     public void onReceive(String s) {
                         hideProgress();
@@ -99,6 +124,9 @@ public class LiveContentActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(s)) {
             s = "No response received!";
         } else {
+            // check for html content
+            processHTML(s);
+
             s = new JsonFormatter.Builder()
                     .setOutputFormat(JsonFormatter.HTML)
                     .build()
@@ -106,6 +134,29 @@ public class LiveContentActivity extends AppCompatActivity {
         }
 
         TextViewUtils.setText(mOutputJsonText, Html.fromHtml(s));
+    }
+
+    private void processHTML(String response) {
+        if (!TextUtils.isEmpty(response)) {
+            try {
+                JSONObject json = new JSONObject(response);
+                if (json.has("content")) {
+                    JSONObject content = json.getJSONObject("content");
+                    if (content.has("html_content")) {
+                        String html = content.getString("html_content");
+                        if (!TextUtils.isEmpty(html)) {
+                            Intent webViewIntent = new Intent(this, WebViewActivity.class);
+                            webViewIntent.putExtra("html", html);
+
+                            startActivity(webViewIntent);
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     private void showProgress() {

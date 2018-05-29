@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    flavorDimensions "default"
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.blueshift.reads"
         minSdkVersion 15
@@ -10,20 +10,14 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
+
+        buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    productFlavors {
-        reads {
-            buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
-        }
-
-        mobile {
-            buildConfigField 'String', 'API_KEY', '"ae8087e9fb141de419ddbac09ed8b0a9"'
         }
     }
 }
@@ -38,31 +32,35 @@ dependencies {
     final SUPPORT_LIBRARY_VERSION = '27.0.1'
     final GOOGLE_PLAY_VERSION = '11.6.2'
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
     implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
     implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
 
     implementation "com.github.rahulrvp:android-utils:0.4.0"
+    //noinspection GradleDependency
     implementation "com.github.bumptech.glide:glide:3.7.0"
 
     implementation "com.google.firebase:firebase-crash:$GOOGLE_PLAY_VERSION"
 
     // jCenter
-    implementation "com.blueshift:android-sdk:2.0.1"
-    // compile('com.blueshift:android-sdk:1.1.7.fcm') // { transitive = true }
+    // implementation "com.blueshift:android-sdk:2.0.1"
+    // implementation('com.blueshift:android-sdk:2.0.1') // { transitive = true }
 
     // uncomment following code when using local AAR lib
 
-    // compile(name: 'android-sdk-debug', ext: 'aar')
+    implementation(name: 'android-sdk-debug', ext: 'aar')
     // for Android Advertising Id
     implementation "com.google.android.gms:play-services-ads:$GOOGLE_PLAY_VERSION"
     // for FCM Messaging
     implementation "com.google.firebase:firebase-messaging:$GOOGLE_PLAY_VERSION"
     // for JSON parsing
-    implementation "com.google.code.gson:gson:2.6.1"
+    implementation "com.google.code.gson:gson:2.8.0"
     // for annotations used (ex @NotNull)
     implementation "org.jetbrains:annotations:13.0"
 }
+
 
 apply plugin: 'com.google.gms.google-services'
