@@ -23,6 +23,10 @@ import com.github.rahulrvp.android_utils.TextViewUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class LiveContentActivity extends AppCompatActivity {
 
     private RadioGroup mRadios;
@@ -69,10 +73,18 @@ public class LiveContentActivity extends AppCompatActivity {
 
         Blueshift blueshift = Blueshift.getInstance(this);
 
+        List<String> seedItemIds = new ArrayList<>();
+        seedItemIds.add("9780307273482");
+        seedItemIds.add("9780143115311");
+        seedItemIds.add("9780307273345");
+
+        HashMap<String, Object> lcContext = new HashMap<>();
+        lcContext.put("seed_item_ids", seedItemIds);
+
         switch (selectedResId) {
             case R.id.rb_email:
                 showProgress();
-                blueshift.getLiveContentByEmail(slotName, new LiveContentCallback() {
+                blueshift.getLiveContentByEmail(slotName, lcContext, new LiveContentCallback() {
                     @Override
                     public void onReceive(String s) {
                         hideProgress();
@@ -84,7 +96,7 @@ public class LiveContentActivity extends AppCompatActivity {
 
             case R.id.rb_customer_id:
                 showProgress();
-                blueshift.getLiveContentByCustomerId(slotName, new LiveContentCallback() {
+                blueshift.getLiveContentByCustomerId(slotName, lcContext, new LiveContentCallback() {
                     @Override
                     public void onReceive(String s) {
                         hideProgress();
@@ -96,7 +108,7 @@ public class LiveContentActivity extends AppCompatActivity {
 
             case R.id.rb_device_id:
                 showProgress();
-                blueshift.getLiveContentByDeviceId(slotName, new LiveContentCallback() {
+                blueshift.getLiveContentByDeviceId(slotName, lcContext, new LiveContentCallback() {
                     @Override
                     public void onReceive(String s) {
                         hideProgress();
