@@ -42,7 +42,7 @@ public class ReadsApplication extends Application {
 
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
-        // configuration.setBatchInterval(5 * 60 * 1000); // setting batch time as 5min
+        configuration.setBatchInterval(16 * 60 * 1000); // setting batch time as 16min
 
         configuration.setApiKey(BuildConfig.API_KEY);
 

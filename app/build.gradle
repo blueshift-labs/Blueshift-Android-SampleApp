@@ -29,37 +29,37 @@ repositories {
 }
 
 dependencies {
-    final SUPPORT_LIBRARY_VERSION = '27.0.1'
-    final GOOGLE_PLAY_VERSION = '11.6.2'
+    final supportLibVersion = '27.1.1'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
-    implementation "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
-    implementation "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+    implementation "com.android.support:design:$supportLibVersion"
 
     implementation "com.github.rahulrvp:android-utils:0.4.0"
     //noinspection GradleDependency
     implementation "com.github.bumptech.glide:glide:3.7.0"
 
-    implementation "com.google.firebase:firebase-crash:$GOOGLE_PLAY_VERSION"
+    implementation "com.google.firebase:firebase-core:16.0.3"
+    implementation "com.google.firebase:firebase-crash:16.2.0"
 
     // jCenter
-    // implementation "com.blueshift:android-sdk:2.0.1"
-    // implementation('com.blueshift:android-sdk:2.0.1') // { transitive = true }
+    // implementation "com.blueshift:android-sdk:2.0.2"
+    implementation('com.blueshift:android-sdk:2.0.2') // { transitive = true }
 
     // uncomment following code when using local AAR lib
 
-    implementation(name: 'android-sdk-debug', ext: 'aar')
+    // implementation(name: 'android-sdk-debug', ext: 'aar')
     // for Android Advertising Id
-    implementation "com.google.android.gms:play-services-ads:$GOOGLE_PLAY_VERSION"
+    // implementation "com.google.android.gms:play-services-ads:15.0.1"
     // for FCM Messaging
-    implementation "com.google.firebase:firebase-messaging:$GOOGLE_PLAY_VERSION"
+    // implementation "com.google.firebase:firebase-messaging:17.3.2"
     // for JSON parsing
-    implementation "com.google.code.gson:gson:2.8.0"
+    // implementation "com.google.code.gson:gson:2.8.2"
     // for annotations used (ex @NotNull)
-    implementation "org.jetbrains:annotations:13.0"
+    // implementation "org.jetbrains:annotations:13.0"
 }
 
 

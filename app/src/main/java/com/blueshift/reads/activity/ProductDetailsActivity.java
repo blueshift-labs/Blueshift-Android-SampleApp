@@ -85,7 +85,11 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
 
     private void fillInBookDetails(Book book) {
         if (book != null) {
-            Blueshift.getInstance(this).trackProductView(book.getSku(), 1, false);
+
+            // One event sent as batch event for testing purpose.
+            Blueshift
+                    .getInstance(this)
+                    .trackProductView(book.getSku(), 1, true);
 
             if (mBookCoverImage != null) {
                 Glide
