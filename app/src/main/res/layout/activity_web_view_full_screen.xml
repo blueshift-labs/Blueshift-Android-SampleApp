@@ -8,7 +8,7 @@
     <WebView
         android:id="@+id/live_content_html"
         android:layout_width="match_parent"
-        android:layout_height="320dp" />
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/dlg_close_btn"
@@ -16,9 +16,9 @@
         android:layout_height="24dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/grey_circle"
         android:contentDescription="@string/close_button"
         android:onClick="onCloseClick"

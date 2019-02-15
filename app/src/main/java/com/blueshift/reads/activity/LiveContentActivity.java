@@ -1,6 +1,5 @@
 package com.blueshift.reads.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import com.blueshift.Blueshift;
 import com.blueshift.LiveContentCallback;
+import com.blueshift.reads.LiveContentDialog;
 import com.blueshift.reads.R;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.JsonFormatter;
@@ -144,12 +144,25 @@ public class LiveContentActivity extends AppCompatActivity {
                     JSONObject content = json.getJSONObject("content");
                     if (content.has("html_content")) {
                         String html = content.getString("html_content");
+                        String position = null;
+                        if (content.has("position")) {
+                            position = content.getString("position");
+                        }
+
+                        LiveContentDialog dialog = LiveContentDialog.getInstance(
+                                html, LiveContentDialog.Position.fromString(position));
+
+                        dialog.show(getSupportFragmentManager(), "TAG_POPUP");
+
+                        /*
+                        String html = content.getString("html_content");
                         if (!TextUtils.isEmpty(html)) {
                             Intent webViewIntent = new Intent(this, WebViewActivity.class);
                             webViewIntent.putExtra("html", html);
 
                             startActivity(webViewIntent);
                         }
+                        */
                     }
                 }
             } catch (JSONException e) {
