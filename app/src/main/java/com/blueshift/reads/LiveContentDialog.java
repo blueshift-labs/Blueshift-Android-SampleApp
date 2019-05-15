@@ -55,6 +55,12 @@ public class LiveContentDialog extends DialogFragment {
         View root;
         if (getArguments() != null) {
             Position position = (Position) getArguments().getSerializable(CONTENT_POSITION);
+            if (position == Position.TopAnimated) {
+                builder = new AlertDialog.Builder(getActivity(), R.style.CustomDialog);
+            } else if (position == Position.BottomAnimated) {
+                builder = new AlertDialog.Builder(getActivity(), R.style.CustomDialog);
+            }
+
             root = inflater.inflate(getDisplayLayoutId(position), null, false);
         } else {
             root = inflater.inflate(R.layout.activity_web_view, null, false);
@@ -108,7 +114,9 @@ public class LiveContentDialog extends DialogFragment {
         Top,
         Center,
         Bottom,
-        Full;
+        Full,
+        TopAnimated,
+        BottomAnimated;
 
         public static Position fromString(String position) {
             if (position != null) {
@@ -121,6 +129,10 @@ public class LiveContentDialog extends DialogFragment {
                         return Bottom;
                     case "full":
                         return Full;
+                    case "top_animated":
+                        return TopAnimated;
+                    case "bottom_animated":
+                        return BottomAnimated;
                     default:
                         return Center;
                 }
@@ -131,9 +143,13 @@ public class LiveContentDialog extends DialogFragment {
             switch (this) {
                 case Top:
                     return Gravity.TOP;
+                case TopAnimated:
+                    return Gravity.TOP;
                 case Center:
                     return Gravity.CENTER;
                 case Bottom:
+                    return Gravity.BOTTOM;
+                case BottomAnimated:
                     return Gravity.BOTTOM;
                 default:
                     return Gravity.CENTER;
