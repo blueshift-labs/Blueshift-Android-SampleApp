@@ -39,6 +39,7 @@ public class ReadsApplication extends Application {
         configuration.setNotificationColor(ContextCompat.getColor(this, R.color.colorAccent));
 
         configuration.setDefaultNotificationChannelName("Random");
+        configuration.setEnableAutoAppOpenFiring(true);
 
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
