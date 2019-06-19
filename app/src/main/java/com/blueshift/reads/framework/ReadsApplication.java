@@ -34,9 +34,9 @@ public class ReadsApplication extends Application {
         configuration.setCartPage(PlaceOrderActivity.class);
 
         configuration.setLargeIconResId(R.mipmap.ic_launcher);
-        configuration.setSmallIconResId(R.drawable.notification_small_icon);
+        configuration.setSmallIconResId(R.drawable.ic_notification);
 
-        configuration.setNotificationColor(ContextCompat.getColor(this, R.color.colorAccent));
+        configuration.setNotificationColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         configuration.setDefaultNotificationChannelName("Random");
         configuration.setEnableAutoAppOpenFiring(true);
