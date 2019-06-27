@@ -1,12 +1,13 @@
 package com.blueshift.reads.framework;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 12/1/17 @ 4:02 PM
- *         https://github.com/rahulrvp
+ * Created on 12/1/17 @ 4:02 PM
+ * https://github.com/rahulrvp
  */
 
 

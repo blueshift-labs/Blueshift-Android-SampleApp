@@ -9,8 +9,8 @@ import com.google.gson.Gson;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 12/1/17 @ 3:42 PM
- *         https://github.com/rahulrvp
+ * Created on 12/1/17 @ 3:42 PM
+ * https://github.com/rahulrvp
  */
 
 

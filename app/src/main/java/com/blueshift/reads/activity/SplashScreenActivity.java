@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;

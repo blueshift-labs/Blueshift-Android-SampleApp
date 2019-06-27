@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 12/10/16 @ 2:09 PM
- *         https://github.com/rahulrvp
+ * Created on 12/10/16 @ 2:09 PM
+ * https://github.com/rahulrvp
  */
 
 

@@ -1,9 +1,10 @@
 package com.blueshift.reads.activity_backup;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
@@ -18,7 +19,7 @@ public class OfferDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_display);
 
-        ImageView imageView = (ImageView) findViewById(R.id.offer_image_view);
+        ImageView imageView = findViewById(R.id.offer_image_view);
         Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
         if (message != null) {
             Glide

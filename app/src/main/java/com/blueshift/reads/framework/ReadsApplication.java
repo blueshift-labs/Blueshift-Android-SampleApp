@@ -2,7 +2,8 @@ package com.blueshift.reads.framework;
 
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.content.ContextCompat;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Configuration;
@@ -13,8 +14,8 @@ import com.blueshift.reads.activity.ProductDetailsActivity;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 12/10/16 @ 1:14 PM
- *         https://github.com/rahulrvp
+ * Created on 12/10/16 @ 1:14 PM
+ * https://github.com/rahulrvp
  */
 
 

@@ -2,12 +2,13 @@ package com.blueshift.reads.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.reads.R;
 import com.blueshift.reads.activity.ProductDetailsActivity;
@@ -20,8 +21,8 @@ import java.util.Collections;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 12/10/16 @ 2:31 PM
- *         https://github.com/rahulrvp
+ * Created on 12/10/16 @ 2:31 PM
+ * https://github.com/rahulrvp
  */
 
 
@@ -70,10 +71,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             super(itemView);
 
             mContentView = itemView;
-            mBookCover = (ImageView) itemView.findViewById(R.id.book_cover);
-            mBookName = (TextView) itemView.findViewById(R.id.book_name);
-            mBookPrice = (TextView) itemView.findViewById(R.id.book_price);
-            mBookSku = (TextView) itemView.findViewById(R.id.book_sku);
+            mBookCover = itemView.findViewById(R.id.book_cover);
+            mBookName = itemView.findViewById(R.id.book_name);
+            mBookPrice = itemView.findViewById(R.id.book_price);
+            mBookSku = itemView.findViewById(R.id.book_sku);
         }
 
         void setValues(Book book) {

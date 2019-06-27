@@ -1,11 +1,12 @@
 package com.blueshift.reads.activity_backup;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.ProgressDialogDisplayTask;
@@ -24,10 +25,10 @@ public class SubscriptionEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscription_events);
 
-        mSubscriptionTypeSpinner = (Spinner) findViewById(R.id.subscription_type);
-        mSubscriptionPeriodType = (TextView) findViewById(R.id.subscription_period_type);
-        mSubscriptionPeriodLength = (TextView) findViewById(R.id.subscription_period_length);
-        mSubscriptionAmount = (TextView) findViewById(R.id.subscription_amount);
+        mSubscriptionTypeSpinner = findViewById(R.id.subscription_type);
+        mSubscriptionPeriodType = findViewById(R.id.subscription_period_type);
+        mSubscriptionPeriodLength = findViewById(R.id.subscription_period_length);
+        mSubscriptionAmount = findViewById(R.id.subscription_amount);
 
         mSubscriptionTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

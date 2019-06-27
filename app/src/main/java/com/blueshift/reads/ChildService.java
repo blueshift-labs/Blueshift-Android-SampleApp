@@ -8,8 +8,8 @@ import com.blueshift.pn.BlueshiftNotificationEventsService;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 27/12/17 @ 11:57 AM
- *         https://github.com/rahulrvp
+ * Created on 27/12/17 @ 11:57 AM
+ * https://github.com/rahulrvp
  */
 
 

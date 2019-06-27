@@ -1,11 +1,12 @@
 package com.blueshift.reads.activity_backup;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.ProgressDialogDisplayTask;
@@ -20,7 +21,7 @@ public class MailingListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mailing_list);
 
-        mEmailField = (EditText) findViewById(R.id.mailing_list_email_field);
+        mEmailField = findViewById(R.id.mailing_list_email_field);
     }
 
     @Override

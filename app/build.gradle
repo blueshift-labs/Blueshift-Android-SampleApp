@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 ext {
     sdkVersion = '2.0.7'
+    supportVersion = '28.0.0'
     appName = "BSFT_Reads_SDKv" + sdkVersion + "_" + getDate()
 }
 
@@ -10,12 +11,12 @@ static def getDate() {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.blueshift.reads"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
@@ -41,10 +42,10 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
 
     implementation "com.github.rahulrvp:android-utils:0.4.0"
     //noinspection GradleDependency

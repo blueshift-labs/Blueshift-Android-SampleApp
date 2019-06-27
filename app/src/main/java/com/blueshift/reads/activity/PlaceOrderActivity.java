@@ -4,10 +4,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.Product;
@@ -30,6 +30,7 @@ import com.blueshift.rich_push.Message;
 import com.blueshift.rich_push.RichPushConstants;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.TextViewUtils;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +58,15 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
 
         setTitle(R.string.review_products);
 
-        mTotalNoTax = (TextView) findViewById(R.id.total_excl_tax);
-        mTotalWithTax = (TextView) findViewById(R.id.total_with_tax);
+        mTotalNoTax = findViewById(R.id.total_excl_tax);
+        mTotalWithTax = findViewById(R.id.total_with_tax);
 
-        mNameTIL = (TextInputLayout) findViewById(R.id.order_name);
-        mEmailTIL = (TextInputLayout) findViewById(R.id.order_email);
-        mCompanyTIL = (TextInputLayout) findViewById(R.id.order_company);
-        mContactTIL = (TextInputLayout) findViewById(R.id.order_contact);
+        mNameTIL = findViewById(R.id.order_name);
+        mEmailTIL = findViewById(R.id.order_email);
+        mCompanyTIL = findViewById(R.id.order_company);
+        mContactTIL = findViewById(R.id.order_contact);
 
-        RecyclerView productRView = (RecyclerView) findViewById(R.id.cart_product_list);
+        RecyclerView productRView = findViewById(R.id.cart_product_list);
         productRView.setLayoutManager(new LinearLayoutManager(this));
 
         mRVAdapter = new CartProductsAdapter();
@@ -303,13 +304,13 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
             ViewHolder(View itemView) {
                 super(itemView);
 
-                mNameText = (TextView) itemView.findViewById(R.id.cart_item_book_name);
-                mPriceText = (TextView) itemView.findViewById(R.id.cart_item_book_price);
-                mQuantityText = (TextView) itemView.findViewById(R.id.cart_item_book_quantity);
+                mNameText = itemView.findViewById(R.id.cart_item_book_name);
+                mPriceText = itemView.findViewById(R.id.cart_item_book_price);
+                mQuantityText = itemView.findViewById(R.id.cart_item_book_quantity);
 
-                mPlusBtn = (Button) itemView.findViewById(R.id.qty_increase_btn);
-                mMinusBtn = (Button) itemView.findViewById(R.id.qty_decrease_btn);
-                mDeleteBtn = (ImageButton) itemView.findViewById(R.id.cart_item_delete_book_btn);
+                mPlusBtn = itemView.findViewById(R.id.qty_increase_btn);
+                mMinusBtn = itemView.findViewById(R.id.qty_decrease_btn);
+                mDeleteBtn = itemView.findViewById(R.id.cart_item_delete_book_btn);
             }
 
             void fillValues(Book book, final int position) {

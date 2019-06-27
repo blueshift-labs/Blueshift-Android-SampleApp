@@ -1,8 +1,6 @@
 package com.blueshift.reads.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.blueshift.Blueshift;
 import com.blueshift.LiveContentCallback;
 import com.blueshift.reads.LiveContentDialog;
@@ -19,6 +19,7 @@ import com.blueshift.reads.R;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.JsonFormatter;
 import com.github.rahulrvp.android_utils.TextViewUtils;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,10 +42,10 @@ public class LiveContentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_live_content);
 
         mSpinner = findViewById(R.id.slot_spinner);
-        mRadios = (RadioGroup) findViewById(R.id.rg_unique_key);
-        mTILayout = (TextInputLayout) findViewById(R.id.slot_input_layout);
-        mOutputJsonText = (TextView) findViewById(R.id.output_json_text);
-        mProgress = (ProgressBar) findViewById(R.id.live_progress);
+        mRadios = findViewById(R.id.rg_unique_key);
+        mTILayout = findViewById(R.id.slot_input_layout);
+        mOutputJsonText = findViewById(R.id.output_json_text);
+        mProgress = findViewById(R.id.live_progress);
     }
 
     public void onGetLiveContentClick(View view) {

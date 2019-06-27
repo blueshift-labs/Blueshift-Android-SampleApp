@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
@@ -31,7 +32,7 @@ public class ProductListActivity extends AppCompatActivity {
 
         mContext = this;
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.product_list);
+        RecyclerView recyclerView = findViewById(R.id.product_list);
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);
 

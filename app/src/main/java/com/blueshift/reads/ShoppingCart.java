@@ -14,8 +14,8 @@ import java.util.Set;
 
 /**
  * @author Rahul Raveendran V P
- *         Created on 6/1/17 @ 11:49 AM
- *         https://github.com/rahulrvp
+ * Created on 6/1/17 @ 11:49 AM
+ * https://github.com/rahulrvp
  */
 
 public class ShoppingCart {

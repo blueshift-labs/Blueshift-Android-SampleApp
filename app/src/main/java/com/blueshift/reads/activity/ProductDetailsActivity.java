@@ -41,11 +41,11 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
 
         Blueshift.getInstance(this).trackScreenView(this, false);
 
-        mBookCoverImage = (ImageView) findViewById(R.id.book_cover);
-        mNameText = (TextView) findViewById(R.id.book_name);
-        mPriceText = (TextView) findViewById(R.id.book_price);
-        mSkuText = (TextView) findViewById(R.id.book_sku);
-        mQtyField = (EditText) findViewById(R.id.book_qty);
+        mBookCoverImage = findViewById(R.id.book_cover);
+        mNameText = findViewById(R.id.book_name);
+        mPriceText = findViewById(R.id.book_price);
+        mSkuText = findViewById(R.id.book_sku);
+        mQtyField = findViewById(R.id.book_qty);
 
         mBook = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
         if (mBook != null) {
