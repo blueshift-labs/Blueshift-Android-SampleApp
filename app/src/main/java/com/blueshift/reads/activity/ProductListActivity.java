@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.inappmessage.InAppManager;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
@@ -78,8 +79,14 @@ public class ProductListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        InAppManager.registerForInAppMessages(this);
         invalidateOptionsMenu();
+    }
+
+    @Override
+    protected void onStop() {
+        InAppManager.unregisterForInAppMessages(this);
+        super.onStop();
     }
 
     private void loadBooks() {

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.inappmessage.InAppManager;
 import com.blueshift.model.Product;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
@@ -85,6 +86,18 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
         EditTextUtils.setText(mEmailTIL.getEditText(), userInfo.getEmail());
 
         Blueshift.getInstance(this).trackScreenView(this, false);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        InAppManager.registerForInAppMessages(this);
+    }
+
+    @Override
+    protected void onStop() {
+        InAppManager.unregisterForInAppMessages(this);
+        super.onStop();
     }
 
     private void loadCartItems() {

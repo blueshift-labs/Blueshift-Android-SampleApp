@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blueshift.Blueshift;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.TestUtils;
@@ -43,6 +44,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
         deepLink(deepLinkURL);
+
+        Blueshift.getInstance(this).trackEvent("inapp_trigger", null, false);
     }
 
     private void deepLink(String url) {

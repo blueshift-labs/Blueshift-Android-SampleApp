@@ -42,6 +42,9 @@ public class ReadsApplication extends Application {
         configuration.setDefaultNotificationChannelName("Random");
         configuration.setEnableAutoAppOpenFiring(true);
 
+        configuration.setInAppInterval(10 * 1000); // 10 SECONDS
+        configuration.setInAppEnableJavascript(true);
+
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);
         configuration.setBatchInterval(16 * 60 * 1000); // setting batch time as 16min

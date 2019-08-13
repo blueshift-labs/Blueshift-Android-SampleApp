@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
+import com.blueshift.inappmessage.InAppManager;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.async.GetBookDetailsTask;
@@ -164,8 +165,16 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
     protected void onStart() {
         super.onStart();
 
+        InAppManager.registerForInAppMessages(this);
         invalidateOptionsMenu();
     }
+
+    @Override
+    protected void onStop() {
+        InAppManager.unregisterForInAppMessages(this);
+        super.onStop();
+    }
+
 
     private int getQuantityInt(String quantity) {
         int qty = 0;
