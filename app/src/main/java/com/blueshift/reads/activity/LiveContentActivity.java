@@ -1,6 +1,7 @@
 package com.blueshift.reads.activity;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.LiveContentCallback;
+import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.LiveContentDialog;
 import com.blueshift.reads.R;
 import com.github.rahulrvp.android_utils.EditTextUtils;
@@ -38,6 +40,17 @@ public class LiveContentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_content);
 
