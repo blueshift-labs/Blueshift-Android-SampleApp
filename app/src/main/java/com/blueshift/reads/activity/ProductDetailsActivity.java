@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
-import com.blueshift.inappmessage.InAppManager;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
@@ -180,14 +179,13 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        InAppManager.registerForInAppMessages(this);
+        Blueshift.getInstance(this).registerForInAppMessages(this);
         invalidateOptionsMenu();
     }
 
     @Override
     protected void onStop() {
-        InAppManager.unregisterForInAppMessages(this);
+        Blueshift.getInstance(this).unregisterForInAppMessages(this);
         super.onStop();
     }
 

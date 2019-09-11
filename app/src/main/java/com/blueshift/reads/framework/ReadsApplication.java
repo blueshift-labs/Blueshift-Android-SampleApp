@@ -42,8 +42,8 @@ public class ReadsApplication extends Application {
         configuration.setDefaultNotificationChannelName("Random");
         configuration.setEnableAutoAppOpenFiring(true);
 
-        configuration.setInAppInterval(10 * 1000); // 10 SECONDS
-        configuration.setInAppEnableJavascript(true);
+        configuration.setInAppEnabled(true);
+        configuration.setJavaScriptForInAppWebViewEnabled(true);
 
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);

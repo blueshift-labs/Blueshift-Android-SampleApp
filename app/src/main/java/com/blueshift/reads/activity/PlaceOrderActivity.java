@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
-import com.blueshift.inappmessage.InAppManager;
 import com.blueshift.model.Product;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.BuildConfig;
@@ -107,12 +106,12 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        InAppManager.registerForInAppMessages(this);
+        Blueshift.getInstance(this).registerForInAppMessages(this);
     }
 
     @Override
     protected void onStop() {
-        InAppManager.unregisterForInAppMessages(this);
+        Blueshift.getInstance(this).unregisterForInAppMessages(this);
         super.onStop();
     }
 
