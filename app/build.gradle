@@ -56,15 +56,15 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
     // jCenter
-    implementation "com.blueshift:android-sdk:$sdkVersion"
+//    implementation "com.blueshift:android-sdk:$sdkVersion"
 
-//    // uncomment following code when using local AAR lib
-//    implementation(name: 'android-sdk-debug', ext: 'aar')
-//    // for JSON parsing
-//    implementation 'com.google.code.gson:gson:2.8.2'
-//    // for FCM
-//    implementation 'com.google.firebase:firebase-core:16.0.6'
-//    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    // uncomment following code when using local AAR lib
+    implementation(name: 'android-sdk-debug', ext: 'aar')
+    // for JSON parsing
+    implementation 'com.google.code.gson:gson:2.8.2'
+    // for FCM
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 }
 
 
