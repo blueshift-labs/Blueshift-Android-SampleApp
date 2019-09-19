@@ -27,7 +27,7 @@ public class SignInActivity extends AppCompatActivity {
 
         mEmailField = findViewById(R.id.email);
 
-        Blueshift.getInstance(this).trackScreenView(this, false);
+        Blueshift.getInstance().trackScreenView(this, false);
     }
 
     public void onLetMeInClick(View view) {
@@ -46,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
         currentUser.save(this);
 
         // Call identify
-        Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
+        Blueshift.getInstance().identifyUserByEmail(email, null, false);
 
         // Go to product list
         Intent productIntent = new Intent(this, ProductListActivity.class);

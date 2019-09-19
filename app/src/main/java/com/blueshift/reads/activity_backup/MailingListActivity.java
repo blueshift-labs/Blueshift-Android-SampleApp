@@ -27,13 +27,13 @@ public class MailingListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this, true);
+        Blueshift.getInstance().trackScreenView(this, true);
     }
 
     public void onSubscribeClicked(View view) {
         if (mEmailField != null && mEmailField.getText() != null && Patterns.EMAIL_ADDRESS.matcher(mEmailField.getText().toString()).matches()) {
             new ProgressDialogDisplayTask(this).execute();
-            Blueshift.getInstance(this).trackEmailListSubscription(mEmailField.getText().toString(), false);
+            Blueshift.getInstance().trackEmailListSubscription(mEmailField.getText().toString(), false);
             mEmailField.setText("");
         } else {
             Toast.makeText(this, "Invalid email.", Toast.LENGTH_SHORT).show();
@@ -43,7 +43,7 @@ public class MailingListActivity extends AppCompatActivity {
     public void onUnsubscribeClicked(View view) {
         if (mEmailField != null && mEmailField.getText() != null && Patterns.EMAIL_ADDRESS.matcher(mEmailField.getText().toString()).matches()) {
             new ProgressDialogDisplayTask(this).execute();
-            Blueshift.getInstance(this).trackEmailListUnsubscription(mEmailField.getText().toString(), false);
+            Blueshift.getInstance().trackEmailListUnsubscription(mEmailField.getText().toString(), false);
             mEmailField.setText("");
         } else {
             Toast.makeText(this, "Invalid email.", Toast.LENGTH_SHORT).show();

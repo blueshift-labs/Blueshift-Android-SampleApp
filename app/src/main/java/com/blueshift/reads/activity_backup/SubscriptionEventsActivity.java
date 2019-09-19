@@ -63,7 +63,7 @@ public class SubscriptionEventsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this, true);
+        Blueshift.getInstance().trackScreenView(this, true);
     }
 
     public void onInitSubscriptionClicked(View view) {
@@ -75,7 +75,7 @@ public class SubscriptionEventsActivity extends AppCompatActivity {
         String amountStr = mSubscriptionPeriodLength.getText().toString();
         Float amount = Float.valueOf(amountStr.substring(amountStr.indexOf(":") + 2));
 
-        Blueshift.getInstance(this).trackSubscriptionInitialization(SubscriptionState.START,
+        Blueshift.getInstance().trackSubscriptionInitialization(SubscriptionState.START,
                 mSubscriptionPeriodType.getText().toString(),
                 cycleLength,
                 mSubscriptionTypeSpinner.getSelectedItem().toString(),
@@ -86,14 +86,14 @@ public class SubscriptionEventsActivity extends AppCompatActivity {
     }
 
     public void onPauseSubscriptionClicked(View view) {
-        Blueshift.getInstance(this).trackSubscriptionPause(false);
+        Blueshift.getInstance().trackSubscriptionPause(false);
     }
 
     public void onUnpauseSubscriptionClicked(View view) {
-        Blueshift.getInstance(this).trackSubscriptionUnpause(false);
+        Blueshift.getInstance().trackSubscriptionUnpause(false);
     }
 
     public void onCancelSubscriptionClicked(View view) {
-        Blueshift.getInstance(this).trackSubscriptionCancel(false);
+        Blueshift.getInstance().trackSubscriptionCancel(false);
     }
 }

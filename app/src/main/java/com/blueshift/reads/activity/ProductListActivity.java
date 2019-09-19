@@ -60,7 +60,7 @@ public class ProductListActivity extends AppCompatActivity {
 
         loadBooks();
 
-        Blueshift.getInstance(this).trackScreenView(this, false);
+        Blueshift.getInstance().trackScreenView(this, false);
     }
 
     @Override

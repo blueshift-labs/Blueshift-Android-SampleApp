@@ -64,7 +64,7 @@ public class ReadsApplication extends Application {
 
         configuration.setApiKey(BuildConfig.API_KEY);
 
-        Blueshift.getInstance(this).initialize(configuration);
+        Blueshift.getInstance().initialize(getApplicationContext(), configuration);
 
         // overriding the in-ap api call
 //        Blueshift
@@ -94,7 +94,7 @@ public class ReadsApplication extends Application {
             boolean isNewInstall = sp.getBoolean(PREF_KEY, true);
             if (isNewInstall) {
                 // call event
-                Blueshift.getInstance(this).trackEvent("bsft_newinstall", null, false);
+                Blueshift.getInstance().trackEvent("bsft_newinstall", null, false);
 
                 // update sp
                 sp.edit().putBoolean(PREF_KEY, false).apply();

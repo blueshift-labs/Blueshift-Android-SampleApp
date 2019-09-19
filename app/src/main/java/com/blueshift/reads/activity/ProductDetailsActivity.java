@@ -55,7 +55,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        Blueshift.getInstance(this).trackScreenView(this, false);
+        Blueshift.getInstance().trackScreenView(this, false);
 
         mBookCoverImage = findViewById(R.id.book_cover);
         mNameText = findViewById(R.id.book_name);
@@ -104,7 +104,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
 
             // One event sent as batch event for testing purpose.
             Blueshift
-                    .getInstance(this)
+                    .getInstance()
                     .trackProductView(book.getSku(), 1, true);
 
             if (mBookCoverImage != null) {
@@ -220,7 +220,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
                 ShoppingCart.getInstance(this).add(mBook);
 
                 Blueshift
-                        .getInstance(this)
+                        .getInstance()
                         .trackAddToCart(mBook.getSku(), quantity, false);
 
                 Toast.makeText(this, "Item added to cart.", Toast.LENGTH_SHORT).show();

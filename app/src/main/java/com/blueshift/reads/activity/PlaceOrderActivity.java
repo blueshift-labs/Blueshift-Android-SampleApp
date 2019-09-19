@@ -100,7 +100,7 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
         UserInfo userInfo = UserInfo.getInstance(this);
         EditTextUtils.setText(mEmailTIL.getEditText(), userInfo.getEmail());
 
-        Blueshift.getInstance(this).trackScreenView(this, false);
+        Blueshift.getInstance().trackScreenView(this, false);
     }
 
     @Override
@@ -200,14 +200,14 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
         Float totalAmt = mCart.getTotalAmount();
 
         Blueshift
-                .getInstance(this)
+                .getInstance()
                 .trackCheckoutCart(products, totalAmt, 0f, null, false);
 
         // Place order success.
         long orderId = System.currentTimeMillis();
 
         Blueshift
-                .getInstance(this)
+                .getInstance()
                 .trackProductsPurchase(String.valueOf(orderId), products, totalAmt, 0f, 0f, null, false);
 
         mCart.clear();

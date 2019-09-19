@@ -21,7 +21,7 @@ public class PurchaseReturnActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Blueshift.getInstance(this).trackScreenView(this, true);
+        Blueshift.getInstance().trackScreenView(this, true);
     }
 
     public void onPurchaseReturnClicked(View view) {
@@ -35,11 +35,11 @@ public class PurchaseReturnActivity extends AppCompatActivity {
             products[i] = product;
         }
 
-        Blueshift.getInstance(this).trackPurchaseReturn("S123456789", products, false);
+        Blueshift.getInstance().trackPurchaseReturn("S123456789", products, false);
     }
 
     public void onPurchaseCancelClicked(View view) {
-        Blueshift.getInstance(this).trackPurchaseCancel("S123456789", false);
+        Blueshift.getInstance().trackPurchaseCancel("S123456789", false);
     }
 
 

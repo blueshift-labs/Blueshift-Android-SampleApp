@@ -37,6 +37,6 @@ public class OfferDisplayActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this, true);
+        Blueshift.getInstance().trackScreenView(this, true);
     }
 }

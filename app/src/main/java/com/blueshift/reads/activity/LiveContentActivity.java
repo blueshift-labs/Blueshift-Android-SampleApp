@@ -88,7 +88,7 @@ public class LiveContentActivity extends AppCompatActivity {
             selectedResId = mRadios.getCheckedRadioButtonId();
         }
 
-        Blueshift blueshift = Blueshift.getInstance(this);
+        Blueshift blueshift = Blueshift.getInstance();
 
         List<String> seedItemIds = new ArrayList<>();
         seedItemIds.add("9780307273482");

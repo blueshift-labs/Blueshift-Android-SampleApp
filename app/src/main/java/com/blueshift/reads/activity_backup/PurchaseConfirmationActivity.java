@@ -22,7 +22,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Blueshift.getInstance(this).trackScreenView(this, true);
+        Blueshift.getInstance().trackScreenView(this, true);
 
         Product[] products = new Product[3];
 
@@ -34,7 +34,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity {
             products[i] = product;
         }
 
-        Blueshift.getInstance(this).trackProductsPurchase("S123456789", products, 12.56f, 10.86f, 5.86f, "CB007", false);
+        Blueshift.getInstance().trackProductsPurchase("S123456789", products, 12.56f, 10.86f, 5.86f, "CB007", false);
     }
 
     @Override
