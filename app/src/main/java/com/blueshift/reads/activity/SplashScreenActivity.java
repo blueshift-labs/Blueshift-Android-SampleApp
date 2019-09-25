@@ -52,6 +52,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             if (url.endsWith("/checkout")) {
                 Intent cartIntent = new Intent(mContext, PlaceOrderActivity.class);
                 startActivity(cartIntent);
+
+                finish();
             } else {
                 new DeepLinkTask(url).execute();
             }
