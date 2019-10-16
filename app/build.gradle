@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 ext {
-    sdkVersion = '2.1.1'
+    sdkVersion = '2.2.0-beta'
     supportVersion = '28.0.0'
     appName = "BSFT Reads SDKv" + sdkVersion + " - " + getDate()
 }
