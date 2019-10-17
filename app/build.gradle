@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 ext {
-    sdkVersion = '2.2.0-beta'
+    sdkVersion = '3.0.0-beta'
     supportVersion = '28.0.0'
     appName = "BSFT Reads SDKv" + sdkVersion + " - " + getDate()
 }
@@ -59,9 +59,9 @@ dependencies {
 
     // uncomment following code when using local AAR lib
 //    implementation(name: 'android-sdk-debug', ext: 'aar')
-//    // for JSON parsing
+    // for JSON parsing
 //    implementation 'com.google.code.gson:gson:2.8.5'
-//    // for FCM
+    // for FCM
 //    implementation 'com.google.firebase:firebase-core:17.2.0'
 //    implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
