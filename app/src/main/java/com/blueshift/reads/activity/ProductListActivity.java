@@ -101,6 +101,7 @@ public class ProductListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Blueshift.getInstance(this).registerForInAppMessages(this);
+        Blueshift.getInstance(this).displayInAppMessages();
     }
 
     @Override

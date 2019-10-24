@@ -2,10 +2,12 @@ package com.blueshift.reads.framework;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
 import com.blueshift.Blueshift;
+import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
@@ -44,6 +46,7 @@ public class ReadsApplication extends Application {
 
         configuration.setInAppEnabled(true);
         configuration.setJavaScriptForInAppWebViewEnabled(true);
+        configuration.setInAppManualTriggerEnabled(true);
 
         // configuration.setOfferDisplayPage(OfferDisplayActivity.class);
         // configuration.setDialogTheme(R.style.dialog_theme);

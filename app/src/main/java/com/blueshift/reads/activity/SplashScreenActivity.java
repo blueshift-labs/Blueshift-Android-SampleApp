@@ -12,6 +12,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
+import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
@@ -159,5 +160,16 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             finish();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Blueshift.getInstance(this).fetchInAppMessages(new InAppApiCallback() {
+            @Override
+            public void onApiCallComplete() {
+                Log.d(SplashScreenActivity.this.getClass().getSimpleName(), "Fetch in-app API call is completed!");
+            }
+        });
     }
 }

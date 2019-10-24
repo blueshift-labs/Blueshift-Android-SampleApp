@@ -107,6 +107,7 @@ public class PlaceOrderActivity extends ReadsBaseActivity {
     protected void onStart() {
         super.onStart();
         Blueshift.getInstance(this).registerForInAppMessages(this);
+        Blueshift.getInstance(this).displayInAppMessages();
     }
 
     @Override
