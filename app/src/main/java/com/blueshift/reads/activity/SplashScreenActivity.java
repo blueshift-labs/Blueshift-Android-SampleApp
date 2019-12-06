@@ -22,7 +22,7 @@ import com.blueshift.rich_push.RichPushConstants;
 import com.google.gson.Gson;
 
 public class SplashScreenActivity extends AppCompatActivity {
-
+    private static final String TAG = "SplashScreenActivity";
     private Context mContext;
 
     @Override
@@ -167,8 +167,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onStart();
         Blueshift.getInstance(this).fetchInAppMessages(new InAppApiCallback() {
             @Override
-            public void onApiCallComplete() {
-                Log.d(SplashScreenActivity.this.getClass().getSimpleName(), "Fetch in-app API call is completed!");
+            public void onSuccess() {
+                Log.d(TAG, "In App API fetch success!");
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Log.d(TAG, "In App API fetch failed! (code: " + i + ", message: " + s + ")");
             }
         });
     }

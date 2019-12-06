@@ -30,6 +30,17 @@
                     android:scheme="http"
                     android:pathPrefix="/products" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.blueshiftreads.com"
+                    android:scheme="http"
+                    android:pathPrefix="/checkout" />
+            </intent-filter>
         </activity>
 
         <!--        <activity android:name=".activity.NotificationActivity">-->
