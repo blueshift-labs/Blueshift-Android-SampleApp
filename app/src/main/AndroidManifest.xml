@@ -27,8 +27,8 @@
 
                 <data
                     android:host="www.blueshiftreads.com"
-                    android:scheme="http"
-                    android:pathPrefix="/products" />
+                    android:pathPrefix="/products"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -38,8 +38,8 @@
 
                 <data
                     android:host="www.blueshiftreads.com"
-                    android:scheme="http"
-                    android:pathPrefix="/checkout" />
+                    android:pathPrefix="/checkout"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 

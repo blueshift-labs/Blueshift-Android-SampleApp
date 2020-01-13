@@ -43,6 +43,9 @@
     <string name="close_button">Close button</string>
     <string name="x">X</string>
     <string name="server_response">Server Response:</string>
+    <string name="fetch_iam">Fetch IAM</string>
+    <string name="show_iam">Show IAM</string>
+    <string name="sdk_version">SDK v%1$s</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>

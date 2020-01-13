@@ -1,5 +1,6 @@
 package com.blueshift.reads.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
+import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
@@ -160,6 +162,12 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
             item.setTitle(string);
         }
 
+        MenuItem sdkV = menu.findItem(R.id.menu_sdk_version);
+        if (sdkV != null) {
+            String sdkVer = getString(R.string.sdk_version, com.blueshift.BuildConfig.SDK_VERSION);
+            sdkV.setTitle(sdkVer);
+        }
+
         return true;
     }
 
@@ -171,6 +179,22 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         } else if (item.getItemId() == R.id.menu_live) {
             Intent intent = new Intent(this, LiveContentActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.menu_pull_in_app) {
+            final Context context = this;
+            Toast.makeText(context, "Pulling in-app messages...", Toast.LENGTH_SHORT).show();
+            Blueshift.getInstance(this).fetchInAppMessages(new InAppApiCallback() {
+                @Override
+                public void onSuccess() {
+                    Toast.makeText(context, "Pulling in-app messages success.", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    Toast.makeText(context, "Pulling in-app messages failed. " + s, Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (item.getItemId() == R.id.menu_show_in_app) {
+            Blueshift.getInstance(this).displayInAppMessages();
         }
 
         return true;
@@ -180,7 +204,6 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
     protected void onStart() {
         super.onStart();
         Blueshift.getInstance(this).registerForInAppMessages(this);
-        Blueshift.getInstance(this).displayInAppMessages();
 
         invalidateOptionsMenu();
     }
