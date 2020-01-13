@@ -5,11 +5,23 @@
     <item
         android:id="@+id/menu_cart"
         android:title="@string/cart_0"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_live"
         android:title="@string/live_content_demo"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_pull_in_app"
+        android:title="@string/fetch_iam" />
+
+    <item
+        android:id="@+id/menu_show_in_app"
+        android:title="@string/show_iam" />
+
+    <item
+        android:id="@+id/menu_sdk_version"
+        android:title="@string/sdk_version" />
 
 </menu>
