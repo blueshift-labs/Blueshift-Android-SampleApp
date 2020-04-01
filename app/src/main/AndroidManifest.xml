@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.blueshift.reads">
 
     <application
@@ -19,27 +20,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <intent-filter>
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
+
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+            <!--                <data-->
+            <!--                    android:host="www.blueshiftreads.com"-->
+            <!--                    android:pathPrefix="/products"-->
+            <!--                    android:scheme="http" />-->
+            <!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
+
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+            <!--                <data-->
+            <!--                    android:host="www.blueshiftreads.com"-->
+            <!--                    android:pathPrefix="/checkout"-->
+            <!--                    android:scheme="http" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <activity android:name="com.blueshift.BlueshiftLinksActivity">
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="www.blueshiftreads.com"
-                    android:pathPrefix="/products"
+                    android:host="universallinks.blueshiftreads.com"
                     android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
-                    android:host="www.blueshiftreads.com"
-                    android:pathPrefix="/checkout"
-                    android:scheme="http" />
+                    android:host="universallinks.blueshiftreads.com"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 
