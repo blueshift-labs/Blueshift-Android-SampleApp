@@ -2,6 +2,7 @@ package com.blueshift.reads.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.TextUtils;
@@ -26,6 +27,8 @@ import com.blueshift.rich_push.RichPushConstants;
 import com.bumptech.glide.Glide;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.TextViewUtils;
+
+import java.util.List;
 
 
 public class ProductDetailsActivity extends ReadsBaseActivity {
@@ -65,15 +68,31 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         mSkuText = findViewById(R.id.book_sku);
         mQtyField = findViewById(R.id.book_qty);
 
-        mBook = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
-        if (mBook != null) {
-            fillInBookDetails(mBook);
-        } else {
-            Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
-            if (message != null) {
-                searchAndDisplayBookDetails(message.getProductId());
-            } else {
+        Uri uri = getIntent().getData();
+        if (uri != null) {
+            try {
+                List<String> segments = uri.getPathSegments();
+                if (segments != null && segments.size() > 1) {
+                    String sku = segments.get(1);
+                    searchAndDisplayBookDetails(sku);
+                } else {
+                    noDetailsClosePage();
+                }
+            } catch (Exception e) {
                 noDetailsClosePage();
+                e.printStackTrace();
+            }
+        } else {
+            mBook = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
+            if (mBook != null) {
+                fillInBookDetails(mBook);
+            } else {
+                Message message = (Message) getIntent().getSerializableExtra(RichPushConstants.EXTRA_MESSAGE);
+                if (message != null) {
+                    searchAndDisplayBookDetails(message.getProductId());
+                } else {
+                    noDetailsClosePage();
+                }
             }
         }
     }
