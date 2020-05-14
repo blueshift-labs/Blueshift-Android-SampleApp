@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
 import com.blueshift.reads.activity.ProductDetailsActivity;
 import com.blueshift.reads.model.Book;
@@ -116,6 +117,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }
 
         private void launchPDP(Context context, Book book) {
+            Blueshift.getInstance(context).trackEvent("bsft_batched_event", null, true);
+
             Intent pdpIntent = new Intent(context, ProductDetailsActivity.class);
             pdpIntent.putExtra(ProductDetailsActivity.EXTRA_BOOK, book);
             context.startActivity(pdpIntent);
