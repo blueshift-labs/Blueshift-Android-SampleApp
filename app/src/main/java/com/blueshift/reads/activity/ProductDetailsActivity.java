@@ -3,6 +3,7 @@ package com.blueshift.reads.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.TextUtils;
@@ -19,6 +20,7 @@ import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
+import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.async.GetBookDetailsTask;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
@@ -27,8 +29,7 @@ import com.blueshift.rich_push.RichPushConstants;
 import com.bumptech.glide.Glide;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 import com.github.rahulrvp.android_utils.TextViewUtils;
-
-import java.util.List;
+import com.google.gson.Gson;
 
 
 public class ProductDetailsActivity extends ReadsBaseActivity {
@@ -70,18 +71,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
 
         Uri uri = getIntent().getData();
         if (uri != null) {
-            try {
-                List<String> segments = uri.getPathSegments();
-                if (segments != null && segments.size() > 1) {
-                    String sku = segments.get(1);
-                    searchAndDisplayBookDetails(sku);
-                } else {
-                    noDetailsClosePage();
-                }
-            } catch (Exception e) {
-                noDetailsClosePage();
-                e.printStackTrace();
-            }
+            deepLink(uri.getPath());
         } else {
             mBook = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
             if (mBook != null) {
@@ -214,6 +204,8 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
             });
         } else if (item.getItemId() == R.id.menu_show_in_app) {
             Blueshift.getInstance(this).displayInAppMessages();
+        } else if (item.getItemId() == android.R.id.home) {
+            finish();
         }
 
         return true;
@@ -271,4 +263,64 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
             }
         }
     }
+
+    private void deepLink(String url) {
+        if (TextUtils.isEmpty(url)) {
+            Toast.makeText(this, "No URL found", Toast.LENGTH_SHORT).show();
+        } else {
+            if (url.endsWith("/checkout")) {
+                Intent cartIntent = new Intent(mContext, PlaceOrderActivity.class);
+                startActivity(cartIntent);
+
+                finish();
+            } else {
+                new ProductDetailsActivity.DeepLinkTask(url).execute();
+            }
+        }
+    }
+
+    private class DeepLinkTask extends AsyncTask<Void, Void, Book> {
+
+        private String mUrl;
+
+        DeepLinkTask(String url) {
+            mUrl = url;
+        }
+
+        @Override
+        protected Book doInBackground(Void... voids) {
+            Book book = null;
+
+            try {
+                String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
+                if (json != null) {
+                    Book[] books = new Gson().fromJson(json, Book[].class);
+
+                    for (Book item : books) {
+                        if (item != null && item.hasSamePath(mUrl)) {
+                            book = item;
+
+                            break;
+                        }
+                    }
+
+                }
+            } catch (Exception ignored) {
+
+            }
+
+            return book;
+        }
+
+        @Override
+        protected void onPostExecute(Book book) {
+            if (book != null) {
+                mBook = book;
+                fillInBookDetails(mBook);
+            } else {
+                Toast.makeText(mContext, "No book details found", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }
