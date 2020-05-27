@@ -1,6 +1,7 @@
 package com.blueshift.reads.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -114,12 +115,18 @@ public class ProductListActivity extends ReadsBaseActivity {
         });
     }
 
-    private void showUriDialog(Uri uri) {
+    private void showUriDialog(final Uri uri) {
         if (uri != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Universal Links");
             builder.setMessage("No app path for this URL.\n\n" + uri.toString());
-            builder.setPositiveButton("Got it!", null);
+            builder.setPositiveButton("Open in browser", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    openLink(uri);
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
             builder.create().show();
         }
     }

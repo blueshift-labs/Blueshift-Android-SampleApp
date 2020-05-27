@@ -81,9 +81,11 @@
 
                 <data
                     android:host="www.blueshiftreads.com"
+                    android:pathPrefix="/products"
                     android:scheme="http" />
                 <data
                     android:host="www.blueshiftreads.com"
+                    android:pathPrefix="/products"
                     android:scheme="https" />
             </intent-filter>
         </activity>
