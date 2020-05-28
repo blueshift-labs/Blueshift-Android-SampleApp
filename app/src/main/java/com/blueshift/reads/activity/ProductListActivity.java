@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftExecutor;
 import com.blueshift.BlueshiftLinksHandler;
 import com.blueshift.BlueshiftLinksListener;
 import com.blueshift.BlueshiftLogger;
@@ -233,25 +234,30 @@ public class ProductListActivity extends ReadsBaseActivity {
     }
 
     private void loadBooks() {
-        new AsyncTask<Void, Void, Book[]>() {
-            @Override
-            protected Book[] doInBackground(Void... params) {
-                Book[] books = null;
+        BlueshiftExecutor.getInstance().runOnDiskIOThread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        Book[] books = null;
 
-                String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
-                if (!TextUtils.isEmpty(json)) {
-                    books = new Gson().fromJson(json, Book[].class);
+                        String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
+                        if (!TextUtils.isEmpty(json)) {
+                            books = new Gson().fromJson(json, Book[].class);
+                        }
+
+                        final Book[] finalBooks = books;
+                        BlueshiftExecutor.getInstance().runOnMainThread(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (mAdapter != null) {
+                                            mAdapter.addBooks(finalBooks);
+                                        }
+                                    }
+                                }
+                        );
+                    }
                 }
-
-                return books;
-            }
-
-            @Override
-            protected void onPostExecute(Book[] books) {
-                if (mAdapter != null) {
-                    mAdapter.addBooks(books);
-                }
-            }
-        }.execute();
+        );
     }
 }

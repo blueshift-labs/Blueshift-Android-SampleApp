@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftExecutor;
 import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
@@ -264,7 +265,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         }
     }
 
-    private void deepLink(String url) {
+    private void deepLink(final String url) {
         if (TextUtils.isEmpty(url)) {
             Toast.makeText(this, "No URL found", Toast.LENGTH_SHORT).show();
         } else {
@@ -274,53 +275,43 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
 
                 finish();
             } else {
-                new ProductDetailsActivity.DeepLinkTask(url).execute();
-            }
-        }
-    }
+                BlueshiftExecutor.getInstance().runOnDiskIOThread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                Book book = null;
 
-    private class DeepLinkTask extends AsyncTask<Void, Void, Book> {
+                                try {
+                                    String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
+                                    if (json != null) {
+                                        Book[] books = new Gson().fromJson(json, Book[].class);
 
-        private String mUrl;
+                                        for (Book item : books) {
+                                            if (item != null && item.hasSamePath(url)) {
+                                                book = item;
 
-        DeepLinkTask(String url) {
-            mUrl = url;
-        }
+                                                break;
+                                            }
+                                        }
 
-        @Override
-        protected Book doInBackground(Void... voids) {
-            Book book = null;
+                                    }
+                                } catch (Exception ignored) {
 
-            try {
-                String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
-                if (json != null) {
-                    Book[] books = new Gson().fromJson(json, Book[].class);
+                                }
 
-                    for (Book item : books) {
-                        if (item != null && item.hasSamePath(mUrl)) {
-                            book = item;
-
-                            break;
+                                final Book finalBook = book;
+                                BlueshiftExecutor.getInstance().runOnMainThread(
+                                        new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                fillInBookDetails(finalBook);
+                                            }
+                                        }
+                                );
+                            }
                         }
-                    }
-
-                }
-            } catch (Exception ignored) {
-
-            }
-
-            return book;
-        }
-
-        @Override
-        protected void onPostExecute(Book book) {
-            if (book != null) {
-                mBook = book;
-                fillInBookDetails(mBook);
-            } else {
-                Toast.makeText(mContext, "No book details found", Toast.LENGTH_SHORT).show();
+                );
             }
         }
     }
-
 }
