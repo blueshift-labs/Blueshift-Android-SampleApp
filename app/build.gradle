@@ -67,7 +67,9 @@ dependencies {
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 
     // jCenter
-    implementation "com.blueshift:android-sdk:$sdkVersion"
+    implementation("com.blueshift:android-sdk:$sdkVersion") {
+        exclude group: 'com.google.firebase'
+    }
 
     // local AAR
 //    implementation(name: 'android-sdk-debug', ext: 'aar')
