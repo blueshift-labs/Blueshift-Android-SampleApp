@@ -1,6 +1,7 @@
 package com.blueshift.reads.framework;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ReadsBaseActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
+    protected Context mContext = this;
 
     @Override
     protected void onStop() {

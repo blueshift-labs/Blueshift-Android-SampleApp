@@ -1,5 +1,9 @@
 package com.blueshift.reads.model;
 
+import android.net.Uri;
+
+import com.blueshift.BlueshiftLogger;
+
 import java.io.Serializable;
 
 /**
@@ -35,6 +39,19 @@ public class Book implements Serializable {
 
     public String getWebUrl() {
         return web_url;
+    }
+
+    public boolean hasSamePath(String path) {
+        try {
+            if (path != null) {
+                Uri uri = Uri.parse(web_url);
+                String localPath = uri.getPath();
+                return path.equals(localPath);
+            }
+        } catch (Exception e) {
+            BlueshiftLogger.e("", e);
+        }
+        return false;
     }
 
     public int getQuantity() {

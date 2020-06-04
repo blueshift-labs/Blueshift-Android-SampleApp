@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftLogger;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
@@ -37,6 +38,8 @@ public class ReadsApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        BlueshiftLogger.setLogLevel(BlueshiftLogger.VERBOSE);
+
         Configuration configuration = new Configuration();
         configuration.setAppIcon(R.mipmap.ic_launcher);
 
@@ -64,7 +67,22 @@ public class ReadsApplication extends Application {
 
         configuration.setApiKey(BuildConfig.API_KEY);
 
+        // use firebase instance id
+        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.ADVERTISING_ID);
+
         Blueshift.getInstance(this).initialize(configuration);
+
+//        override clicks on in-app messages
+//        Blueshift.getInstance(this).setInAppActionCallback(
+//                new InAppActionCallback() {
+//                    @Override
+//                    public void onAction(String s, JSONObject jsonObject) {
+//                        if ("open".equals(s)) {
+//                            BlueshiftLogger.d("TAG", jsonObject.toString());
+//                        }
+//                    }
+//                }
+//        );
 
         // overriding the in-ap api call
 //        Blueshift
