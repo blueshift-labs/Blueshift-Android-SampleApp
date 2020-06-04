@@ -104,11 +104,13 @@ public class ProductListActivity extends ReadsBaseActivity {
             }
 
             @Override
-            public void onLinkProcessingError(Exception e) {
+            public void onLinkProcessingError(Exception e, Uri uri) {
                 if (trace != null) {
                     trace.stop();
                 }
                 hideProgressDialog();
+
+                showUriDialog(uri);
 
                 String msg = e != null ? e.getMessage() : "Something went wrong!";
                 Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
