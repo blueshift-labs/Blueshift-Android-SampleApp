@@ -29,8 +29,8 @@ import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
+//import com.google.firebase.perf.FirebasePerformance;
+//import com.google.firebase.perf.metrics.Trace;
 import com.google.gson.Gson;
 
 public class ProductListActivity extends ReadsBaseActivity {
@@ -40,20 +40,20 @@ public class ProductListActivity extends ReadsBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (BuildConfig.DEBUG) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .detectNetwork()   // or .detectAll() for all detectable problems
-                    .penaltyLog()
-                    .build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectLeakedSqlLiteObjects()
-                    .detectLeakedClosableObjects()
-                    .penaltyLog()
-                    .penaltyDeath()
-                    .build());
-        }
+//        if (BuildConfig.DEBUG) {
+//            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                    .detectDiskReads()
+//                    .detectDiskWrites()
+//                    .detectNetwork()   // or .detectAll() for all detectable problems
+//                    .penaltyLog()
+//                    .build());
+//            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//                    .detectLeakedSqlLiteObjects()
+//                    .detectLeakedClosableObjects()
+//                    .penaltyLog()
+//                    .penaltyDeath()
+//                    .build());
+//        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
@@ -76,22 +76,22 @@ public class ProductListActivity extends ReadsBaseActivity {
         final Uri uri = getIntent() != null ? getIntent().getData() : null;
 
         new BlueshiftLinksHandler(this).handleBlueshiftUniversalLinks(getIntent(), new BlueshiftLinksListener() {
-            private Trace trace;
+//            private Trace trace;
 
             @Override
             public void onLinkProcessingStart() {
                 if (isShortURL(uri)) {
-                    trace = FirebasePerformance.getInstance().newTrace("universal_links_replay_url");
-                    trace.start();
+//                    trace = FirebasePerformance.getInstance().newTrace("universal_links_replay_url");
+//                    trace.start();
                     showProgressDialog("Opening book details...");
                 }
             }
 
             @Override
             public void onLinkProcessingComplete(Uri uri) {
-                if (trace != null) {
-                    trace.stop();
-                }
+//                if (trace != null) {
+//                    trace.stop();
+//                }
                 hideProgressDialog();
 
                 if (isProductURL(uri)) {
@@ -105,9 +105,9 @@ public class ProductListActivity extends ReadsBaseActivity {
 
             @Override
             public void onLinkProcessingError(Exception e, Uri uri) {
-                if (trace != null) {
-                    trace.stop();
-                }
+//                if (trace != null) {
+//                    trace.stop();
+//                }
                 hideProgressDialog();
 
                 showUriDialog(uri);

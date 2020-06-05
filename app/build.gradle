@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-apply plugin: 'com.google.firebase.firebase-perf'
+//apply plugin: 'com.google.firebase.firebase-perf'
 
 ext {
     sdkVersion = '3.1.0'
     supportVersion = '28.0.0'
-    appName = "BSFT Reads SDKv" + sdkVersion + " - " + getDate()
+//    appName = "BSFT Reads SDKv" + sdkVersion + " - " + getDate()
 }
 
 static def getDate() {
@@ -24,13 +24,26 @@ android {
         versionName "1.1.0"
 
         buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
-        archivesBaseName = appName
+//        archivesBaseName = appName
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "color"
+
+    productFlavors {
+        blue {
+            dimension "color"
+        }
+
+        red {
+            dimension "color"
+            applicationIdSuffix ".red"
         }
     }
 }
@@ -59,17 +72,15 @@ dependencies {
 
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
-    implementation 'com.google.firebase:firebase-perf:19.0.7'
+//    implementation 'com.google.firebase:firebase-perf:19.0.7'
 
     // this is to support API 20 & below
     implementation 'com.android.support:multidex:1.0.3'
 
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 
     // jCenter
-    implementation("com.blueshift:android-sdk:$sdkVersion") {
-        exclude group: 'com.google.firebase'
-    }
+    implementation("com.blueshift:android-sdk:$sdkVersion")
 
     // local AAR
 //    implementation(name: 'android-sdk-debug', ext: 'aar')

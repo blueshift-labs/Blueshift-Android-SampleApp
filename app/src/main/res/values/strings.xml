@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BlueShift Reads</string>
+    <string name="app_name">Reads (Blue)</string>
     <string name="email_hint">username@example.com</string>
     <string name="let_me_in">LET ME IN</string>
     <string name="book_cover">book cover</string>

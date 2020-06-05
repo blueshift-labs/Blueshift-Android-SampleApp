@@ -68,7 +68,7 @@ public class ReadsApplication extends Application {
         configuration.setApiKey(BuildConfig.API_KEY);
 
         // use firebase instance id
-        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.ADVERTISING_ID);
+        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID);
 
         Blueshift.getInstance(this).initialize(configuration);
 
