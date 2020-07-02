@@ -13,12 +13,8 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/menu_pull_in_app"
-        android:title="@string/fetch_iam" />
-
-    <item
-        android:id="@+id/menu_show_in_app"
-        android:title="@string/show_iam" />
+        android:id="@+id/menu_debug"
+        android:title="@string/debug" />
 
     <item
         android:id="@+id/menu_sdk_version"

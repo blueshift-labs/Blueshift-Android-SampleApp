@@ -119,6 +119,8 @@
             android:name=".activity.WebViewActivity"
             android:theme="@style/TransparentActivity" />
 
+        <activity android:name=".activity.DebugActivity" />
+
         <receiver
             android:name="com.blueshift.receiver.AppInstallReceiver"
             android:exported="true">

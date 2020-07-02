@@ -43,9 +43,12 @@
     <string name="close_button">Close button</string>
     <string name="x">X</string>
     <string name="server_response">Server Response:</string>
-    <string name="fetch_iam">Fetch IAM</string>
-    <string name="show_iam">Show IAM</string>
+    <string name="debug">Debug</string>
     <string name="sdk_version">SDK v%1$s</string>
+    <string name="btn_fire_event">Fire Event</string>
+    <string name="msg_display_in_app_here">Display in-app here</string>
+    <string name="msg_fetch_in_app">Fetch In App</string>
+    <string name="msg_show_in_app">Show In App</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>
@@ -56,6 +59,11 @@
     <string-array name="live_content_slots">
         <item>Editors_Picks_Json</item>
         <item>inappmessagingslot</item>
+    </string-array>
+
+    <string-array name="debug_event_list">
+        <item>bsft_send_me_in_app</item>
+        <item>bsft_send_me_push</item>
     </string-array>
 
 </resources>

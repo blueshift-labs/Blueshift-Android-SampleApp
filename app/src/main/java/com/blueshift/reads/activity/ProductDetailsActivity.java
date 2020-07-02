@@ -1,11 +1,8 @@
 package com.blueshift.reads.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +14,6 @@ import android.widget.Toast;
 
 import com.blueshift.Blueshift;
 import com.blueshift.BlueshiftExecutor;
-import com.blueshift.inappmessage.InAppApiCallback;
-import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
@@ -189,22 +184,8 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
         } else if (item.getItemId() == R.id.menu_live) {
             Intent intent = new Intent(this, LiveContentActivity.class);
             startActivity(intent);
-        } else if (item.getItemId() == R.id.menu_pull_in_app) {
-            final Context context = this;
-            Toast.makeText(context, "Pulling in-app messages...", Toast.LENGTH_SHORT).show();
-            Blueshift.getInstance(this).fetchInAppMessages(new InAppApiCallback() {
-                @Override
-                public void onSuccess() {
-                    Toast.makeText(context, "Pulling in-app messages success.", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(int i, String s) {
-                    Toast.makeText(context, "Pulling in-app messages failed. " + s, Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else if (item.getItemId() == R.id.menu_show_in_app) {
-            Blueshift.getInstance(this).displayInAppMessages();
+        } else if (item.getItemId() == R.id.menu_debug) {
+            startActivity(new Intent(this, DebugActivity.class));
         } else if (item.getItemId() == android.R.id.home) {
             finish();
         }
