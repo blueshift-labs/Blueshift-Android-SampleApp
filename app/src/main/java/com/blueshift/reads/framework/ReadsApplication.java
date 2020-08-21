@@ -3,6 +3,7 @@ package com.blueshift.reads.framework;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 
 import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
@@ -132,7 +133,14 @@ public class ReadsApplication extends Application {
         // This method will let you decide what needs to be collected as device_id
         // The default value is AdvertisingId. You can change it to Firebase Instance Id
         // or a GUID using this method.
-        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID_PKG_NAME);
+//        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID);
+//        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID_PKG_NAME);
+//        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.ADVERTISING_ID_PKG_NAME);
+//        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.GUID);
+
+//        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.CUSTOM);
+//        String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+//        configuration.setCustomDeviceId(android_id);
 
         return configuration;
     }

@@ -58,4 +58,15 @@ class DebugActivity : AppCompatActivity() {
 
         view.isEnabled = true
     }
+
+    fun fireHundredEvents(view: View) {
+        view.isEnabled = false
+        Toast.makeText(view.context, "Loop started", Toast.LENGTH_SHORT).show()
+        for (i in 0..100) {
+            Blueshift.getInstance(view.context).trackEvent("bsft_hundred_event", null, false)
+        }
+
+        Toast.makeText(view.context, "Loop ended", Toast.LENGTH_SHORT).show()
+        view.isEnabled = true
+    }
 }

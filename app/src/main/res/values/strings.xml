@@ -49,6 +49,7 @@
     <string name="msg_display_in_app_here">Display in-app here</string>
     <string name="msg_fetch_in_app">Fetch In App</string>
     <string name="msg_show_in_app">Show In App</string>
+    <string name="fire_100_events">Fire 100 Events</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>
