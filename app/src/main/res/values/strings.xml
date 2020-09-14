@@ -64,6 +64,8 @@
 
     <string-array name="debug_event_list">
         <item>bsft_send_me_in_app</item>
+        <item>bsft_send_me_in_app_modal</item>
+        <item>bsft_send_me_in_app_html</item>
         <item>bsft_send_me_push</item>
     </string-array>
 
