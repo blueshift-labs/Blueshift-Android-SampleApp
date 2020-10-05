@@ -133,7 +133,7 @@ public class ReadsApplication extends Application {
         // This method will let you decide what needs to be collected as device_id
         // The default value is AdvertisingId. You can change it to Firebase Instance Id
         // or a GUID using this method.
-//        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID);
+        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID);
 //        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID_PKG_NAME);
 //        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.ADVERTISING_ID_PKG_NAME);
 //        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.GUID);
