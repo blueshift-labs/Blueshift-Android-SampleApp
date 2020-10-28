@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blueshift.Blueshift
+import com.blueshift.BlueshiftAppPreferences
 import com.blueshift.inappmessage.InAppApiCallback
+import com.blueshift.model.UserInfo
 import com.blueshift.reads.R
 import kotlinx.android.synthetic.main.activity_debug.*
 
@@ -20,6 +22,15 @@ class DebugActivity : AppCompatActivity() {
             } else {
                 Blueshift.getInstance(this).unregisterForInAppMessages(this)
             }
+        }
+
+        pushSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enablePush
+
+        pushSwitch.setOnCheckedChangeListener { _, isChecked ->
+            BlueshiftAppPreferences.getInstance(this).enablePush = isChecked
+            BlueshiftAppPreferences.getInstance(this).save(this)
+
+            Blueshift.getInstance(this).identifyUserByEmail(UserInfo.getInstance(this).email, null, false)
         }
     }
 
@@ -68,5 +79,19 @@ class DebugActivity : AppCompatActivity() {
 
         Toast.makeText(view.context, "Loop ended", Toast.LENGTH_SHORT).show()
         view.isEnabled = true
+    }
+
+    fun logoutClick(view: View) {
+        val userInfo: UserInfo = UserInfo.getInstance(this)
+
+        BlueshiftAppPreferences.getInstance(this).enablePush = false
+        BlueshiftAppPreferences.getInstance(this).save(this)
+
+        Blueshift.getInstance(this).identifyUserByEmail(userInfo.email, null, false)
+
+        userInfo.email = null
+        userInfo.save(this)
+
+        finish()
     }
 }

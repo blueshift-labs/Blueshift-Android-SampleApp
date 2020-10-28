@@ -3,7 +3,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 
 ext {
-    sdkVersion = '3.1.4'
+    sdkVersion = '3.1.6'
     supportVersion = '28.0.0'
 }
 
@@ -16,7 +16,7 @@ android {
         targetSdkVersion 30
         multiDexEnabled true
         versionCode 1
-        versionName "1.1.4"
+        versionName "1.1.5"
 
         buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
 //        buildConfigField 'String', 'API_KEY', '"ae8087e9fb141de419ddbac09ed8b0a9"'
@@ -72,11 +72,11 @@ dependencies {
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 
     // jCenter
-//    implementation "com.blueshift:android-sdk:$sdkVersion"
+    implementation "com.blueshift:android-sdk:$sdkVersion"
     // AndroidX
 //    implementation "com.blueshift:android-sdk-x:$sdkVersion"
     // local AAR
-    implementation(name: 'android-sdk-debug', ext: 'aar')
+//    implementation(name: 'android-sdk-debug', ext: 'aar')
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.firebase:firebase-messaging:20.2.4'
     implementation 'com.google.firebase:firebase-core:17.5.0'

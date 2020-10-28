@@ -50,6 +50,8 @@
     <string name="msg_fetch_in_app">Fetch In App</string>
     <string name="msg_show_in_app">Show In App</string>
     <string name="fire_100_events">Fire 100 Events</string>
+    <string name="logout">Logout</string>
+    <string name="enable_push">enable_push</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>
@@ -67,6 +69,9 @@
         <item>bsft_send_me_in_app_modal</item>
         <item>bsft_send_me_in_app_html</item>
         <item>bsft_send_me_push</item>
+        <item>bsft_send_me_image_push</item>
+        <item>bsft_send_me_animated_carousel_push</item>
+        <item>bsft_send_me_nonanimated_carousel_push</item>
     </string-array>
 
 </resources>

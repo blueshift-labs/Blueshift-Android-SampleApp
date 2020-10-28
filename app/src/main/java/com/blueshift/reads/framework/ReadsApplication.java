@@ -9,12 +9,14 @@ import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftAppPreferences;
 import com.blueshift.BlueshiftLogger;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.activity.PlaceOrderActivity;
 import com.blueshift.reads.activity.ProductDetailsActivity;
+import com.blueshift.util.BlueshiftUtils;
 
 /**
  * @author Rahul Raveendran V P

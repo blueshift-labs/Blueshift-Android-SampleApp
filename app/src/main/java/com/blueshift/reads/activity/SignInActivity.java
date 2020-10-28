@@ -9,8 +9,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftAppPreferences;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
+import com.blueshift.util.DeviceUtils;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 
 import java.security.MessageDigest;
@@ -44,6 +46,9 @@ public class SignInActivity extends AppCompatActivity {
         // currentUser.setRetailerCustomerId(hashEmail(email));
         currentUser.setEmail(email);
         currentUser.save(this);
+
+        BlueshiftAppPreferences.getInstance(this).setEnablePush(true);
+        BlueshiftAppPreferences.getInstance(this).save(this);
 
         // Call identify
         Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
