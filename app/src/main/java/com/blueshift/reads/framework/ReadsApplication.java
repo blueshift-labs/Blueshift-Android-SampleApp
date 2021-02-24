@@ -3,20 +3,17 @@ package com.blueshift.reads.framework;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.provider.Settings;
 
 import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 
 import com.blueshift.Blueshift;
-import com.blueshift.BlueshiftAppPreferences;
 import com.blueshift.BlueshiftLogger;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.activity.PlaceOrderActivity;
 import com.blueshift.reads.activity.ProductDetailsActivity;
-import com.blueshift.util.BlueshiftUtils;
 
 /**
  * @author Rahul Raveendran V P
@@ -26,6 +23,7 @@ import com.blueshift.util.BlueshiftUtils;
 
 
 public class ReadsApplication extends Application {
+    private static final String TAG = "ReadsApplication";
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -50,6 +48,50 @@ public class ReadsApplication extends Application {
         Blueshift.getInstance(this).initialize(configuration);
 
         trackNewInstalls();
+
+//        Blueshift.setBlueshiftPushListener(new BlueshiftPushListener() {
+//            @Override
+//            public void onPushDelivered(Map<String, Object> map) {
+//                Log.d(TAG, "onPushDelivered: (map) " + new Gson().toJson(map));
+//
+//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+//                Log.d(TAG, "onPushDelivered: " + new Gson().toJson(attr));
+//            }
+//
+//            @Override
+//            public void onPushClicked(Map<String, Object> map) {
+//                Log.d(TAG, "onPushClicked: (map) " + new Gson().toJson(map));
+//
+//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+//                Log.d(TAG, "onPushClicked: " + new Gson().toJson(attr));
+//            }
+//        });
+//
+//        Blueshift.setBlueshiftInAppListener(new BlueshiftInAppListener() {
+//            @Override
+//            public void onInAppDelivered(Map<String, Object> map) {
+//                Log.d(TAG, "onInAppDelivered: (map)" + new Gson().toJson(map));
+//
+//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+//                Log.d(TAG, "onInAppDelivered: " + new Gson().toJson(attr));
+//            }
+//
+//            @Override
+//            public void onInAppOpened(Map<String, Object> map) {
+//                Log.d(TAG, "onInAppOpened: (map)" + new Gson().toJson(map));
+//
+//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+//                Log.d(TAG, "onInAppOpened: " + new Gson().toJson(attr));
+//            }
+//
+//            @Override
+//            public void onInAppClicked(Map<String, Object> map) {
+//                Log.d(TAG, "onInAppClicked: (map)" + new Gson().toJson(map));
+//
+//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+//                Log.d(TAG, "onInAppClicked: " + new Gson().toJson(attr));
+//            }
+//        });
 
         /*
         Below are samples for overriding SDK controls.
@@ -131,6 +173,8 @@ public class ReadsApplication extends Application {
         // This method let's you decide the interval of batch event api calls.
         // Default value is 30min
         configuration.setBatchInterval(16 * 60 * 1000); // setting batch time as 16min
+
+        configuration.setAutoAppOpenInterval(5 * 60);
 
         // This method will let you decide what needs to be collected as device_id
         // The default value is AdvertisingId. You can change it to Firebase Instance Id
