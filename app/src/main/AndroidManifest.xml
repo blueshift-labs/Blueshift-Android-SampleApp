@@ -68,9 +68,11 @@
 
                 <data
                     android:host="universallinks.blueshiftreads.com"
-                    android:scheme="http" />
+                    android:pathPrefix="/track"
+                    android:scheme="https" />
                 <data
                     android:host="universallinks.blueshiftreads.com"
+                    android:pathPrefix="/z"
                     android:scheme="https" />
             </intent-filter>
         </activity>
