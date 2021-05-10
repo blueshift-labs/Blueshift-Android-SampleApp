@@ -1,5 +1,6 @@
 package com.blueshift.reads.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftAppPreferences;
 import com.blueshift.BlueshiftExecutor;
+import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
@@ -196,7 +199,7 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Blueshift.getInstance(this).registerForInAppMessages(this);
+        Blueshift.getInstance(this).registerForInAppMessages(this, "product_details");
 
         invalidateOptionsMenu();
     }

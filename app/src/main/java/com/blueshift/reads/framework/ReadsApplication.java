@@ -3,17 +3,29 @@ package com.blueshift.reads.framework;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
+import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftInAppListener;
 import com.blueshift.BlueshiftLogger;
+import com.blueshift.BlueshiftPushListener;
+import com.blueshift.inappmessage.InAppActionCallback;
+import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.activity.PlaceOrderActivity;
 import com.blueshift.reads.activity.ProductDetailsActivity;
+import com.blueshift.util.BlueshiftUtils;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 /**
  * @author Rahul Raveendran V P
@@ -49,49 +61,49 @@ public class ReadsApplication extends Application {
 
         trackNewInstalls();
 
-//        Blueshift.setBlueshiftPushListener(new BlueshiftPushListener() {
-//            @Override
-//            public void onPushDelivered(Map<String, Object> map) {
-//                Log.d(TAG, "onPushDelivered: (map) " + new Gson().toJson(map));
-//
-//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
-//                Log.d(TAG, "onPushDelivered: " + new Gson().toJson(attr));
-//            }
-//
-//            @Override
-//            public void onPushClicked(Map<String, Object> map) {
-//                Log.d(TAG, "onPushClicked: (map) " + new Gson().toJson(map));
-//
-//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
-//                Log.d(TAG, "onPushClicked: " + new Gson().toJson(attr));
-//            }
-//        });
-//
-//        Blueshift.setBlueshiftInAppListener(new BlueshiftInAppListener() {
-//            @Override
-//            public void onInAppDelivered(Map<String, Object> map) {
-//                Log.d(TAG, "onInAppDelivered: (map)" + new Gson().toJson(map));
-//
-//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
-//                Log.d(TAG, "onInAppDelivered: " + new Gson().toJson(attr));
-//            }
-//
-//            @Override
-//            public void onInAppOpened(Map<String, Object> map) {
-//                Log.d(TAG, "onInAppOpened: (map)" + new Gson().toJson(map));
-//
-//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
-//                Log.d(TAG, "onInAppOpened: " + new Gson().toJson(attr));
-//            }
-//
-//            @Override
-//            public void onInAppClicked(Map<String, Object> map) {
-//                Log.d(TAG, "onInAppClicked: (map)" + new Gson().toJson(map));
-//
-//                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
-//                Log.d(TAG, "onInAppClicked: " + new Gson().toJson(attr));
-//            }
-//        });
+        Blueshift.setBlueshiftPushListener(new BlueshiftPushListener() {
+            @Override
+            public void onPushDelivered(Map<String, Object> map) {
+                Log.d(TAG, "onPushDelivered: (map) " + new Gson().toJson(map));
+
+                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+                Log.d(TAG, "onPushDelivered: " + new Gson().toJson(attr));
+            }
+
+            @Override
+            public void onPushClicked(Map<String, Object> map) {
+                Log.d(TAG, "onPushClicked: (map) " + new Gson().toJson(map));
+
+                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+                Log.d(TAG, "onPushClicked: " + new Gson().toJson(attr));
+            }
+        });
+
+        Blueshift.setBlueshiftInAppListener(new BlueshiftInAppListener() {
+            @Override
+            public void onInAppDelivered(Map<String, Object> map) {
+                Log.d(TAG, "onInAppDelivered: (map)" + new Gson().toJson(map));
+
+                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+                Log.d(TAG, "onInAppDelivered: " + new Gson().toJson(attr));
+            }
+
+            @Override
+            public void onInAppOpened(Map<String, Object> map) {
+                Log.d(TAG, "onInAppOpened: (map)" + new Gson().toJson(map));
+
+                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+                Log.d(TAG, "onInAppOpened: " + new Gson().toJson(attr));
+            }
+
+            @Override
+            public void onInAppClicked(Map<String, Object> map) {
+                Log.d(TAG, "onInAppClicked: (map)" + new Gson().toJson(map));
+
+                Map<String, String> attr = BlueshiftUtils.buildTrackApiAttributesFromPayload(map, getApplicationContext());
+                Log.d(TAG, "onInAppClicked: " + new Gson().toJson(attr));
+            }
+        });
 
         /*
         Below are samples for overriding SDK controls.
@@ -102,29 +114,34 @@ public class ReadsApplication extends Application {
 //                    @Override
 //                    public void onAction(String s, JSONObject jsonObject) {
 //                        if ("open".equals(s)) {
-//                            BlueshiftLogger.d("TAG", jsonObject.toString());
+//                            BlueshiftLogger.d(TAG, jsonObject.toString());
 //                        }
 //                    }
 //                }
 //        );
 
-        // overriding the in-ap api call
+//         overriding the in-ap api call
 //        Blueshift
 //                .getInstance(this)
 //                .fetchInAppMessages(new InAppApiCallback() {
 //                    @Override
-//                    public void onApiCallComplete() {
+//                    public void onSuccess() {
+//                        Log.d(TAG, "onSuccess: in-app");
+//                    }
 //
+//                    @Override
+//                    public void onFailure(int i, String s) {
+//                        Log.d(TAG, "onFailure: in-app");
 //                    }
 //                });
 
-        // overriding the clicks on in-app
+//         overriding the clicks on in-app
 //        Blueshift
 //                .getInstance(this)
 //                .setInAppActionCallback(new InAppActionCallback() {
 //                    @Override
 //                    public void onAction(String name, JSONObject args) {
-//                        Log.d("Application", "InApp Action. name: " + name + ", args: " + args);
+//                        Log.d(TAG, "InApp Action. name: " + name + ", args: " + args);
 //                        // name - name of the action
 //                        // args - the arguments for the action
 //                    }
@@ -168,7 +185,7 @@ public class ReadsApplication extends Application {
         configuration.setInAppEnabled(true);
         configuration.setJavaScriptForInAppWebViewEnabled(true);
         configuration.setInAppBackgroundFetchEnabled(true);
-        // configuration.setInAppManualTriggerEnabled(true);
+         configuration.setInAppManualTriggerEnabled(true);
 
         // This method let's you decide the interval of batch event api calls.
         // Default value is 30min

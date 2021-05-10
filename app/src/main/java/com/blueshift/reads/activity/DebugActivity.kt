@@ -1,6 +1,7 @@
 package com.blueshift.reads.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.blueshift.BlueshiftAppPreferences
 import com.blueshift.inappmessage.InAppApiCallback
 import com.blueshift.model.UserInfo
 import com.blueshift.reads.R
+import com.blueshift.util.CommonUtils
 import kotlinx.android.synthetic.main.activity_debug.*
 
 class DebugActivity : AppCompatActivity() {
@@ -25,12 +27,19 @@ class DebugActivity : AppCompatActivity() {
         }
 
         pushSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enablePush
+        inAppOptInSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enableInApp
+        trackSwitch.isChecked = Blueshift.isTrackingEnabled(this)
 
         pushSwitch.setOnCheckedChangeListener { _, isChecked ->
-            BlueshiftAppPreferences.getInstance(this).enablePush = isChecked
-            BlueshiftAppPreferences.getInstance(this).save(this)
+            Blueshift.optInForPushNotifications(this, isChecked)
+        }
 
-            Blueshift.getInstance(this).identifyUserByEmail(UserInfo.getInstance(this).email, null, false)
+        inAppOptInSwitch.setOnCheckedChangeListener { _, isChecked ->
+            Blueshift.optInForInAppNotifications(this, isChecked)
+        }
+
+        trackSwitch.setOnCheckedChangeListener { _, isChecked ->
+            Blueshift.setTrackingEnabled(this, isChecked)
         }
     }
 

@@ -51,7 +51,9 @@
     <string name="msg_show_in_app">Show In App</string>
     <string name="fire_100_events">Fire 100 Events</string>
     <string name="logout">Logout</string>
-    <string name="enable_push">enable_push</string>
+    <string name="enable_push">Enable Push</string>
+    <string name="enable_tracking">Enable Tracking</string>
+    <string name="enable_inapp">Enable InApp</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>
@@ -72,6 +74,7 @@
         <item>bsft_send_me_image_push</item>
         <item>bsft_send_me_animated_carousel_push</item>
         <item>bsft_send_me_nonanimated_carousel_push</item>
+        <item>bsft_send_me_ul_email</item>
     </string-array>
 
 </resources>
