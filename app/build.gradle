@@ -38,7 +38,7 @@ android {
     }
 }
 
-ext.sdkVersion = '3.2.1-alpha'
+ext.sdkVersion = '3.2.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

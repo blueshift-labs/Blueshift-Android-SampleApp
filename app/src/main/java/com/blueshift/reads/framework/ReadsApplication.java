@@ -185,7 +185,7 @@ public class ReadsApplication extends Application {
         configuration.setInAppEnabled(true);
         configuration.setJavaScriptForInAppWebViewEnabled(true);
         configuration.setInAppBackgroundFetchEnabled(true);
-         configuration.setInAppManualTriggerEnabled(true);
+//         configuration.setInAppManualTriggerEnabled(true);
 
         // This method let's you decide the interval of batch event api calls.
         // Default value is 30min
