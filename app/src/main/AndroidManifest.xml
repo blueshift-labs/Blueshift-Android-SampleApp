@@ -85,7 +85,9 @@
             android:exported="true"
             android:parentActivityName=".activity.ProductListActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
