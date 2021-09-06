@@ -26,6 +26,7 @@
 
         <activity
             android:name=".activity.SplashScreenActivity"
+            android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,7 +58,9 @@
             <!--            </intent-filter>-->
         </activity>
 
-        <activity android:name=".activity.ProductListActivity">
+        <activity
+            android:name=".activity.ProductListActivity"
+            android:exported="true">
             <intent-filter
                 android:autoVerify="true"
                 tools:targetApi="m">
@@ -79,6 +82,7 @@
 
         <activity
             android:name=".activity.ProductDetailsActivity"
+            android:exported="true"
             android:parentActivityName=".activity.ProductListActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
@@ -105,29 +109,43 @@
         <!--        </activity>-->
 
         <!--        <activity android:name=".activity.ProductListActivity" />-->
-        <activity android:name=".activity.SignInActivity" />
-        <activity android:name=".activity.PlaceOrderActivity" />
-        <activity android:name=".activity.LiveContentActivity" />
+        <activity
+            android:name=".activity.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.PlaceOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LiveContentActivity"
+            android:exported="false" />
         <activity
             android:name=".activity_backup.PurchaseConfirmationActivity"
+            android:exported="false"
             android:label="@string/title_activity_purchase_confirmation" />
         <activity
             android:name=".activity_backup.PurchaseReturnActivity"
+            android:exported="false"
             android:label="@string/title_activity_purchase_return" />
         <activity
             android:name=".activity_backup.MailingListActivity"
+            android:exported="false"
             android:label="@string/title_activity_mailing_list" />
         <activity
             android:name=".activity_backup.SubscriptionEventsActivity"
+            android:exported="false"
             android:label="@string/title_activity_subscription_events" />
         <activity
             android:name=".activity_backup.OfferDisplayActivity"
+            android:exported="false"
             android:label="@string/title_activity_offer_display" />
         <activity
             android:name=".activity.WebViewActivity"
+            android:exported="false"
             android:theme="@style/TransparentActivity" />
 
-        <activity android:name=".activity.DebugActivity" />
+        <activity
+            android:name=".activity.DebugActivity"
+            android:exported="false" />
 
         <receiver
             android:name="com.blueshift.receiver.AppInstallReceiver"
@@ -139,7 +157,9 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".ReadsMessagingService">
+        <service
+            android:name=".ReadsMessagingService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

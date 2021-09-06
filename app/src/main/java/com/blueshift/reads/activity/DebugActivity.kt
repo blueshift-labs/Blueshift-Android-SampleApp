@@ -93,8 +93,8 @@ class DebugActivity : AppCompatActivity() {
     fun logoutClick(view: View) {
         val userInfo: UserInfo = UserInfo.getInstance(this)
 
-        BlueshiftAppPreferences.getInstance(this).enablePush = false
-        BlueshiftAppPreferences.getInstance(this).save(this)
+        Blueshift.optInForInAppNotifications(this, false)
+        Blueshift.optInForPushNotifications(this, false)
 
         Blueshift.getInstance(this).identifyUserByEmail(userInfo.email, null, false)
 

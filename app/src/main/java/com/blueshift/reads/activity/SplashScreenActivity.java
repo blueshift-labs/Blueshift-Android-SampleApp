@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.model.UserInfo;
-import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.model.Book;
@@ -103,20 +101,21 @@ public class SplashScreenActivity extends AppCompatActivity {
             Book book = null;
 
             try {
-                String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
-                if (json != null) {
-                    Book[] books = new Gson().fromJson(json, Book[].class);
+                if (mUrl != null) {
+                    String json = TestUtils.readTextFileFromAssets(mContext, "products.json");
+                    if (json != null) {
+                        Book[] books = new Gson().fromJson(json, Book[].class);
 
-                    for (Book item : books) {
-                        if (item != null && item.getWebUrl() != null) {
-                            if (item.getWebUrl().equals(mUrl)) {
-                                book = item;
+                        for (Book item : books) {
+                            if (item != null && item.getWebUrl() != null) {
+                                if (mUrl.contains(item.getWebUrl())) {
+                                    book = item;
 
-                                break;
+                                    break;
+                                }
                             }
                         }
                     }
-
                 }
             } catch (Exception ignored) {
 
