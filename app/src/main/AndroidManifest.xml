@@ -33,29 +33,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.VIEW" />-->
-
-            <!--                <category android:name="android.intent.category.DEFAULT" />-->
-            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-            <!--                <data-->
-            <!--                    android:host="www.blueshiftreads.com"-->
-            <!--                    android:pathPrefix="/products"-->
-            <!--                    android:scheme="http" />-->
-            <!--            </intent-filter>-->
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.VIEW" />-->
-
-            <!--                <category android:name="android.intent.category.DEFAULT" />-->
-            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-            <!--                <data-->
-            <!--                    android:host="www.blueshiftreads.com"-->
-            <!--                    android:pathPrefix="/checkout"-->
-            <!--                    android:scheme="http" />-->
-            <!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -104,13 +81,6 @@
             </intent-filter>
         </activity>
 
-        <!--        <activity android:name=".activity.NotificationActivity">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.blueshift.NOTIFICATION_CLICK_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
-
-        <!--        <activity android:name=".activity.ProductListActivity" />-->
         <activity
             android:name=".activity.SignInActivity"
             android:exported="false" />
@@ -148,6 +118,14 @@
         <activity
             android:name=".activity.DebugActivity"
             android:exported="false" />
+
+        <!--        <activity android:name=".activity.NotificationActivity">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.blueshift.NOTIFICATION_CLICK_EVENT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+
+        <!--        <activity android:name=".activity.ProductListActivity" />-->
 
         <receiver
             android:name="com.blueshift.receiver.AppInstallReceiver"
