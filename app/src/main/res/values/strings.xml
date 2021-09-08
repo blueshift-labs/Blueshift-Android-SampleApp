@@ -74,6 +74,7 @@
         <item>bsft_send_me_image_push</item>
         <item>bsft_send_me_animated_carousel_push</item>
         <item>bsft_send_me_nonanimated_carousel_push</item>
+        <item>bsft_send_me_custom_button_push</item>
         <item>bsft_send_me_ul_email</item>
     </string-array>
 
