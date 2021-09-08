@@ -6,11 +6,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftLogger;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.TestUtils;
@@ -44,22 +43,18 @@ public class SplashScreenActivity extends AppCompatActivity {
         mContext = this;
 
         String deepLinkURL = getIntent().getStringExtra(RichPushConstants.EXTRA_DEEP_LINK_URL);
-
-        if (deepLinkURL != null) {
-            Log.d("Deeplink URL: ", deepLinkURL);
-        }
+        BlueshiftLogger.d("bundle:deep_link_url = ", deepLinkURL);
 
         if (TextUtils.isEmpty(deepLinkURL)) {
             Uri uri = getIntent().getData();
 
             if (uri != null) {
                 deepLinkURL = uri.toString();
+                BlueshiftLogger.d("data:uri = ", deepLinkURL);
             }
         }
 
         deepLink(deepLinkURL);
-
-        Blueshift.getInstance(this).trackEvent("inapp_trigger", null, false);
     }
 
     private void deepLink(String url) {
@@ -85,6 +80,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         } else {
             Intent landingIntent = new Intent(mContext, SignInActivity.class);
             startActivity(landingIntent);
+        }
+    }
+
+    void openLink(String url) {
+        try {
+            Intent viewIntent = new Intent(Intent.ACTION_VIEW);
+            viewIntent.setData(Uri.parse(url));
+            startActivity(viewIntent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -133,7 +138,11 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 startActivity(pdpIntent);
             } else {
-                openApp();
+                if (mUrl != null) {
+                    openLink(mUrl);
+                } else {
+                    openApp();
+                }
             }
 
             finish();
