@@ -100,74 +100,55 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:onClick="fireHundredEvents"
-        android:text="@string/fire_100_events"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        app:layout_constraintVertical_bias="0.043" />
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:onClick="logoutClick"
         android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="372dp"
+        android:layout_height="48dp"
+        android:onClick="fireHundredEvents"
+        android:text="@string/fire_100_events"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/trackSwitch"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/trackSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/trackSwitch"
+        app:layout_constraintVertical_bias="0.932" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/pushSwitch"
-        android:layout_width="373dp"
+        android:layout_width="0dp"
         android:layout_height="34dp"
-        android:layout_marginTop="8dp"
         android:text="@string/enable_push"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
         app:layout_constraintVertical_bias="0.024" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/trackSwitch"
-        android:layout_width="373dp"
+        android:layout_width="0dp"
         android:layout_height="34dp"
-        android:layout_marginTop="8dp"
         android:text="@string/enable_tracking"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintEnd_toEndOf="@+id/inAppOptInSwitch"
+        app:layout_constraintStart_toStartOf="@+id/inAppOptInSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/inAppOptInSwitch" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/inAppOptInSwitch"
-        android:layout_width="373dp"
+        android:layout_width="0dp"
         android:layout_height="34dp"
         android:text="@string/enable_inapp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trackSwitch"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintEnd_toEndOf="@+id/pushSwitch"
+        app:layout_constraintStart_toStartOf="@+id/pushSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/pushSwitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

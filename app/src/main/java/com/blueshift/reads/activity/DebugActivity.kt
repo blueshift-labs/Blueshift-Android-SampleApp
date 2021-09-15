@@ -9,7 +9,9 @@ import com.blueshift.Blueshift
 import com.blueshift.BlueshiftAppPreferences
 import com.blueshift.inappmessage.InAppApiCallback
 import com.blueshift.model.UserInfo
+import com.blueshift.reads.BuildConfig
 import com.blueshift.reads.R
+import com.blueshift.reads.framework.BSFTUtil
 import com.blueshift.util.CommonUtils
 import kotlinx.android.synthetic.main.activity_debug.*
 
@@ -80,14 +82,19 @@ class DebugActivity : AppCompatActivity() {
     }
 
     fun fireHundredEvents(view: View) {
-        view.isEnabled = false
-        Toast.makeText(view.context, "Loop started", Toast.LENGTH_SHORT).show()
-        for (i in 0..100) {
-            Blueshift.getInstance(view.context).trackEvent("bsft_hundred_event", null, false)
-        }
+        // assume we make an api call here and get the api key
+        BSFTUtil.cacheApiKey(this, BuildConfig.API_KEY)
+        BSFTUtil.initBlueshift(this)
+        Blueshift.getInstance(this).identifyUser(null, false)
 
-        Toast.makeText(view.context, "Loop ended", Toast.LENGTH_SHORT).show()
-        view.isEnabled = true
+//        view.isEnabled = false
+//        Toast.makeText(view.context, "Loop started", Toast.LENGTH_SHORT).show()
+//        for (i in 0..100) {
+//            Blueshift.getInstance(view.context).trackEvent("bsft_hundred_event", null, false)
+//        }
+//
+//        Toast.makeText(view.context, "Loop ended", Toast.LENGTH_SHORT).show()
+//        view.isEnabled = true
     }
 
     fun logoutClick(view: View) {

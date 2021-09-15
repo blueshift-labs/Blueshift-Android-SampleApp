@@ -45,7 +45,8 @@ public class ReadsApplication extends Application {
         BlueshiftLogger.setLogLevel(BlueshiftLogger.VERBOSE);
 
         // Required: Initialize Blueshift SDK
-        initializeBlueshiftSDK();
+        // initializeBlueshiftSDK();
+        BSFTUtil.initBlueshift(this);
 
         // Advanced & optional: Attach push event callbacks
         // setBlueshiftPushCallbacks();

@@ -51,9 +51,9 @@
     <string name="msg_show_in_app">Show In App</string>
     <string name="fire_100_events">Fire 100 Events</string>
     <string name="logout">Logout</string>
-    <string name="enable_push">Enable Push</string>
-    <string name="enable_tracking">Enable Tracking</string>
-    <string name="enable_inapp">Enable InApp</string>
+    <string name="enable_push">Enable Push Notifications</string>
+    <string name="enable_tracking">Enable Event Tracking</string>
+    <string name="enable_inapp">Enable InApp Messages</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>
