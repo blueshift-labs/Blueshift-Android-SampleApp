@@ -1,19 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.appdistribution'
+
+ext.sdkVersion = '3.2.5'
 
 android {
     compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.blueshift.reads"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 31
         multiDexEnabled true
         versionCode 1
-        versionName "1.1.6"
+        versionName "$sdkVersion"
 
 //      buildConfigField 'String', 'API_KEY', '"1cb55f696f7d7a112d9f196052a89173"'
+//        buildConfigField 'String', 'API_KEY', '"c8989b5d91022e324beec6fe66c77384"'
         buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
 //        buildConfigField 'String', 'API_KEY', '"ae8087e9fb141de419ddbac09ed8b0a9"'
     }
@@ -39,27 +43,30 @@ android {
     }
 }
 
-ext.sdkVersion = '3.2.3'
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.4.0-alpha02'
+    implementation 'com.google.android.material:material:1.6.0-alpha02'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //noinspection GradleDependency
     implementation "com.github.bumptech.glide:glide:3.7.0"
     implementation "com.github.rahulrvp:android-utils:0.4.0"
-//    implementation 'com.google.firebase:firebase-analytics:18.0.3'
-    implementation 'com.google.firebase:firebase-crashlytics:17.4.1'
-    implementation 'com.google.firebase:firebase-perf:19.1.1'
     implementation 'com.android.support:multidex:1.0.3' // this is to support API 20 & below
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 
-    implementation "com.blueshift:android-sdk:$sdkVersion" // Support Libs
-//    implementation "com.blueshift:android-sdk-x:$sdkVersion" // AndroidX Libs
+//    implementation "com.blueshift:android-sdk:$sdkVersion" // Support Libs
+    implementation "com.blueshift:android-sdk-x:$sdkVersion" // AndroidX Libs
+
+    implementation 'com.google.firebase:firebase-analytics-ktx:20.0.2'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.7'
+
+    implementation platform('com.google.firebase:firebase-bom:+')
+    implementation 'com.google.firebase:firebase-appindexing'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-perf'
 }
 
 

@@ -12,6 +12,7 @@ import com.blueshift.Blueshift;
 import com.blueshift.BlueshiftInAppListener;
 import com.blueshift.BlueshiftLogger;
 import com.blueshift.BlueshiftPushListener;
+import com.blueshift.BlueshiftRegion;
 import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.model.Configuration;
 import com.blueshift.reads.BuildConfig;
@@ -78,6 +79,12 @@ public class ReadsApplication extends Application {
         // This icon will be used in Notification as icons & placeholder image,
         // if notification icons are not provided explicitly
         configuration.setAppIcon(R.mipmap.ic_launcher);
+
+        // Set Datacenter Region (v3.2.4 and above). Default: BlueshiftRegion.US.
+        // Set region as EU
+        // configuration.setRegion(BlueshiftRegion.EU);
+        // Set region as US
+        configuration.setRegion(BlueshiftRegion.US);
 
         // These methods are used for setting traditional deep-links with category
         // WARNING: The following methods are deprecated since v3.2.3 and will be removed in later versions
