@@ -5,6 +5,12 @@ apply plugin: 'com.google.firebase.appdistribution'
 
 ext.sdkVersion = '3.2.5'
 
+String blueshiftEventApiKey() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty('bsft.apikey')
+}
+
 android {
     compileSdkVersion 31
 
@@ -16,10 +22,7 @@ android {
         versionCode 1
         versionName "$sdkVersion"
 
-//      buildConfigField 'String', 'API_KEY', '"1cb55f696f7d7a112d9f196052a89173"'
-//        buildConfigField 'String', 'API_KEY', '"c8989b5d91022e324beec6fe66c77384"'
-        buildConfigField 'String', 'API_KEY', '"5dfe3c9aee8b375bcc616079b08156d9"'
-//        buildConfigField 'String', 'API_KEY', '"ae8087e9fb141de419ddbac09ed8b0a9"'
+        buildConfigField 'String', 'API_KEY', blueshiftEventApiKey()
     }
 
     buildTypes {
