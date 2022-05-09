@@ -3,7 +3,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.appdistribution'
 
-ext.sdkVersion = '3.2.5'
+ext.sdkVersion = '3.2.7-alpha.0'
 
 String blueshiftEventApiKey() {
     Properties properties = new Properties()
@@ -12,12 +12,12 @@ String blueshiftEventApiKey() {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.blueshift.reads"
         minSdkVersion 19
-        targetSdkVersion 31
+        targetSdkVersion 32
         multiDexEnabled true
         versionCode 1
         versionName "$sdkVersion"
@@ -63,7 +63,7 @@ dependencies {
 //    implementation "com.blueshift:android-sdk:$sdkVersion" // Support Libs
     implementation "com.blueshift:android-sdk-x:$sdkVersion" // AndroidX Libs
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
     implementation 'com.google.firebase:firebase-crashlytics:18.2.10'
 
     implementation platform('com.google.firebase:firebase-bom:+')
