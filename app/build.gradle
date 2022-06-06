@@ -1,3 +1,4 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
@@ -9,6 +10,12 @@ String blueshiftEventApiKey() {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
     return properties.getProperty('bsft.apikey')
+}
+
+String onesignalEventApiKey() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty('onesignal.apikey')
 }
 
 android {
@@ -23,6 +30,7 @@ android {
         versionName "$sdkVersion"
 
         buildConfigField 'String', 'API_KEY', blueshiftEventApiKey()
+        buildConfigField 'String', 'OS_KEY', onesignalEventApiKey()
     }
 
     buildTypes {
@@ -70,6 +78,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing'
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-perf'
+
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
+
 }
 
 

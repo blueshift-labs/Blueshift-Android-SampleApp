@@ -19,6 +19,7 @@ import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.util.BlueshiftUtils;
 import com.google.gson.Gson;
+import com.onesignal.OneSignal;
 
 import java.util.Map;
 
@@ -62,8 +63,17 @@ public class ReadsApplication extends Application {
 
         // Not part of SDK integration, test code.
         trackNewInstalls();
+
+        initializeOneSignal();
     }
 
+    private void initializeOneSignal() {
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(BuildConfig.OS_KEY);
+    }
     private void initializeBlueshiftSDK() {
         Configuration configuration = new Configuration();
         configuration.setApiKey(BuildConfig.API_KEY);
