@@ -61,25 +61,7 @@
             android:name=".activity.ProductDetailsActivity"
             android:exported="true"
             android:parentActivityName=".activity.ProductListActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter
-                android:autoVerify="true"
-                tools:targetApi="m">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="www.blueshiftreads.com"
-                    android:pathPrefix="/products"
-                    android:scheme="http" />
-                <data
-                    android:host="www.blueshiftreads.com"
-                    android:pathPrefix="/products"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
             android:name=".activity.SignInActivity"
