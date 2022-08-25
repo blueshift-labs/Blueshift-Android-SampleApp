@@ -91,6 +91,8 @@ class DebugActivity : AppCompatActivity() {
     }
 
     fun logoutClick(view: View) {
+        view.isEnabled = false
+
         val userInfo: UserInfo = UserInfo.getInstance(this)
 
         Blueshift.optInForInAppNotifications(this, false)
@@ -101,6 +103,14 @@ class DebugActivity : AppCompatActivity() {
         userInfo.email = null
         userInfo.save(this)
 
+        view.isEnabled = true
+
         finish()
+    }
+
+    fun requestPushPermission(view: View) {
+        view.isEnabled = false
+        Blueshift.requestPushNotificationPermission(this)
+        view.isEnabled = true
     }
 }
