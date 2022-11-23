@@ -1,7 +1,6 @@
 package com.blueshift.reads.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,16 +8,18 @@ import com.blueshift.Blueshift
 import com.blueshift.BlueshiftAppPreferences
 import com.blueshift.inappmessage.InAppApiCallback
 import com.blueshift.model.UserInfo
-import com.blueshift.reads.R
-import com.blueshift.util.CommonUtils
-import kotlinx.android.synthetic.main.activity_debug.*
+import com.blueshift.reads.databinding.ActivityDebugBinding
 
 class DebugActivity : AppCompatActivity() {
+    lateinit var binding: ActivityDebugBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_debug)
+        binding = ActivityDebugBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        inAppSwitch.setOnCheckedChangeListener { _, isChecked ->
+        binding.inAppSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 Blueshift.getInstance(this).registerForInAppMessages(this)
             } else {
@@ -26,19 +27,19 @@ class DebugActivity : AppCompatActivity() {
             }
         }
 
-        pushSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enablePush
-        inAppOptInSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enableInApp
-        trackSwitch.isChecked = Blueshift.isTrackingEnabled(this)
+        binding.pushSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enablePush
+        binding.inAppOptInSwitch.isChecked = BlueshiftAppPreferences.getInstance(this).enableInApp
+        binding.trackSwitch.isChecked = Blueshift.isTrackingEnabled(this)
 
-        pushSwitch.setOnCheckedChangeListener { _, isChecked ->
+        binding.pushSwitch.setOnCheckedChangeListener { _, isChecked ->
             Blueshift.optInForPushNotifications(this, isChecked)
         }
 
-        inAppOptInSwitch.setOnCheckedChangeListener { _, isChecked ->
+        binding.inAppOptInSwitch.setOnCheckedChangeListener { _, isChecked ->
             Blueshift.optInForInAppNotifications(this, isChecked)
         }
 
-        trackSwitch.setOnCheckedChangeListener { _, isChecked ->
+        binding.trackSwitch.setOnCheckedChangeListener { _, isChecked ->
             Blueshift.setTrackingEnabled(this, isChecked)
         }
     }
@@ -46,7 +47,7 @@ class DebugActivity : AppCompatActivity() {
     fun onClickFireEvents(view: View) {
         view.isEnabled = false
 
-        val event = debugEventSpinner.selectedItem
+        val event = binding.debugEventSpinner.selectedItem
         Blueshift.getInstance(this).trackEvent(event as String, null, false)
         Toast.makeText(this, "Event sent.", Toast.LENGTH_SHORT).show()
 
@@ -57,15 +58,16 @@ class DebugActivity : AppCompatActivity() {
         view.isEnabled = false
 
         Blueshift.getInstance(this).fetchInAppMessages(
-                object : InAppApiCallback {
-                    override fun onSuccess() {
-                        Toast.makeText(view.context, "In app pulled successfully.", Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onFailure(p0: Int, p1: String?) {
-                        Toast.makeText(view.context, "In app pull failed.", Toast.LENGTH_SHORT).show()
-                    }
+            object : InAppApiCallback {
+                override fun onSuccess() {
+                    Toast.makeText(view.context, "In app pulled successfully.", Toast.LENGTH_SHORT)
+                        .show()
                 }
+
+                override fun onFailure(p0: Int, p1: String?) {
+                    Toast.makeText(view.context, "In app pull failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
         )
 
         view.isEnabled = true

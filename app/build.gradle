@@ -44,14 +44,19 @@ android {
             applicationIdSuffix ".red"
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+    namespace 'com.blueshift.reads'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.7.0-beta01'
+    implementation 'com.google.android.material:material:1.8.0-alpha03'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //noinspection GradleDependency
@@ -63,11 +68,10 @@ dependencies {
 //    implementation "com.blueshift:android-sdk:$sdkVersion" // Support Libs
     implementation "com.blueshift:android-sdk-x:$sdkVersion" // AndroidX Libs
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
 
     implementation platform('com.google.firebase:firebase-bom:+')
-    implementation 'com.google.firebase:firebase-appindexing'
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-perf'
 }
@@ -75,4 +79,3 @@ dependencies {
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
