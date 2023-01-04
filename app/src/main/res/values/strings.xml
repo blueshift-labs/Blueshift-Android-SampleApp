@@ -54,6 +54,8 @@
     <string name="enable_push">Enable Push</string>
     <string name="enable_tracking">Enable Tracking</string>
     <string name="enable_inapp">Enable InApp</string>
+    <string name="inbox">Inbox</string>
+    <string name="custom_inbox">Custom inbox</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>

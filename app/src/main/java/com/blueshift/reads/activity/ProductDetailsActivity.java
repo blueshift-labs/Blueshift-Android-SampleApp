@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.blueshift.Blueshift;
 import com.blueshift.BlueshiftAppPreferences;
 import com.blueshift.BlueshiftExecutor;
+import com.blueshift.inbox.BlueshiftInboxActivity;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
@@ -189,6 +190,10 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
             startActivity(intent);
         } else if (item.getItemId() == R.id.menu_debug) {
             startActivity(new Intent(this, DebugActivity.class));
+        } else if (item.getItemId() == R.id.inbox) {
+            startActivity(new Intent(this, BlueshiftInboxActivity.class));
+        } else if (item.getItemId() == R.id.custom_inbox) {
+            startActivity(new Intent(this, CustomInboxActivity.class));
         } else if (item.getItemId() == android.R.id.home) {
             finish();
         }

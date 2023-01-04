@@ -17,6 +17,14 @@
         android:title="@string/debug" />
 
     <item
+        android:id="@+id/inbox"
+        android:title="@string/inbox" />
+
+    <item
+        android:id="@+id/custom_inbox"
+        android:title="@string/custom_inbox" />
+
+    <item
         android:id="@+id/menu_sdk_version"
         android:title="@string/sdk_version" />
 
