@@ -160,48 +160,6 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
-
-        ShoppingCart cart = ShoppingCart.getInstance(this);
-
-        MenuItem item = menu.findItem(R.id.menu_cart);
-        if (item != null) {
-            String string = getString(R.string.cart_0, cart.getCount());
-            item.setTitle(string);
-        }
-
-        MenuItem sdkV = menu.findItem(R.id.menu_sdk_version);
-        if (sdkV != null) {
-            String sdkVer = getString(R.string.sdk_version, com.blueshift.BuildConfig.SDK_VERSION);
-            sdkV.setTitle(sdkVer);
-        }
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_cart) {
-            Intent intent = new Intent(this, PlaceOrderActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.menu_live) {
-            Intent intent = new Intent(this, LiveContentActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.menu_debug) {
-            startActivity(new Intent(this, DebugActivity.class));
-        } else if (item.getItemId() == R.id.inbox) {
-            startActivity(new Intent(this, BlueshiftInboxActivity.class));
-        } else if (item.getItemId() == R.id.custom_inbox) {
-            startActivity(new Intent(this, CustomInboxActivity.class));
-        } else if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-
-        return true;
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
         Blueshift.getInstance(this).registerForInAppMessages(this, "product_details");
