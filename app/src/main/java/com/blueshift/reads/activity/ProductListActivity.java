@@ -24,6 +24,7 @@ import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
+import com.blueshift.reads.framework.ReadsApplication;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
 import com.google.gson.Gson;
@@ -194,6 +195,10 @@ public class ProductListActivity extends ReadsBaseActivity {
             startActivity(new Intent(this, BlueshiftInboxActivity.class));
         } else if (item.getItemId() == R.id.custom_inbox) {
             startActivity(new Intent(this, CustomInboxActivity.class));
+        } else if (item.getItemId() == R.id.menu_logout) {
+            ReadsApplication.logout(this);
+            startActivity(new Intent(this, SplashScreenActivity.class));
+            finish();
         } else if (item.getItemId() == android.R.id.home) {
             finish();
         }

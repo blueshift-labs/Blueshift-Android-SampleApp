@@ -13,6 +13,7 @@ import com.blueshift.BlueshiftLogger;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.TestUtils;
+import com.blueshift.reads.framework.ReadsApplication;
 import com.blueshift.reads.model.Book;
 import com.blueshift.rich_push.RichPushConstants;
 import com.google.gson.Gson;
@@ -73,8 +74,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void openApp() {
-        String email = UserInfo.getInstance(mContext).getEmail();
-        if (!TextUtils.isEmpty(email)) {
+        boolean isSignedIn = ReadsApplication.isSignedIn(this);
+        if (isSignedIn) {
             Intent signInIntent = new Intent(mContext, ProductListActivity.class);
             startActivity(signInIntent);
         } else {
