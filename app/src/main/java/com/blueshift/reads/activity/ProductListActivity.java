@@ -20,6 +20,7 @@ import com.blueshift.BlueshiftLinksHandler;
 import com.blueshift.BlueshiftLinksListener;
 import com.blueshift.BlueshiftLogger;
 import com.blueshift.inbox.BlueshiftInboxActivity;
+import com.blueshift.inbox.BlueshiftInboxManager;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
@@ -36,6 +37,7 @@ public class ProductListActivity extends ReadsBaseActivity {
 
     private ProductListAdapter mAdapter;
     private Context mContext;
+    private int notificationCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +180,12 @@ public class ProductListActivity extends ReadsBaseActivity {
             sdkV.setTitle(sdkVer);
         }
 
+        MenuItem inbox = menu.findItem(R.id.menu_inbox);
+        if (inbox != null) {
+            String inboxCount = getString(R.string.inbox_0, notificationCount);
+            inbox.setTitle(inboxCount);
+        }
+
         return true;
     }
 
@@ -191,7 +199,7 @@ public class ProductListActivity extends ReadsBaseActivity {
             startActivity(intent);
         } else if (item.getItemId() == R.id.menu_debug) {
             startActivity(new Intent(this, DebugActivity.class));
-        } else if (item.getItemId() == R.id.inbox) {
+        } else if (item.getItemId() == R.id.menu_inbox) {
             startActivity(new Intent(this, BlueshiftInboxActivity.class));
         } else if (item.getItemId() == R.id.custom_inbox) {
             startActivity(new Intent(this, CustomInboxActivity.class));
@@ -216,17 +224,11 @@ public class ProductListActivity extends ReadsBaseActivity {
     protected void onResume() {
         super.onResume();
         Blueshift.getInstance(this).registerForInAppMessages(this);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        invalidateOptionsMenu();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+        BlueshiftInboxManager.getUnreadMessagesCount(this, integer -> {
+            notificationCount = integer;
+            invalidateOptionsMenu();
+        });
     }
 
     private void loadBooks() {

@@ -56,7 +56,7 @@
     <string name="enable_push">Enable Push</string>
     <string name="enable_tracking">Enable Tracking</string>
     <string name="enable_inapp">Enable InApp</string>
-    <string name="inbox">Inbox</string>
+    <string name="inbox_0">Inbox (%1$d)</string>
     <string name="custom_inbox">Custom inbox</string>
     <string name="skip_sign_in">Skip Sign In</string>
 
