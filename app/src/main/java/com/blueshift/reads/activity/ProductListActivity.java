@@ -1,5 +1,6 @@
 package com.blueshift.reads.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,6 +39,17 @@ public class ProductListActivity extends ReadsBaseActivity {
     private ProductListAdapter mAdapter;
     private Context mContext;
     private int notificationCount = 0;
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshInboxCount();
+        }
+    };
+
+    private void registerInboxReceiver() {
+        BlueshiftInboxManager.registerForInboxBroadcasts(this, mReceiver);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,6 +229,7 @@ public class ProductListActivity extends ReadsBaseActivity {
     @Override
     protected void onPause() {
         Blueshift.getInstance(this).unregisterForInAppMessages(this);
+        unregisterReceiver(mReceiver);
         super.onPause();
     }
 
@@ -224,7 +237,11 @@ public class ProductListActivity extends ReadsBaseActivity {
     protected void onResume() {
         super.onResume();
         Blueshift.getInstance(this).registerForInAppMessages(this);
+        refreshInboxCount();
+        registerInboxReceiver();
+    }
 
+    private void refreshInboxCount() {
         BlueshiftInboxManager.getUnreadMessagesCount(this, integer -> {
             notificationCount = integer;
             invalidateOptionsMenu();

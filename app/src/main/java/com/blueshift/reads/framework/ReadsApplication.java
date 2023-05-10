@@ -142,6 +142,9 @@ public class ReadsApplication extends Application {
         // configuration.setDeviceIdSource(Blueshift.DeviceIdSource.CUSTOM);
         // String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         // configuration.setCustomDeviceId(android_id);
+
+        // Enable inbox feature
+        configuration.setInboxEnabled(true);
     }
 
     private void setBlueshiftPushCallbacks() {
