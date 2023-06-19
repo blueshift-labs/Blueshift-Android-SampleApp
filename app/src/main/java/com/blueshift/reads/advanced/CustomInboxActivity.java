@@ -1,4 +1,4 @@
-package com.blueshift.reads.activity;
+package com.blueshift.reads.advanced;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -31,7 +31,7 @@ public class CustomInboxActivity extends AppCompatActivity {
         BlueshiftLogger.d("BlueshiftInboxActivity", "Activity started");
         if (savedInstanceState == null) {
             BlueshiftInboxFragment fragment = BlueshiftInboxFragment.newInstance();
-            fragment.setInboxListItemView(R.layout.custom_inbox_list_item);
+            fragment.setInboxListItemLayout(R.layout.custom_inbox_list_item);
             fragment.setInboxDateFormatter(date -> new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(date));
             fragment.setInboxAdapterExtension(new BlueshiftInboxAdapterExtension<Object>() {
                 @Override

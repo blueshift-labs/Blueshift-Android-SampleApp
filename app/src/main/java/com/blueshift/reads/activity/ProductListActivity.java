@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftConstants;
 import com.blueshift.BlueshiftExecutor;
 import com.blueshift.BlueshiftLinksHandler;
 import com.blueshift.BlueshiftLinksListener;
@@ -26,6 +27,7 @@ import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
+import com.blueshift.reads.advanced.CustomInboxActivity;
 import com.blueshift.reads.framework.ReadsApplication;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
@@ -212,7 +214,9 @@ public class ProductListActivity extends ReadsBaseActivity {
         } else if (item.getItemId() == R.id.menu_debug) {
             startActivity(new Intent(this, DebugActivity.class));
         } else if (item.getItemId() == R.id.menu_inbox) {
-            startActivity(new Intent(this, BlueshiftInboxActivity.class));
+            Intent intent = new Intent(this, BlueshiftInboxActivity.class);
+            intent.putExtra(BlueshiftConstants.INBOX_ACTIVITY_TITLE, "Mobile Inbox");
+            startActivity(intent);
         } else if (item.getItemId() == R.id.custom_inbox) {
             startActivity(new Intent(this, CustomInboxActivity.class));
         } else if (item.getItemId() == R.id.menu_logout) {

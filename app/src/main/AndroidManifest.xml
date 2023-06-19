@@ -93,7 +93,7 @@
             android:name=".activity.DebugActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CustomInboxActivity"
+            android:name=".advanced.CustomInboxActivity"
             android:exported="false" />
 
         <receiver
@@ -106,8 +106,16 @@
             </intent-filter>
         </receiver>
 
+        <activity
+            android:name=".advanced.CustomNotificationEventsActivityJava"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.blueshift.NOTIFICATION_CLICK_EVENT" />
+            </intent-filter>
+        </activity>
+
         <service
-            android:name=".ReadsMessagingService"
+            android:name=".advanced.CustomMessagingServiceJava"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
