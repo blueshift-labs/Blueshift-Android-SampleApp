@@ -15,6 +15,7 @@ import com.blueshift.BlueshiftPushListener;
 import com.blueshift.BlueshiftRegion;
 import com.blueshift.inappmessage.InAppApiCallback;
 import com.blueshift.model.Configuration;
+import com.blueshift.model.UserInfo;
 import com.blueshift.reads.BuildConfig;
 import com.blueshift.reads.R;
 import com.blueshift.util.BlueshiftUtils;
@@ -132,15 +133,18 @@ public class ReadsApplication extends Application {
         // This method will let you decide what needs to be collected as device_id
         // The default value is AdvertisingId. You can change it to Firebase Instance Id
         // or a GUID using this method.
-        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID);
+        // configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID);
         // configuration.setDeviceIdSource(Blueshift.DeviceIdSource.INSTANCE_ID_PKG_NAME);
         // configuration.setDeviceIdSource(Blueshift.DeviceIdSource.ADVERTISING_ID_PKG_NAME);
-        // configuration.setDeviceIdSource(Blueshift.DeviceIdSource.GUID);
+        configuration.setDeviceIdSource(Blueshift.DeviceIdSource.GUID);
 
         // If the above options aren't sufficient, provide your own device id as custom device id.
         // configuration.setDeviceIdSource(Blueshift.DeviceIdSource.CUSTOM);
         // String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         // configuration.setCustomDeviceId(android_id);
+
+        // Enable inbox feature
+        configuration.setInboxEnabled(true);
     }
 
     private void setBlueshiftPushCallbacks() {
@@ -227,5 +231,46 @@ public class ReadsApplication extends Application {
                 sp.edit().putBoolean(PREF_KEY, false).apply();
             }
         }
+    }
+
+    public static void login(Context context, String email, String name, String customerId) {
+        // set user info
+        UserInfo userInfo = UserInfo.getInstance(context);
+        if (userInfo != null) {
+            userInfo.setEmail(email);
+            userInfo.setName(name);
+            userInfo.setRetailerCustomerId(customerId);
+
+            userInfo.save(context);
+        }
+
+        Blueshift.optInForInAppNotifications(context, true);
+        Blueshift.optInForPushNotifications(context, true);
+
+        setSignedInStatus(context, true);
+    }
+
+    public static void logout(Context context) {
+        Blueshift.optInForInAppNotifications(context, false);
+        Blueshift.optInForPushNotifications(context, false);
+
+        // clear user info
+        UserInfo userInfo = UserInfo.getInstance(context);
+        if (userInfo != null) {
+            userInfo.clear(context);
+        }
+
+        // reset device id
+        Blueshift.resetDeviceId(context);
+
+        setSignedInStatus(context, false);
+    }
+
+    public static void setSignedInStatus(Context context, boolean isSignedIn) {
+        context.getSharedPreferences("app_config", MODE_PRIVATE).edit().putBoolean("signed_in", isSignedIn).apply();
+    }
+
+    public static boolean isSignedIn(Context context) {
+        return context.getSharedPreferences("app_config", MODE_PRIVATE).getBoolean("signed_in", false);
     }
 }

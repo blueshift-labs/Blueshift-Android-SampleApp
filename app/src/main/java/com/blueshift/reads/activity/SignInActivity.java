@@ -9,10 +9,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
-import com.blueshift.BlueshiftAppPreferences;
-import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
-import com.blueshift.util.DeviceUtils;
+import com.blueshift.reads.framework.ReadsApplication;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 
 import java.security.MessageDigest;
@@ -20,6 +18,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private EditText mNameField;
+    private EditText mCustomerIdField;
     private EditText mEmailField;
 
     @Override
@@ -27,12 +27,17 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        mNameField = findViewById(R.id.name);
+        mCustomerIdField = findViewById(R.id.customerId);
         mEmailField = findViewById(R.id.email);
 
         Blueshift.getInstance(this).trackScreenView(this, false);
     }
 
     public void onLetMeInClick(View view) {
+        String name = EditTextUtils.getText(mNameField);
+        String customerId = EditTextUtils.getText(mCustomerIdField);
+
         String email = EditTextUtils.getText(mEmailField);
         if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             EditTextUtils.setError(mEmailField, "Invalid email address.");
@@ -40,20 +45,18 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
 
-        // Save user info
-        UserInfo currentUser = UserInfo.getInstance(this);
-        // don't send customer id for sample app.
-        // currentUser.setRetailerCustomerId(hashEmail(email));
-        currentUser.setEmail(email);
-        currentUser.save(this);
-
-        BlueshiftAppPreferences.getInstance(this).setEnablePush(true);
-        BlueshiftAppPreferences.getInstance(this).save(this);
-
-        // Call identify
-        Blueshift.getInstance(this).identifyUserByEmail(email, null, false);
+        ReadsApplication.login(this, email, name, customerId);
 
         // Go to product list
+        Intent productIntent = new Intent(this, ProductListActivity.class);
+        startActivity(productIntent);
+
+        finish();
+    }
+
+    public void onSkipSignInClick(View view) {
+        ReadsApplication.setSignedInStatus(this, true);
+
         Intent productIntent = new Intent(this, ProductListActivity.class);
         startActivity(productIntent);
 

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Reads (Blue)</string>
-    <string name="email_hint">username@example.com</string>
+    <string name="email_hint">Email*</string>
+    <string name="name_hint">Name</string>
+    <string name="customer_id_hint">Customer ID</string>
     <string name="let_me_in">LET ME IN</string>
     <string name="book_cover">book cover</string>
     <string name="add_to_cart">Add to Cart</string>
@@ -54,6 +56,9 @@
     <string name="enable_push">Enable Push</string>
     <string name="enable_tracking">Enable Tracking</string>
     <string name="enable_inapp">Enable InApp</string>
+    <string name="inbox_0">Inbox (%1$d)</string>
+    <string name="custom_inbox">Custom inbox</string>
+    <string name="skip_sign_in">Skip Sign In</string>
 
     <string-array name="subscription_types_entries">
         <item>Subscription-0001</item>

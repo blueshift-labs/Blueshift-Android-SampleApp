@@ -1,5 +1,6 @@
 package com.blueshift.reads.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,14 +16,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blueshift.Blueshift;
+import com.blueshift.BlueshiftConstants;
 import com.blueshift.BlueshiftExecutor;
 import com.blueshift.BlueshiftLinksHandler;
 import com.blueshift.BlueshiftLinksListener;
 import com.blueshift.BlueshiftLogger;
+import com.blueshift.inbox.BlueshiftInboxActivity;
+import com.blueshift.inbox.BlueshiftInboxManager;
 import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
+import com.blueshift.reads.advanced.CustomInboxActivity;
+import com.blueshift.reads.framework.ReadsApplication;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
 import com.google.gson.Gson;
@@ -34,6 +40,18 @@ public class ProductListActivity extends ReadsBaseActivity {
 
     private ProductListAdapter mAdapter;
     private Context mContext;
+    private int notificationCount = 0;
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshInboxCount();
+        }
+    };
+
+    private void registerInboxReceiver() {
+        BlueshiftInboxManager.registerForInboxBroadcasts(this, mReceiver);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +194,12 @@ public class ProductListActivity extends ReadsBaseActivity {
             sdkV.setTitle(sdkVer);
         }
 
+        MenuItem inbox = menu.findItem(R.id.menu_inbox);
+        if (inbox != null) {
+            String inboxCount = getString(R.string.inbox_0, notificationCount);
+            inbox.setTitle(inboxCount);
+        }
+
         return true;
     }
 
@@ -189,6 +213,16 @@ public class ProductListActivity extends ReadsBaseActivity {
             startActivity(intent);
         } else if (item.getItemId() == R.id.menu_debug) {
             startActivity(new Intent(this, DebugActivity.class));
+        } else if (item.getItemId() == R.id.menu_inbox) {
+            Intent intent = new Intent(this, BlueshiftInboxActivity.class);
+            intent.putExtra(BlueshiftConstants.INBOX_ACTIVITY_TITLE, "Mobile Inbox");
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.custom_inbox) {
+            startActivity(new Intent(this, CustomInboxActivity.class));
+        } else if (item.getItemId() == R.id.menu_logout) {
+            ReadsApplication.logout(this);
+            startActivity(new Intent(this, SplashScreenActivity.class));
+            finish();
         } else if (item.getItemId() == android.R.id.home) {
             finish();
         }
@@ -199,6 +233,7 @@ public class ProductListActivity extends ReadsBaseActivity {
     @Override
     protected void onPause() {
         Blueshift.getInstance(this).unregisterForInAppMessages(this);
+        unregisterReceiver(mReceiver);
         super.onPause();
     }
 
@@ -206,17 +241,15 @@ public class ProductListActivity extends ReadsBaseActivity {
     protected void onResume() {
         super.onResume();
         Blueshift.getInstance(this).registerForInAppMessages(this);
+        refreshInboxCount();
+        registerInboxReceiver();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        invalidateOptionsMenu();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+    private void refreshInboxCount() {
+        BlueshiftInboxManager.getUnreadMessagesCount(this, integer -> {
+            notificationCount = integer;
+            invalidateOptionsMenu();
+        });
     }
 
     private void loadBooks() {
