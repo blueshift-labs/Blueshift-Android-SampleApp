@@ -25,6 +25,12 @@ android {
         buildConfigField 'String', 'API_KEY', blueshiftEventApiKey()
     }
 
+    // https://kotlinlang.org/docs/gradle-configure-project.html#gradle-java-toolchains-support
+    compileOptions {
+        sourceCompatibility = 17
+        targetCompatibility = 17
+    }
+
     buildTypes {
         release {
             minifyEnabled false

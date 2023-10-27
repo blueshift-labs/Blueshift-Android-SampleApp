@@ -45,8 +45,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <data android:scheme="blueshift" />
+                <data android:host="reads.com" />
+
                 <data android:scheme="https" />
                 <data android:host="universallinks.blueshiftreads.com" />
+
                 <data android:pathPrefix="/z" />
                 <data android:pathPrefix="/track" />
             </intent-filter>
