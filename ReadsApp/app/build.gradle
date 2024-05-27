@@ -12,6 +12,7 @@ String blueshiftEventApiKey() {
 }
 
 android {
+    namespace 'com.blueshift.reads'
     compileSdk 34
 
     defaultConfig {
@@ -38,48 +39,31 @@ android {
         }
     }
 
-    flavorDimensions "color"
-
-    productFlavors {
-        blue {
-            dimension "color"
-        }
-
-        red {
-            dimension "color"
-            applicationIdSuffix ".red"
-        }
-    }
-
     buildFeatures {
         viewBinding true
     }
-    namespace 'com.blueshift.reads'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.9.0-alpha01'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    //noinspection GradleDependency
     implementation "com.github.bumptech.glide:glide:3.7.0"
     implementation "com.github.rahulrvp:android-utils:0.4.0"
     implementation 'com.android.support:multidex:1.0.3' // this is to support API 20 & below
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 
-//    implementation "com.blueshift:android-sdk:$sdkVersion" // Support Libs
-    implementation "com.blueshift:android-sdk-x:$sdkVersion" // AndroidX Libs
+    implementation 'com.google.firebase:firebase-analytics-ktx:22.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics:19.0.0'
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.3'
-
-    implementation platform('com.google.firebase:firebase-bom:+')
+    implementation platform('com.google.firebase:firebase-bom:33.0.0')
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-perf'
+
+    implementation "com.blueshift:android-sdk-x:$sdkVersion"
 }
 
 
