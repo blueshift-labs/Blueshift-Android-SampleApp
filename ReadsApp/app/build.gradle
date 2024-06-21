@@ -3,7 +3,7 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.appdistribution'
 
-ext.sdkVersion = '3.4.6'
+ext.sdkVersion = '3.5.0'
 
 String blueshiftEventApiKey() {
     Properties properties = new Properties()
@@ -48,7 +48,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -56,11 +56,12 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:3.7.0"
     implementation "com.github.rahulrvp:android-utils:0.4.0"
     implementation 'com.android.support:multidex:1.0.3' // this is to support API 20 & below
+    implementation 'com.google.code.gson:gson:2.10.1'
 
-    implementation 'com.google.firebase:firebase-analytics-ktx:22.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics:19.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:22.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics:19.0.1'
 
-    implementation platform('com.google.firebase:firebase-bom:33.0.0')
+    implementation platform('com.google.firebase:firebase-bom:33.1.0')
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-perf'
 

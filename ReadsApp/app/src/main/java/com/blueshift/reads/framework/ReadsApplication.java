@@ -145,6 +145,8 @@ public class ReadsApplication extends Application {
 
         // Enable inbox feature
         configuration.setInboxEnabled(true);
+
+        configuration.setSaveUserInfoAsEncrypted(true);
     }
 
     private void setBlueshiftPushCallbacks() {
