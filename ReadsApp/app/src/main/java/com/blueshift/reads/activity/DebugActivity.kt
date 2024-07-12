@@ -1,11 +1,13 @@
 package com.blueshift.reads.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blueshift.Blueshift
 import com.blueshift.BlueshiftAppPreferences
+import com.blueshift.BlueshiftExecutor
 import com.blueshift.inappmessage.InAppApiCallback
 import com.blueshift.model.UserInfo
 import com.blueshift.reads.databinding.ActivityDebugBinding
@@ -84,12 +86,65 @@ class DebugActivity : AppCompatActivity() {
     fun fireHundredEvents(view: View) {
         view.isEnabled = false
         Toast.makeText(view.context, "Loop started", Toast.LENGTH_SHORT).show()
-        for (i in 0..100) {
-            Blueshift.getInstance(view.context).trackEvent("bsft_hundred_event", null, false)
-        }
+
+        send100Events(view.context)
 
         Toast.makeText(view.context, "Loop ended", Toast.LENGTH_SHORT).show()
         view.isEnabled = true
+    }
+
+    private fun multiThreadUseCase_50EventsInTwoLoopsOf25Each(context: Context) {
+        val batchCount = 25
+        BlueshiftExecutor.getInstance().runOnNetworkThread {
+            for (i in 1..batchCount) {
+                Blueshift.getInstance(context).trackEvent("event-$i", null, false)
+            }
+        }
+        BlueshiftExecutor.getInstance().runOnNetworkThread {
+            for (i in 1..batchCount) {
+                Blueshift.getInstance(context).trackEvent("event-${i + batchCount}", null, false)
+            }
+        }
+    }
+
+    private fun multiThreadUseCase_50EventsInTwoLoops25RealtimeAnd25Batch(context: Context) {
+        val batchCount = 25
+        BlueshiftExecutor.getInstance().runOnNetworkThread {
+            for (i in 1..batchCount) {
+                Blueshift.getInstance(context).trackEvent("event-$i", null, false)
+            }
+        }
+        BlueshiftExecutor.getInstance().runOnNetworkThread {
+            for (i in 1..batchCount) {
+                Blueshift.getInstance(context).trackEvent("event-${i + batchCount}", null, true)
+            }
+        }
+    }
+
+    private fun logoutAndLoginUseCase(context: Context) {
+        val preferences = BlueshiftAppPreferences.getInstance(context)
+
+        // simulate push and in-app opt out
+        preferences.enablePush = false
+        preferences.enableInApp = false
+        Blueshift.getInstance(context).trackEvent("logout", null, false)
+
+        // reset the device id (make sure the next event has this new device_id)
+        Blueshift.resetDeviceId(context)
+
+        // simulate push and in-app opt in
+        preferences.enablePush = true
+        preferences.enableInApp = true
+        Blueshift.getInstance(context).trackEvent("login", null, false)
+
+        preferences.save(context)
+    }
+
+    private fun send100Events(context: Context) {
+        val batchCount = 100
+        for (i in 1..batchCount) {
+            Blueshift.getInstance(context).trackEvent("event-$i", null, false)
+        }
     }
 
     fun logoutClick(view: View) {

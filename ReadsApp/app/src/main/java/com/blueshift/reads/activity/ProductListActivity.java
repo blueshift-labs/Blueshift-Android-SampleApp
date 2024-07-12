@@ -212,7 +212,7 @@ public class ProductListActivity extends ReadsBaseActivity {
             Intent intent = new Intent(this, LiveContentActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.menu_debug) {
-            startActivity(new Intent(this, DebugActivity.class));
+            startActivity(new Intent(this, VerifierActivity.class));
         } else if (item.getItemId() == R.id.menu_inbox) {
             Intent intent = new Intent(this, BlueshiftInboxActivity.class);
             intent.putExtra(BlueshiftConstants.INBOX_ACTIVITY_TITLE, "Mobile Inbox");

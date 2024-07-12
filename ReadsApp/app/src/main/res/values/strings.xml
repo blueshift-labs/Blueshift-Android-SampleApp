@@ -82,5 +82,6 @@
         <item>bsft_send_me_custom_button_push</item>
         <item>bsft_send_me_ul_email</item>
     </string-array>
+    <string name="title_activity_verifier">VerifierActivity</string>
 
 </resources>

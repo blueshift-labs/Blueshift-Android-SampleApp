@@ -85,7 +85,7 @@ public class ReadsApplication extends Application {
         // Set region as EU
         // configuration.setRegion(BlueshiftRegion.EU);
         // Set region as US
-        configuration.setRegion(BlueshiftRegion.US);
+//        configuration.setRegion(BlueshiftRegion.US);
 
         // These methods are used for setting traditional deep-links with category
         // WARNING: The following methods are deprecated since v3.2.3 and will be removed in later versions
@@ -124,7 +124,7 @@ public class ReadsApplication extends Application {
         configuration.setInAppEnabled(true);
         configuration.setJavaScriptForInAppWebViewEnabled(true);
         // configuration.setInAppBackgroundFetchEnabled(false);
-        // configuration.setInAppManualTriggerEnabled(true);
+         configuration.setInAppManualTriggerEnabled(true);
 
         // This method let's you decide the interval of batch event api calls.
         // Default value is 30min
@@ -144,7 +144,7 @@ public class ReadsApplication extends Application {
         // configuration.setCustomDeviceId(android_id);
 
         // Enable inbox feature
-        configuration.setInboxEnabled(true);
+//        configuration.setInboxEnabled(true);
 
         configuration.setSaveUserInfoAsEncrypted(true);
     }
