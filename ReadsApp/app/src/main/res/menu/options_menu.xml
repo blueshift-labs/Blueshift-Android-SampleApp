@@ -17,6 +17,10 @@
         android:title="@string/debug" />
 
     <item
+        android:id="@+id/menu_events"
+        android:title="@string/events" />
+
+    <item
         android:id="@+id/menu_inbox"
         android:title="@string/inbox_0"
         app:showAsAction="always" />

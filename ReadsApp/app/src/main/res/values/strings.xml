@@ -46,6 +46,7 @@
     <string name="x">X</string>
     <string name="server_response">Server Response:</string>
     <string name="debug">Debug</string>
+    <string name="events">Test Events</string>
     <string name="sdk_version">SDK v%1$s</string>
     <string name="btn_fire_event">Fire Event</string>
     <string name="msg_display_in_app_here">Display in-app here</string>
