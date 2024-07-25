@@ -144,7 +144,7 @@ public class ReadsApplication extends Application {
         // configuration.setCustomDeviceId(android_id);
 
         // Enable inbox feature
-//        configuration.setInboxEnabled(true);
+        configuration.setInboxEnabled(true);
 
         configuration.setSaveUserInfoAsEncrypted(true);
     }
