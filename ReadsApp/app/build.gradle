@@ -12,6 +12,12 @@ String blueshiftEventApiKey() {
     return properties.getProperty('bsft.apikey')
 }
 
+String blueshiftEventApiKeyEU() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty('bsft.apikeyEu')
+}
+
 android {
     namespace 'com.blueshift.reads'
     compileSdk 35
@@ -25,6 +31,7 @@ android {
         versionName "$sdkVersion"
 
         buildConfigField 'String', 'API_KEY', blueshiftEventApiKey()
+        buildConfigField 'String', 'API_KEY_EU', blueshiftEventApiKeyEU()
         vectorDrawables {
             useSupportLibrary true
         }
