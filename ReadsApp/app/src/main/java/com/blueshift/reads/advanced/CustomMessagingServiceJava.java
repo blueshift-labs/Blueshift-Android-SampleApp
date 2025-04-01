@@ -18,7 +18,7 @@ public class CustomMessagingServiceJava extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(String newToken) {
-        BlueshiftMessagingService.handleNewToken(newToken);
+        BlueshiftMessagingService.handleNewToken(getApplicationContext(), newToken);
 
         // Use the new token in your app if needed.
     }
