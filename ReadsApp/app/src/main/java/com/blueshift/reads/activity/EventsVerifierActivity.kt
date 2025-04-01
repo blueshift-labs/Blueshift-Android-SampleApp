@@ -25,7 +25,10 @@ import com.blueshift.Blueshift
 import com.blueshift.BlueshiftAppPreferences
 import com.blueshift.BlueshiftExecutor
 import com.blueshift.BlueshiftLogger
+import com.blueshift.BlueshiftRegion
+import com.blueshift.model.Configuration
 import com.blueshift.model.UserInfo
+import com.blueshift.reads.BuildConfig
 import com.blueshift.reads.activity.ui.theme.ReadsAppTheme
 import com.blueshift.rich_push.Message
 
@@ -152,7 +155,25 @@ class VerifierActivity : ComponentActivity() {
 
                     val message = Message()
                     Blueshift.getInstance(applicationContext).trackNotificationClick(message)
-                })
+                }, CardItem(
+                    "SDK reinitialization check",
+                    listOf(
+                        "Re-initialize the SDK with EU credentials",
+                        "Events should be sent to the correct endpoint"
+                    ),
+                    onClick = {
+                        val configuration = Configuration()
+                        configuration.apiKey = BuildConfig.API_KEY_EU
+                        configuration.region = BlueshiftRegion.EU
+                        configuration.isPushEnabled = true
+                        configuration.isInAppEnabled = true
+                        configuration.isJavaScriptForInAppWebViewEnabled = true
+                        configuration.isInboxEnabled = true
+                        configuration.setEnableAutoAppOpenFiring(true)
+                        Blueshift.getInstance(applicationContext).initialize(configuration)
+                    }
+                )
+                )
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { padding ->
