@@ -5,21 +5,31 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.blueshift.Blueshift
 import com.blueshift.BlueshiftAppPreferences
 import com.blueshift.BlueshiftExecutor
 import com.blueshift.inappmessage.InAppApiCallback
 import com.blueshift.model.UserInfo
 import com.blueshift.reads.databinding.ActivityDebugBinding
+import com.blueshift.reads.framework.EdgeToEdgeHelper
 
 class DebugActivity : AppCompatActivity() {
     lateinit var binding: ActivityDebugBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Setup edge-to-edge display
+        EdgeToEdgeHelper.setupEdgeToEdge(this)
+        
         binding = ActivityDebugBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        
+        // Apply window insets to the root view
+        EdgeToEdgeHelper.applyWindowInsets(view)
 
         binding.inAppSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -28,6 +29,7 @@ import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.adapter.ProductListAdapter;
 import com.blueshift.reads.advanced.CustomInboxActivity;
+import com.blueshift.reads.framework.EdgeToEdgeHelper;
 import com.blueshift.reads.framework.ReadsApplication;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
@@ -71,6 +73,12 @@ public class ProductListActivity extends ReadsBaseActivity {
 //        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+        
+        // Manually ensure proper edge-to-edge insets for this activity
+        View rootView = findViewById(R.id.activity_product_list);
+        if (rootView != null) {
+            EdgeToEdgeHelper.applyWindowInsets(rootView, true);
+        }
 
         mContext = this;
 

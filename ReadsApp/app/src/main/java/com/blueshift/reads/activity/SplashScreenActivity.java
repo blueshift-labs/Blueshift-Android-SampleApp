@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,7 @@ import com.blueshift.BlueshiftLogger;
 import com.blueshift.model.UserInfo;
 import com.blueshift.reads.R;
 import com.blueshift.reads.TestUtils;
+import com.blueshift.reads.framework.EdgeToEdgeHelper;
 import com.blueshift.reads.framework.ReadsApplication;
 import com.blueshift.reads.model.Book;
 import com.blueshift.rich_push.RichPushConstants;
@@ -39,7 +41,17 @@ public class SplashScreenActivity extends AppCompatActivity {
 //                    .build());
 //        }
         super.onCreate(savedInstanceState);
+        
+        // Setup edge-to-edge display
+        EdgeToEdgeHelper.setupEdgeToEdge(this);
+        
         setContentView(R.layout.activity_splash_screen);
+        
+        // Apply window insets to root view
+        View rootView = findViewById(R.id.activity_splash_screen);
+        if (rootView != null) {
+            EdgeToEdgeHelper.applyWindowInsets(rootView);
+        }
 
         mContext = this;
 

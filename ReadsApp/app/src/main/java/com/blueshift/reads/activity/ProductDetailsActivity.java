@@ -22,6 +22,7 @@ import com.blueshift.reads.R;
 import com.blueshift.reads.ShoppingCart;
 import com.blueshift.reads.TestUtils;
 import com.blueshift.reads.async.GetBookDetailsTask;
+import com.blueshift.reads.framework.EdgeToEdgeHelper;
 import com.blueshift.reads.framework.ReadsBaseActivity;
 import com.blueshift.reads.model.Book;
 import com.blueshift.rich_push.Message;
@@ -60,6 +61,12 @@ public class ProductDetailsActivity extends ReadsBaseActivity {
 //        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+        
+        // Manually ensure proper edge-to-edge insets for this activity
+        View rootView = findViewById(R.id.activity_product_details);
+        if (rootView != null) {
+            EdgeToEdgeHelper.applyWindowInsets(rootView, true);
+        }
 
         Blueshift.getInstance(this).trackScreenView(this, false);
 
