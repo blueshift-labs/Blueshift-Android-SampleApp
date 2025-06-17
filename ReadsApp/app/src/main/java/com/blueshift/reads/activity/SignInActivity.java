@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueshift.Blueshift;
 import com.blueshift.reads.R;
+import com.blueshift.reads.framework.EdgeToEdgeHelper;
 import com.blueshift.reads.framework.ReadsApplication;
 import com.github.rahulrvp.android_utils.EditTextUtils;
 
@@ -25,7 +26,17 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Setup edge-to-edge display
+        EdgeToEdgeHelper.setupEdgeToEdge(this);
+        
         setContentView(R.layout.activity_sign_in);
+        
+        // Apply window insets to root view
+        View rootView = findViewById(R.id.activity_sign_in);
+        if (rootView != null) {
+            EdgeToEdgeHelper.applyWindowInsets(rootView);
+        }
 
         mNameField = findViewById(R.id.name);
         mCustomerIdField = findViewById(R.id.customerId);
